@@ -21,6 +21,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import java.io.Serializable;
 import static javax.persistence.TemporalType.DATE;
+import org.hibernate.annotations.Check;
 
 /**
  *
@@ -28,6 +29,7 @@ import static javax.persistence.TemporalType.DATE;
  */
 @Entity
 @Table(name = "ReservaSenseNotificacio")
+@Check(constraints = "(horafi > horaini) AND (horaini >= 0 AND horaini < 24) AND (horafi > 0 AND horafi < 25)")
 public class ReservaSenseNotificacio implements Serializable{
     @Id
     @Temporal(DATE)

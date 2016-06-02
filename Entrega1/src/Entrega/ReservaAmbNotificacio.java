@@ -20,7 +20,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import java.io.Serializable;
+import javax.persistence.PrimaryKeyJoinColumn;
 import static javax.persistence.TemporalType.DATE;
+import org.hibernate.annotations.Check;
 
 /**
  *
@@ -28,6 +30,7 @@ import static javax.persistence.TemporalType.DATE;
  */
 @Entity
 @Table(name = "ReservaAmbNotificacio")
+@Check(constraints = "(horafi > horaini) AND (horaini >= 0 AND horaini < 24) AND (horafi > 0 AND horafi < 25)")
 public class ReservaAmbNotificacio implements Serializable{
     
     @Id
@@ -42,6 +45,7 @@ public class ReservaAmbNotificacio implements Serializable{
     @Column(name = "comentaris", length = 255, unique = false, nullable = true)
     private String comentaris;
     @ManyToOne
+    @PrimaryKeyJoinColumn
     private Usuari usuari;
     @Id
     @OneToOne
