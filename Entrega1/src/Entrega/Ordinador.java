@@ -24,8 +24,11 @@ import javax.persistence.Table;
 })
 public class Ordinador extends Recurs{
    
+    @Column(name = "marca")
     private String marca;
+    @Column(name = "model")
     private String model;
+    @OneToOne
     private Sala sala;
     
     public Ordinador() {
@@ -39,7 +42,6 @@ public class Ordinador extends Recurs{
         new Recurs(name);
     }
     
-    @Column(name = "marca")
     public String getMarca() {
         return marca;
     }
@@ -48,7 +50,6 @@ public class Ordinador extends Recurs{
         this.marca = marca;
     }
 
-    @Column(name = "model")
     public String getModel() {
         return model;
     }
@@ -57,9 +58,6 @@ public class Ordinador extends Recurs{
         this.model = model;
     } 
     
-    @OneToOne
-    @PrimaryKeyJoinColumn
-    @Column(name = "nomsala")
     public Sala getSala() {
         return sala;
     }

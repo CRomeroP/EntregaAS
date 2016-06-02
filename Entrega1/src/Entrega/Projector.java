@@ -23,8 +23,11 @@ import javax.persistence.Table;
         @AttributeOverride(name="nom", column=@Column(name="nomprojector")),
 })
 public class Projector extends Recurs{
-    
-    private String resolucio;
+
+    @Column(name = "resolucio")    
+    private String resolucio; 
+    @OneToOne
+    @PrimaryKeyJoinColumn
     private Sala sala;
     
     public Projector(){
@@ -37,7 +40,6 @@ public class Projector extends Recurs{
         new Recurs(name);
     }
     
-    @Column(name = "resolucio")
     public String getResolucio() {
         return resolucio;
     }
@@ -46,9 +48,6 @@ public class Projector extends Recurs{
         this.resolucio = resolucio;
     }
     
-    @OneToOne
-    @PrimaryKeyJoinColumn
-    @Column(name = "nomsala")
     public Sala getSala() {
         return sala;
     }

@@ -23,11 +23,15 @@ import javax.persistence.Table;
 @Table(name = "recurs")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Recurs  implements java.io.Serializable {
-
-
+    
+    @Id
+    @Column(name = "nom")
     private String nom;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "recurs")
     private Set<ReservaAmbNotificacio> reservasambnotificacio;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "recurs")
     private Set<ReservaSenseNotificacio> reservassensenotificacio;
+    @Column(name = "type", unique = false, nullable = true, length = 50)
     private String type;     
 
     public Recurs() {
@@ -36,9 +40,7 @@ public class Recurs  implements java.io.Serializable {
     public Recurs(String nom) {
         this.nom = nom;
     }
-    
-    @Id   
-    @Column(name = "nom", unique = true, nullable = false, length = 50)
+     
     public String getNom() {
         return this.nom;
     }
@@ -47,7 +49,6 @@ public class Recurs  implements java.io.Serializable {
         this.nom = nom;
     }
     
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "recurs")
     public Set<ReservaAmbNotificacio> getReservasAmbNotificacio() {
 	return this.reservasambnotificacio;
     }
@@ -57,8 +58,6 @@ public class Recurs  implements java.io.Serializable {
     }
 
    
-
-    @OneToMany(mappedBy = "recurs")
     public Set<ReservaSenseNotificacio> getReservasSenseNotificacio() {
         return reservassensenotificacio;
     }
@@ -67,7 +66,6 @@ public class Recurs  implements java.io.Serializable {
         this.reservassensenotificacio = reservassensenotificacio;
     }
 
-    @Column(name = "type", unique = false, nullable = false, length = 50)
     public String getType() {
         return type;
     }

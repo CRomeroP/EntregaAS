@@ -27,11 +27,9 @@ public class Sala extends Recurs{
     private String ubicacio;
     @Column(name = "aforament")
     private Integer aforament;
-    @OneToOne(mappedBy = "sala")
-    @Column(name = "nomordinador")
+    @OneToOne(mappedBy="sala")
     private Ordinador nomordinador;
-    @OneToOne(mappedBy = "sala")
-    @Column(name = "nomprojector")
+    @OneToOne(mappedBy="sala")
     private Projector nomprojector; 
 
     public Sala(){

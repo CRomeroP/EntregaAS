@@ -19,6 +19,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import java.io.Serializable;
 import static javax.persistence.TemporalType.DATE;
 
 /**
@@ -27,14 +28,30 @@ import static javax.persistence.TemporalType.DATE;
  */
 @Entity
 @Table(name = "ReservaAmbNotificacio")
-public class ReservaAmbNotificacio {
+public class ReservaAmbNotificacio implements Serializable{
     
+    @Id
+    @Temporal(DATE)
+    @Column(name = "datar", unique = true, nullable = false)    
     private Date data;
+    @Id
+    @Column(name = "horaini", unique = true, nullable = false)
     private Integer horainici;
+    @Column(name = "horafi", unique = false, nullable = false)
     private Integer horafi;
+    @Column(name = "comentaris", length = 255, unique = false, nullable = true)
     private String comentaris;
+    @ManyToOne
     private Usuari usuari;
+    @Id
+    @OneToOne
     private Recurs recurs;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "esnotifica", joinColumns = {
+        @JoinColumn(name = "recurs", nullable = false),
+        @JoinColumn(name = "horaIni", nullable = false),
+        @JoinColumn(name = "datar", nullable = false)},
+        inverseJoinColumns = {@JoinColumn(name = "username", nullable = false)})
     private Set<Usuari> notificacions = new HashSet<Usuari>(0);
 
     public ReservaAmbNotificacio() {
@@ -53,9 +70,7 @@ public class ReservaAmbNotificacio {
         this.notificacions = notificacions;
     }
     
-    @Id
-    @Temporal(DATE)
-    @Column(name = "datar", unique = true, nullable = false)
+
     public Date getData() {
         return data;
     }
@@ -64,8 +79,6 @@ public class ReservaAmbNotificacio {
         this.data = data;
     }
 
-    @Id
-    @Column(name = "horaini", unique = true, nullable = false)
     public Integer getHorainici() {
         return horainici;
     }
@@ -74,8 +87,7 @@ public class ReservaAmbNotificacio {
         this.horainici = horainici;
     }
     
-    @Id
-    @Column(name = "horafi", unique = false, nullable = false)
+
     public Integer getHorafi() {
         return horafi;
     }
@@ -84,7 +96,6 @@ public class ReservaAmbNotificacio {
         this.horafi = horafi;
     }
     
-    @Column(name = "comentaris", length = 255, unique = false, nullable = true)
     public String getComentaris() {
         return comentaris;
     }
@@ -93,7 +104,6 @@ public class ReservaAmbNotificacio {
         this.comentaris = comentaris;
     }
 
-    @ManyToOne
     public Usuari getUsuari() {
         return usuari;
     }
@@ -102,9 +112,6 @@ public class ReservaAmbNotificacio {
         this.usuari = usuari;
     }
 
-    @Id
-    @Column(name = "recursreserva", length = 50, unique = true, nullable = false)
-    @OneToOne
     public Recurs getRecurs() {
         return recurs;
     }
@@ -113,12 +120,6 @@ public class ReservaAmbNotificacio {
         this.recurs = recurs;
     }    
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "esnotifica", joinColumns = {
-        @JoinColumn(name = "recurs", nullable = false),
-        @JoinColumn(name = "horaIni", nullable = false),
-        @JoinColumn(name = "datar", nullable = false)},
-        inverseJoinColumns = {@JoinColumn(name = "username", nullable = false)})
     public Set<Usuari> getNotificacions() {
         return notificacions;
     }

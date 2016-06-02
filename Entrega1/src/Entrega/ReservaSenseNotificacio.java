@@ -19,6 +19,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import java.io.Serializable;
 import static javax.persistence.TemporalType.DATE;
 
 /**
@@ -27,7 +28,7 @@ import static javax.persistence.TemporalType.DATE;
  */
 @Entity
 @Table(name = "ReservaSenseNotificacio")
-public class ReservaSenseNotificacio {
+public class ReservaSenseNotificacio implements Serializable{
     @Id
     @Temporal(DATE)
     @Column(name = "datar", unique = true, nullable = false)    
@@ -39,8 +40,10 @@ public class ReservaSenseNotificacio {
     private Integer horafi;
     @Column(name = "comentaris", length = 255, unique = false, nullable = true)
     private String comentaris;
-    @Column(name = "usernamereserva")
+    @ManyToOne
     private Usuari usuari;
+    @Id
+    @ManyToOne
     private Recurs recurs;
 
     public ReservaSenseNotificacio() {
@@ -88,7 +91,6 @@ public class ReservaSenseNotificacio {
         this.comentaris = comentaris;
     }
 
-    @ManyToOne
     public Usuari getUsuari() {
         return usuari;
     }
@@ -97,8 +99,6 @@ public class ReservaSenseNotificacio {
         this.usuari = usuari;
     }
 
-    @Id
-    @ManyToOne
     public Recurs getRecurs() {
         return recurs;
     }

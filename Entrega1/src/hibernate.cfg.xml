@@ -10,6 +10,7 @@
     <property name="hibernate.connection.password">Kasikasi16</property>
     <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
     <property name="hibernate.current_session_context_class">thread</property>
+    <property name="hibernate.hbm2ddl.auto">create</property>
     <mapping class="Entrega.Usuari"/>
     <mapping class="Entrega.ReservaSenseNotificacio"/>
     <mapping class="Entrega.Recurs"/>
