@@ -19,7 +19,7 @@ import org.hibernate.annotations.Check;
  */
 @Entity
 @Table(name = "sala")
-@Check(constraints = "(aforament > 0")
+@Check(constraints = "aforament > 0")
 @AttributeOverrides({
         @AttributeOverride(name="nom", column=@Column(name="nomsala")),
 })
@@ -38,12 +38,15 @@ public class Sala extends Recurs{
         
     }
     
-    public Sala(String name, String ubicacio, Integer aforament){
+    public Sala(String name, String ubicacio, Integer aforament, Projector nomProj, Ordinador nomPc){
         super(name);
         this.ubicacio = ubicacio;
         this.aforament = aforament;
+        this.nomprojector = nomProj;
+        this.nomordinador = nomPc;
         new Recurs(name);
     }
+
     public String getUbicacio() {
         return ubicacio;
     }

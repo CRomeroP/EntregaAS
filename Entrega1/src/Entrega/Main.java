@@ -22,6 +22,7 @@ public class Main {
                         persona2.setEmail("juan21@gmail.com");
                         Recurs recurs = new Recurs("PC");
                         Recurs recurs2 = new Recurs();
+                        Sala sal1 = new Sala("Nom","ubicació", 2, null, null);
                         recurs2.setNom("projector");
                         Date data1 = new Date(116,4,14);
                         Date data2 = new Date(116,4,15);
@@ -48,6 +49,7 @@ public class Main {
                                 + ", recurs: " + (reserva2.getRecurs()).getNom());
                         session.save(persona);
                         session.save(recurs);
+                        session.save(sal1);
                         session.save(persona2);
                         session.save(recurs2);
 			session.save(reserva1);
