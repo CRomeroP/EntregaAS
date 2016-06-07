@@ -7,6 +7,10 @@ package domain.DBInterfaces;
 
 import Data.CtrlRecurs;
 import Data.CtrlRecursDB;
+import Data.CtrlReservaAmbNotificacio;
+import Data.CtrlReservaAmbNotificacioDB;
+import Data.CtrlReservaSenseNotificacio;
+import Data.CtrlReservaSenseNotificacioDB;
 import Data.CtrlUsuari;
 import Data.CtrlUsuariDB;
 import Data.Sessio;
@@ -34,5 +38,13 @@ public class CtrlDataFactoria {
     private final CtrlRecurs ctrlRecurs = new CtrlRecursDB();
     
     public CtrlRecurs getCtrlRecurs(){ return ctrlRecurs; }
+    
+    private final CtrlReservaAmbNotificacio ctrlReservaAmbNotificacio = new CtrlReservaAmbNotificacioDB();
+    
+    public CtrlReservaAmbNotificacio getCtrlReservaAmbNotificacio() { return ctrlReservaAmbNotificacio; }
+    
+    private final CtrlReservaSenseNotificacio ctrlReservaSenseNotificacio = new CtrlReservaSenseNotificacioDB();
+    
+    public CtrlReservaSenseNotificacio getCtrlReservaSenseNotificacio() { return ctrlReservaSenseNotificacio; }
     
 }
