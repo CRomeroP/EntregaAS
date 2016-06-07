@@ -5,7 +5,7 @@
  */
 package domain.DBInterfaces;
 
-import data.CtrlUsuariDB;
+import Data.CtrlUsuariDB;
 /**
  *
  * @author carlos

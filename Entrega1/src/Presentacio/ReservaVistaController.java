@@ -23,10 +23,21 @@ public class ReservaVistaController implements Initializable {
 
     
     @FXML
-    private Label label;
+    private DatePicker calendario;
     
     @FXML
-    private DatePicker data;
+    private  calendario;
+    @FXML
+    private DatePicker calendario;
+                @FXML
+    private DatePicker calendario;
+                    @FXML
+    private DatePicker calendario;
+                        @FXML
+    private DatePicker calendario;
+                            @FXML
+    private DatePicker calendario;
+    
     /**
      * Initializes the controller class.
      */
