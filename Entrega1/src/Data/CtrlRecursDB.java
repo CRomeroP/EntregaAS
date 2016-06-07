@@ -2,6 +2,7 @@ package Data;
 
 
 import domain.Model.Recurs;
+import Excepcions.NoHiHaRecursos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,13 +11,14 @@ import java.util.Set;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 
 public class CtrlRecursDB implements CtrlRecurs{
 	
     private SessionFactory factory;
 	
     public CtrlRecursDB() {
-		factory = Sessio.getInstance().getFactory();
+		factory = Sessio.getInstance();
 	}
 	
     public void insert(Recurs recurs) {
@@ -29,11 +31,8 @@ public class CtrlRecursDB implements CtrlRecurs{
     public Recurs get(String nom) {
         Session session = factory.getCurrentSession();
         session.beginTransaction();
-        Recurs r = session.get(Recurs.class, nom);
-        Sessio sessio = session.get(Sessio.class, tipusSessio);
-        Representacio representacio = (Representacio) session.createCriteria(Representacio.class)
-                .add(Restrictions.eq("local", local))
-                .add(Restrictions.eq("sessio", sessio)).uniqueResult();
+        Recurs representacio = (Recurs) session.createCriteria(Recurs.class)
+                .add(Restrictions.eq("nom", nom)).uniqueResult();
         return representacio;
     }
 
@@ -46,8 +45,8 @@ public class CtrlRecursDB implements CtrlRecurs{
     public List<Recurs> getAll() {
         Session session = factory.getCurrentSession();
         session.beginTransaction();
-        List<Recurs> representacions = session.createCriteria(Recurs.class).list();
-        if (representacions.isEmpty()) throw new NoHiHaRecursos();
-        return representacions;
+        List<Recurs> recursos = session.createCriteria(Recurs.class).list();
+        if (recursos.isEmpty()) throw new NoHiHaRecursos();
+        return recursos;
     }
 }
