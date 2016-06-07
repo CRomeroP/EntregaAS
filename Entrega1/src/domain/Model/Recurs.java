@@ -75,11 +75,7 @@ public class Recurs  implements java.io.Serializable {
         this.type = type;
     }
     
-<<<<<<< HEAD
-    public Info getInfo (Info i){
-=======
     public Info getInfo(Info i){
->>>>>>> 4760a602bb479c4d7c11d8c9dbd1e5a86e707414
         return null;
     }
     

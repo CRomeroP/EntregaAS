@@ -3,6 +3,7 @@ package Data;
 
 import Excepcions.NoHiHaUsuaris;
 import domain.Model.Usuari;
+import java.util.ArrayList;
 
 import java.util.List;
 
@@ -39,10 +40,10 @@ public class CtrlUsuariDB implements CtrlUsuari{
     }
 
 
-    public List<Usuari> getAll() {
+    public ArrayList<Usuari> getAll() {
     	Session session = factory.getCurrentSession();
         session.beginTransaction();
-        List<Usuari> usuaris = session.createCriteria(Usuari.class).list();
+        ArrayList<Usuari> usuaris = (ArrayList) session.createCriteria(Usuari.class).list();
         if (usuaris.isEmpty()) throw new NoHiHaUsuaris();
         return usuaris;
     }

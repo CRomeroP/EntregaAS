@@ -42,10 +42,10 @@ public class CtrlRecursDB implements CtrlRecurs{
     }
 
 
-    public List<Recurs> getAll() {
+    public ArrayList<Recurs> getAll() {
         Session session = factory.getCurrentSession();
         session.beginTransaction();
-        List<Recurs> recursos = session.createCriteria(Recurs.class).list();
+        ArrayList<Recurs> recursos = (ArrayList) session.createCriteria(Recurs.class).list();
         if (recursos.isEmpty()) throw new NoHiHaRecursos();
         return recursos;
     }

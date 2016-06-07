@@ -6,7 +6,7 @@
 package Data;
 
 import domain.Model.Recurs;
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
@@ -20,6 +20,6 @@ public interface CtrlRecurs {
 
     public Boolean exists(String nom) throws Exception;
 
-    public List<Recurs> getAll();
+    public ArrayList<Recurs> getAll();
 
 }

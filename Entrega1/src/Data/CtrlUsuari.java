@@ -6,7 +6,7 @@
 package Data;
 
 import domain.Model.Usuari;
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
@@ -20,6 +20,6 @@ public interface CtrlUsuari {
 
     public Boolean exists(String username) throws Exception;
 
-    public List<Usuari> getAll();
+    public ArrayList<Usuari> getAll();
 
 }

@@ -32,7 +32,7 @@ public class ControladorAssignarUsuaris {
     public ArrayList<InfoUsuari> obteUsuarisAAssignar(String nomR, Date d, int hi){
        CtrlDataFactoria factory = new CtrlDataFactoria();
        CtrlUsuari cu = factory.getCtrlUsuari();
-       List<Usuari> u = cu.getAll();
+       ArrayList<Usuari> u = cu.getAll();
        CtrlReservaAmbNotificacio cr = factory.getCtrlReservaAmbNotificacio();
        ReservaAmbNotificacio r = cr.get(nomR,d,hi);
        ArrayList<InfoUsuari> result = r.getPossiblesUsuaris(u);
