@@ -76,11 +76,13 @@ public class Recurs  implements java.io.Serializable {
         this.type = type;
     }
     
+    public abstract Info getInfo(Info i);
+    
     public Info infoDisponible(Date d, int horai, int horaf){
         Info result = null;
         Boolean b = true;
         int i = 0;
-        while (i < this.reservasambnotificacio.size() && i < this.reservassensenotificacio.size() && b){
+        while ((i < this.reservasambnotificacio.size() || i < this.reservassensenotificacio.size()) && b){
             if (i < this.reservasambnotificacio.size()){
                 if (!this.reservasambnotificacio.get(i).estaDisponible(d, horai, horaf)) b = false;
             }
@@ -88,7 +90,11 @@ public class Recurs  implements java.io.Serializable {
                 if (!this.reservasambnotificacio.get(i).estaDisponible(d, horai, horaf)) b = false;
             }
         }
-        return null;
+        if (b){
+            result.setNom(this.nom);
+            result = getInfo(result);
+        }
+        return result;
     }
 }
 
