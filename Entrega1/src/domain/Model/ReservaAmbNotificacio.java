@@ -132,6 +132,10 @@ public class ReservaAmbNotificacio implements Serializable{
         this.notificacions = notificacions;
     }
     
+    public boolean estaDisponible (Date d, int horai, int horaf){
+        return true;
+    }
+    
     
     
 }
