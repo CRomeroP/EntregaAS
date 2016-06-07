@@ -20,10 +20,21 @@ public class CtrlRecursDB implements CtrlRecurs{
 	}
 	
     public void insert(Recurs recurs) {
+        Session session = factory.getCurrentSession();
+        session.beginTransaction();
+        session.save(recurs);
+        session.getTransaction().commit();
     }
 
-    public Recurs get(Recurs nom) {
-        return null;
+    public Recurs get(String nom) {
+        Session session = factory.getCurrentSession();
+        session.beginTransaction();
+        Recurs r = session.get(Recurs.class, nom);
+        Sessio sessio = session.get(Sessio.class, tipusSessio);
+        Representacio representacio = (Representacio) session.createCriteria(Representacio.class)
+                .add(Restrictions.eq("local", local))
+                .add(Restrictions.eq("sessio", sessio)).uniqueResult();
+        return representacio;
     }
 
 
@@ -33,6 +44,10 @@ public class CtrlRecursDB implements CtrlRecurs{
 
 
     public List<Recurs> getAll() {
-    	return null;
+        Session session = factory.getCurrentSession();
+        session.beginTransaction();
+        List<Recurs> representacions = session.createCriteria(Recurs.class).list();
+        if (representacions.isEmpty()) throw new NoHiHaRecursos();
+        return representacions;
     }
 }
