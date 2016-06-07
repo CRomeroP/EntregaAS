@@ -23,13 +23,13 @@ public class Main extends Application {
         
         URL s;
         
-       /* Parent root = FXMLLoader.load(getClass().getResource("NuevaReservaVista.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("NuevaReservaVista.fxml"));
         
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
-        stage.show();*/
-        s = getClass().getResource("/NuevaReservaVista.fxml");
+        stage.show();
+        //s = getClass().getResource("/NuevaReservaVista.fxml");
     }
     public static void main(String[] args) {
         launch(args);

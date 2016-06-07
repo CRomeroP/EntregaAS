@@ -75,7 +75,9 @@ public class Recurs  implements java.io.Serializable {
         this.type = type;
     }
     
-    public abstract Info getInfo(Info i);
+    public Info getInfo(Info i){
+        return null;
+    }
     
     public Info infoDisponible(Date d, int horai, int horaf){
         Info result = null;

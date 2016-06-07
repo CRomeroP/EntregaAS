@@ -83,7 +83,7 @@ public class Sala extends Recurs{
     }
     
     public Info getInfo(Info i){
-        i.setAforament(this.aforament);
+       /* i.setAforament(this.aforament);
         i.setUbicacio(this.ubicacio);
         if (this.nomordinador != null){
             Ordinador o = Ordinador.get(this.nomordinador);
@@ -93,6 +93,7 @@ public class Sala extends Recurs{
             Projector p = Projector.get(this.nomprojector);
             i = p.getInfo(i);
         }
-        return i;
+        return i;*/
+       return null;
     }
 }
