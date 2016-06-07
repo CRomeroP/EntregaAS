@@ -30,8 +30,7 @@ public class Ordinador extends Recurs{
     private String marca;
     @Column(name = "model")
     private String model;
-    @OneToOne
-    @JoinColumn(name = "sala_ordinaror", nullable = true)
+    @OneToOne(mappedBy = "nomordinador")
     private Sala sala;
     
     public Ordinador() {
@@ -67,5 +66,12 @@ public class Ordinador extends Recurs{
 
     public void setSala(Sala sala) {
         this.sala = sala;
+    }
+    
+    @Override
+    public Info getInfo(Info i){
+        i.setMarca(this.marca);
+        i.setModel(this.model);
+        return i;
     }
 }

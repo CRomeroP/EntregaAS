@@ -27,8 +27,7 @@ public class Projector extends Recurs{
 
     @Column(name = "resolucio")    
     private String resolucio; 
-    @OneToOne
-    @JoinColumn(name = "sala_projector", nullable = true)
+    @OneToOne(mappedBy = "nomprojector")
     private Sala sala;
     
     public Projector(){
@@ -56,4 +55,11 @@ public class Projector extends Recurs{
     public void setSala(Sala sala) {
         this.sala = sala;
     }  
+    
+    @Override
+    public Info getInfo(Info i){
+        i.setResolucio(this.resolucio);
+        return i;
+    }
+           
 }

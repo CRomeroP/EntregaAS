@@ -17,7 +17,7 @@ public class Info {
     private String marca;
     private String model;
     private String resolucio;
-    private String aforament;
+    private int aforament;
     private String ubicacio;
     private String marcaOrdSala;
     private String modelOrdSala;
@@ -39,7 +39,7 @@ public class Info {
         this.resolucio = resolucio;
     }
 
-    public void setAforament(String aforament) {
+    public void setAforament(int aforament) {
         this.aforament = aforament;
     }
 
@@ -75,7 +75,7 @@ public class Info {
         return resolucio;
     }
 
-    public String getAforament() {
+    public int getAforament() {
         return aforament;
     }
 

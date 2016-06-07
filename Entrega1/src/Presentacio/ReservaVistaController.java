@@ -7,12 +7,15 @@ package Presentacio;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.Spinner;
 
 /**
  * FXML Controller class
@@ -24,19 +27,14 @@ public class ReservaVistaController implements Initializable {
     
     @FXML
     private DatePicker calendario;
-    
     @FXML
-    private  calendario;
+    private Spinner<LocalTime> spinhini;
     @FXML
-    private DatePicker calendario;
-                @FXML
-    private DatePicker calendario;
-                    @FXML
-    private DatePicker calendario;
-                        @FXML
-    private DatePicker calendario;
-                            @FXML
-    private DatePicker calendario;
+    private Spinner<LocalTime> spinhfi;
+    @FXML
+    private Button buttonok;
+    @FXML
+    private Button buttoncancel;
     
     /**
      * Initializes the controller class.
@@ -45,6 +43,15 @@ public class ReservaVistaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
+    
+    @FXML
+    private void ok(ActionEvent event) {
+    }
+    
+    @FXML
+    private void exit(ActionEvent event) {
+    }
+    
 
 
     
