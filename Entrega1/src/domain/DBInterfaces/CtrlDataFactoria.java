@@ -5,7 +5,9 @@
  */
 package domain.DBInterfaces;
 
+import Data.CtrlUsuari;
 import Data.CtrlUsuariDB;
+import Data.Sessio;
 /**
  *
  * @author carlos
@@ -17,9 +19,12 @@ public class CtrlDataFactoria {
         return ourInstance;
     }
 
-    private CtrlDataFactoria(){}
+    public CtrlDataFactoria(){}
 
-    public CtrlUsuari getCtrlCasella(){
+    public CtrlUsuari getCtrlUsuari(){
+        return new CtrlUsuariDB();
+        }
+    public CtrlRecurs getCtrlRecurs(){
         return new CtrlUsuariDB();
         }
     

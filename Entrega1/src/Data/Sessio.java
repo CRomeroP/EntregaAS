@@ -28,7 +28,7 @@ public class Sessio {
     	factory = config.buildSessionFactory();
     }	
 	
-    public static Sessio getIstance(){ return instance;}
+    public static Sessio getInstance(){ return instance;}
     
     public SessionFactory getFactory(){
     	return factory;

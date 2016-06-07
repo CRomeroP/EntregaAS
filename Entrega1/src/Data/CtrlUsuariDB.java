@@ -1,6 +1,5 @@
 package Data;
 
-import domain.DBInterfaces.CtrlUsuari;
 
 import domain.Model.Usuari;
 

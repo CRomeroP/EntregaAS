@@ -9,8 +9,8 @@
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.hbm2ddl.auto">create</property>
     <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-    <property name="hibernate.connection.password">Kasikasi16</property>
-    <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/test</property>
+    <property name="hibernate.connection.password">VGGep220995</property>
+    <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/postgres</property>
     <mapping class="Entrega.Usuari"/>
     <mapping class="Entrega.ReservaSenseNotificacio"/>
     <mapping class="Entrega.Recurs"/>
