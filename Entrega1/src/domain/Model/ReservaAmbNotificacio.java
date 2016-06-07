@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entrega;
+package domain.Model;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -29,9 +29,10 @@ import org.hibernate.annotations.Check;
  * @author carlos
  */
 @Entity
-@Table(name = "ReservaSenseNotificacio")
+@Table(name = "ReservaAmbNotificacio")
 @Check(constraints = "(horafi > horaini) AND (horaini >= 0 AND horaini < 24) AND (horafi > 0 AND horafi < 25)")
-public class ReservaSenseNotificacio implements Serializable{
+public class ReservaAmbNotificacio implements Serializable{
+    
     @Id
     @Temporal(DATE)
     @Column(name = "datar", unique = true, nullable = false)    
@@ -47,20 +48,30 @@ public class ReservaSenseNotificacio implements Serializable{
     @PrimaryKeyJoinColumn
     private Usuari usuari;
     @Id
-    @ManyToOne
-    @PrimaryKeyJoinColumn
+    @OneToOne
     private Recurs recurs;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "esnotifica", joinColumns = {
+        @JoinColumn(name = "recurs", nullable = false),
+        @JoinColumn(name = "horaIni", nullable = false),
+        @JoinColumn(name = "datar", nullable = false)},
+        inverseJoinColumns = {@JoinColumn(name = "username", nullable = false)})
+    private Set<Usuari> notificacions = new HashSet<Usuari>(0);
 
-    public ReservaSenseNotificacio() {
+    public ReservaAmbNotificacio() {
     }
 
-    public ReservaSenseNotificacio(Date data, Integer horainici, Integer horafi, String comentaris, Usuari usuari, Recurs recurs) {
+    public ReservaAmbNotificacio(Date data, Integer horainici, Integer horafi, String comentaris, Usuari usuari, Recurs recurs) {
         this.data = data;
         this.horainici = horainici;
         this.horafi = horafi;
         this.comentaris = comentaris;
         this.usuari = usuari;
         this.recurs = recurs;
+    }
+
+    public ReservaAmbNotificacio(Set<Usuari> notificacions) {
+        this.notificacions = notificacions;
     }
     
 
@@ -80,6 +91,7 @@ public class ReservaSenseNotificacio implements Serializable{
         this.horainici = horainici;
     }
     
+
     public Integer getHorafi() {
         return horafi;
     }
@@ -111,5 +123,15 @@ public class ReservaSenseNotificacio implements Serializable{
     public void setRecurs(Recurs recurs) {
         this.recurs = recurs;
     }    
+
+    public Set<Usuari> getNotificacions() {
+        return notificacions;
+    }
+
+    public void setNotificacions(Set<Usuari> notificacions) {
+        this.notificacions = notificacions;
+    }
+    
+    
     
 }

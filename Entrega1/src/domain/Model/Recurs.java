@@ -1,4 +1,4 @@
-package Entrega;
+package domain.Model;
 // Generated 14-abr-2016 8:24:58 by Hibernate Tools 4.3.1
 
 import java.util.List;

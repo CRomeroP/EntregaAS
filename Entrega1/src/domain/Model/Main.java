@@ -1,4 +1,4 @@
-package Entrega;
+package domain.Model;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
