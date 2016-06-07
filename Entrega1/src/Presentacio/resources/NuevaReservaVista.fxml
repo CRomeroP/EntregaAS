@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<fx:root prefHeight="340.0" prefWidth="429.0" type="BorderPane" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentacio.ReservaVistaController">
+<BorderPane prefHeight="340.0" prefWidth="429.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentacio.ReservaVistaController">
    <center>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -56,4 +56,4 @@
          </children>
       </AnchorPane>
    </center>
-</fx:root>
+</BorderPane>
