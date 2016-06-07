@@ -51,7 +51,7 @@ public class CtrlUsuariDB implements CtrlUsuari{
     }
 
 
-    public List<Usuari> all() {
+    public List<Usuari> getAll() {
     	Session session = factory.getCurrentSession();
         session.beginTransaction();
         SQLQuery query = session.createSQLQuery("SELECT u.*, j.email, case when j.username is not null then 1 else 0 end as clazz_ FROM PRACTICA4.USUARIREGISTRAT u left join PRACTICA4.Jugador j on j.username = u.username");

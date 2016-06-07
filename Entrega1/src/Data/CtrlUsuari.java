@@ -20,6 +20,6 @@ public interface CtrlUsuari {
 
     public Boolean exists(String username) throws Exception;
 
-    public List<Usuari> all();
+    public List<Usuari> getAll();
 
 }

@@ -20,6 +20,6 @@ public interface CtrlRecurs {
 
     public Boolean exists(String nom) throws Exception;
 
-    public List<Recurs> all();
+    public List<Recurs> getAll();
 
 }

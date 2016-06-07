@@ -32,7 +32,7 @@ public class CtrlRecursDB implements CtrlRecurs{
     }
 
 
-    public List<Recurs> all() {
+    public List<Recurs> getAll() {
     	return null;
     }
 }
