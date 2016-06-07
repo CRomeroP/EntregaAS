@@ -20,12 +20,19 @@ import javax.persistence.Table;
 @Table(name = "usuari")
 public class Usuari  implements java.io.Serializable {
 
-     private String username;
-     private String nom;
-     private String email;
-     private Set<ReservaAmbNotificacio> reservasambnotificacio;
-     private Set<ReservaSenseNotificacio> reservassensenotificacio;
-     private Set<ReservaAmbNotificacio> notificacions;
+    @Id   
+    @Column(name = "username", length = 50, unique = true, nullable = false)
+    private String username;
+    @Column(name = "nom", length = 50)
+    private String nom;
+    @Column(name = "email", length = 50)    
+    private String email;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuari")
+    private Set<ReservaAmbNotificacio> reservasambnotificacio;
+    @OneToMany(mappedBy = "usuari")
+    private Set<ReservaSenseNotificacio> reservassensenotificacio;
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "notificacions")
+    private Set<ReservaAmbNotificacio> notificacions;
 
     public Usuari() {
     }
@@ -36,9 +43,6 @@ public class Usuari  implements java.io.Serializable {
         this.email = email;
     }
     
-    @Id
-    
-    @Column(name = "username", length = 50, unique = true, nullable = false)
     public String getUsername() {
         return this.username;
     }
@@ -47,7 +51,6 @@ public class Usuari  implements java.io.Serializable {
         this.username = username;
     }
     
-    @Column(name = "nom", length = 50)
     public String getNom() {
         return this.nom;
     }
@@ -56,7 +59,6 @@ public class Usuari  implements java.io.Serializable {
         this.nom = nom;
     }
     
-    @Column(name = "email", length = 50)
     public String getEmail() {
         return this.email;
     }
@@ -64,8 +66,7 @@ public class Usuari  implements java.io.Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-    
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuari")
+       
     public Set<ReservaAmbNotificacio> getReservasambnotificacio() {
 	return this.reservasambnotificacio;
     }
@@ -74,7 +75,6 @@ public class Usuari  implements java.io.Serializable {
 	this.reservasambnotificacio = reservas;
     }
     
-    @OneToMany(mappedBy = "usuari")
     public Set<ReservaSenseNotificacio> getReservasSenseNotificacio() {
 	return this.reservassensenotificacio;
     }
@@ -83,7 +83,6 @@ public class Usuari  implements java.io.Serializable {
 	this.reservassensenotificacio = reservas;
     }
     
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "notificacions")
     public Set<ReservaAmbNotificacio> getNotificacions() {
         return notificacions;
     }

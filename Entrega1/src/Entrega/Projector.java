@@ -9,6 +9,7 @@ import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -27,7 +28,7 @@ public class Projector extends Recurs{
     @Column(name = "resolucio")    
     private String resolucio; 
     @OneToOne
-    @PrimaryKeyJoinColumn
+    @JoinColumn(name = "sala_projector", nullable = true)
     private Sala sala;
     
     public Projector(){

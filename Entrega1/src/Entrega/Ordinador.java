@@ -9,6 +9,7 @@ import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -30,6 +31,7 @@ public class Ordinador extends Recurs{
     @Column(name = "model")
     private String model;
     @OneToOne
+    @JoinColumn(name = "sala_ordinaror", nullable = true)
     private Sala sala;
     
     public Ordinador() {

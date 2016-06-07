@@ -20,6 +20,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import java.io.Serializable;
+import javax.persistence.PrimaryKeyJoinColumn;
 import static javax.persistence.TemporalType.DATE;
 import org.hibernate.annotations.Check;
 
@@ -43,9 +44,11 @@ public class ReservaSenseNotificacio implements Serializable{
     @Column(name = "comentaris", length = 255, unique = false, nullable = true)
     private String comentaris;
     @ManyToOne
+    @PrimaryKeyJoinColumn
     private Usuari usuari;
     @Id
     @ManyToOne
+    @PrimaryKeyJoinColumn
     private Recurs recurs;
 
     public ReservaSenseNotificacio() {
