@@ -1,6 +1,7 @@
 package domain.Model;
 // Generated 14-abr-2016 8:24:58 by Hibernate Tools 4.3.1
 
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
@@ -72,6 +73,20 @@ public class Recurs  implements java.io.Serializable {
 
     public void setType(String type) {
         this.type = type;
+    }
+    
+    public Info infoDisponible(Date d, int horai, int horaf){
+        Info result = null;
+        Boolean b = true;
+        int i = 0;
+        while (i < this.reservasambnotificacio.size() && i < this.reservassensenotificacio.size() && b){
+            if (i < this.reservasambnotificacio.size()){
+                this.reservasambnotificacio.get(i)
+            }
+            if (i < reservassensenotificacio.size()){
+                
+            }
+        }
     }
 }
 
