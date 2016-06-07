@@ -26,12 +26,12 @@ public class CtrlReservaAmbNotificacioDB implements CtrlReservaAmbNotificacio{
 
     }
 
-    public ReservaAmbNotificacio get(String username, String nomRecurs, Date d, int hi) {
+    public ReservaAmbNotificacio get(String nomRecurs, Date d, int hi) {
         return null;
     }
 
 
-    public Boolean exists(String username, String nomRecurs, Date d, int hi) throws Exception {
+    public Boolean exists(String nomRecurs, Date d, int hi) throws Exception {
         return null;
     }
 

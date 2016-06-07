@@ -17,9 +17,9 @@ public interface CtrlReservaAmbNotificacio {
 
     public void insert(ReservaAmbNotificacio reserva);
 
-    public ReservaAmbNotificacio get(String username, String nomRecurs, Date d, int hi);
+    public ReservaAmbNotificacio get(String nomRecurs, Date d, int hi);
 
-    public Boolean exists(String username, String nomRecurs, Date d, int hi) throws Exception;
+    public Boolean exists(String nomRecurs, Date d, int hi) throws Exception;
 
     public List<ReservaAmbNotificacio> getAll();
 

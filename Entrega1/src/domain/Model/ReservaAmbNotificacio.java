@@ -21,6 +21,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.PrimaryKeyJoinColumn;
 import static javax.persistence.TemporalType.DATE;
 import org.hibernate.annotations.Check;
@@ -137,6 +138,11 @@ public class ReservaAmbNotificacio implements Serializable{
         return true;
     }
     
+    public ArrayList<InfoUsuari> getPossiblesUsuaris(List<Usuari> u){
+        ArrayList<InfoUsuari> ret = new ArrayList<InfoUsuari>();
+        
+        return null;
+    }
     
     
 }
