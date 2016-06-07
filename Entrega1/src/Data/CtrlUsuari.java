@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package domain.DBInterfaces;
+package Data;
 
 import domain.Model.Usuari;
 import java.util.List;
@@ -20,6 +20,6 @@ public interface CtrlUsuari {
 
     public Boolean exists(String username) throws Exception;
 
-    public List<Usuari> all();
+    public List<Usuari> getAll();
 
 }

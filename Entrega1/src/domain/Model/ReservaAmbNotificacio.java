@@ -20,6 +20,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import java.io.Serializable;
+import java.util.ArrayList;
 import javax.persistence.PrimaryKeyJoinColumn;
 import static javax.persistence.TemporalType.DATE;
 import org.hibernate.annotations.Check;
@@ -56,7 +57,7 @@ public class ReservaAmbNotificacio implements Serializable{
         @JoinColumn(name = "horaIni", nullable = false),
         @JoinColumn(name = "datar", nullable = false)},
         inverseJoinColumns = {@JoinColumn(name = "username", nullable = false)})
-    private Set<Usuari> notificacions = new HashSet<Usuari>(0);
+    private ArrayList<Usuari> notificacions = new ArrayList<Usuari>(0);
 
     public ReservaAmbNotificacio() {
     }
@@ -70,7 +71,7 @@ public class ReservaAmbNotificacio implements Serializable{
         this.recurs = recurs;
     }
 
-    public ReservaAmbNotificacio(Set<Usuari> notificacions) {
+    public ReservaAmbNotificacio(ArrayList<Usuari> notificacions) {
         this.notificacions = notificacions;
     }
     
@@ -124,12 +125,16 @@ public class ReservaAmbNotificacio implements Serializable{
         this.recurs = recurs;
     }    
 
-    public Set<Usuari> getNotificacions() {
+    public ArrayList<Usuari> getNotificacions() {
         return notificacions;
     }
 
-    public void setNotificacions(Set<Usuari> notificacions) {
+    public void setNotificacions(ArrayList<Usuari> notificacions) {
         this.notificacions = notificacions;
+    }
+    
+    public boolean estaDisponible (Date d, int horai, int horaf){
+        return true;
     }
     
     
