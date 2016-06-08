@@ -95,7 +95,7 @@ public class Usuari  implements java.io.Serializable {
         this.notificacions = notificacions;
     }
     
-    public boolean tensSalaReserva(Date d, int hi, int hf) {
+    public boolean tensSalaReservada(Date d, int hi, int hf) {
         boolean ret = false; 
         boolean b = true;
         for (int i = 0; i < reservasambnotificacio.size() && b ; ++i) {
