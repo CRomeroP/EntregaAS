@@ -158,4 +158,14 @@ public class ReservaAmbNotificacio implements Serializable{
     }
     
     
+    public void afegirUsuaris(ArrayList<Usuari> u){
+        if (notificacions.size() + u.size() > 10); //activa[reservaATope]
+        ArrayList<String> emails = new ArrayList<>();
+        for (int i = 0; i < u.size(); i++){
+            emails.add(u.get(i).getEmail());
+            notificacions.add(u.get(i));
+        }
+        
+    }
+    
 }
