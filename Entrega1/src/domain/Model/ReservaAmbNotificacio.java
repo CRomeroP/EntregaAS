@@ -161,7 +161,7 @@ public class ReservaAmbNotificacio implements Serializable{
             emails.add(u.get(i).getEmail());
             notificacions.add(u.get(i));
         }
-        
+        String username = usuari.getEmail();
     }
     
 }
