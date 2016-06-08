@@ -48,6 +48,6 @@ public class ControladorAssignarUsuaris {
         CtrlUsuari cu = factory.getCtrlUsuari();
         ArrayList<Usuari> u = new ArrayList<>();
         for (int i = 0; i < usuaris.size(); i++) u.add(cu.get(usuaris.get(i).getUsername()));
-        rm.afegirUsuaris(u);
+        //rm.afegirUsuaris(u);
     }
 }

@@ -15,7 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.Spinner;
+//import javafx.scene.control.Spinner;
 import javafx.stage.Stage;
 
 /**
@@ -28,10 +28,10 @@ public class ReservaVistaController implements Initializable {
     @FXML
     private DatePicker calendario;
     @FXML
-    private Spinner<LocalTime> spinhini;
-    @FXML
-    private Spinner<LocalTime> spinhfi;
-    @FXML
+  //  private Spinner<LocalTime> spinhini;
+   // @FXML
+  //  private Spinner<LocalTime> spinhfi;
+   // @FXML
     private Button buttonok;
     @FXML
     private Button buttoncancel;

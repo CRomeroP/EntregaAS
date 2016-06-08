@@ -70,6 +70,7 @@ public class ReservaAmbNotificacio implements Serializable{
         this.comentaris = comentaris;
         this.usuari = usuari;
         this.recurs = recurs;
+        this.notificacions.add(usuari);
     }
 
     public ReservaAmbNotificacio(ArrayList<Usuari> notificacions) {
