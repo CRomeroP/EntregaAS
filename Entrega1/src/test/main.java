@@ -6,6 +6,7 @@
 package test;
 
 import Data.CtrlRecurs;
+import domain.Controladors.ControladorConsultaRecursosDisponiblesPerData;
 import domain.DBInterfaces.CtrlDataFactoria;
 import domain.Model.Info;
 import domain.Model.Recurs;
@@ -27,11 +28,10 @@ public class main {
         Recurs r = new Recurs("rec");
         CtrlR.insert(r);
         ArrayList<Info> result = new ArrayList<Info>();
-        ArrayList<Recurs> recursos = new ArrayList<Recurs>();
-        recursos = CtrlR.getAll();
-        System.out.println("sas");
-        for(int i = 0; i < recursos.size(); ++i){
-            result.add(recursos.get(i).infoDisponible(d,7,9));
+        ControladorConsultaRecursosDisponiblesPerData ctrlCR = new ControladorConsultaRecursosDisponiblesPerData();
+        result = ctrlCR.obteRecursosDisponiblesPerData(d, hi, hf);
+        for (int i = 0; i < result.size(); ++i){
+            System.out.println(result.get(i).getNom());
         }
     }
 }

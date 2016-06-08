@@ -22,6 +22,7 @@ import javax.persistence.Temporal;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.PrimaryKeyJoinColumn;
 import static javax.persistence.TemporalType.DATE;
 import org.hibernate.annotations.Check;
@@ -52,13 +53,13 @@ public class ReservaAmbNotificacio implements Serializable{
     @Id
     @OneToOne
     private Recurs recurs;
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "esnotifica", joinColumns = {
         @JoinColumn(name = "recurs", nullable = false),
         @JoinColumn(name = "horaIni", nullable = false),
         @JoinColumn(name = "datar", nullable = false)},
         inverseJoinColumns = {@JoinColumn(name = "username", nullable = false)})
-    private ArrayList<Usuari> notificacions = new ArrayList<Usuari>(0);
+    private List<Usuari> notificacions;
 
     public ReservaAmbNotificacio() {
     }
@@ -127,11 +128,11 @@ public class ReservaAmbNotificacio implements Serializable{
         this.recurs = recurs;
     }    
 
-    public ArrayList<Usuari> getNotificacions() {
+    public List<Usuari> getNotificacions() {
         return notificacions;
     }
 
-    public void setNotificacions(ArrayList<Usuari> notificacions) {
+    public void setNotificacions(List<Usuari> notificacions) {
         this.notificacions = notificacions;
     }
     

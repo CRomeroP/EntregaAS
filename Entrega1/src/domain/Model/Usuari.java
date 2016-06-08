@@ -2,6 +2,7 @@ package domain.Model;
 // Generated 14-abr-2016 8:24:58 by Hibernate Tools 4.3.1
 
 import java.util.Set;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Date;
 import javafx.scene.chart.PieChart.Data;
@@ -31,11 +32,11 @@ public class Usuari  implements java.io.Serializable {
     @Column(name = "email", length = 50)    
     private String email;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuari")
-    private ArrayList<ReservaAmbNotificacio> reservasambnotificacio;
+    private List<ReservaAmbNotificacio> reservasambnotificacio;
     @OneToMany(mappedBy = "usuari")
-    private ArrayList<ReservaSenseNotificacio> reservassensenotificacio;
+    private List<ReservaSenseNotificacio> reservassensenotificacio;
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "notificacions")
-    private ArrayList<ReservaAmbNotificacio> notificacions;
+    private List<ReservaAmbNotificacio> notificacions;
 
     public Usuari() {
     }
@@ -70,27 +71,27 @@ public class Usuari  implements java.io.Serializable {
         this.email = email;
     }
        
-    public ArrayList<ReservaAmbNotificacio> getReservasambnotificacio() {
+    public List<ReservaAmbNotificacio> getReservasambnotificacio() {
 	return this.reservasambnotificacio;
     }
 
-    public void setReservasambnotificacio(ArrayList<ReservaAmbNotificacio> reservas) {
+    public void setReservasambnotificacio(List<ReservaAmbNotificacio> reservas) {
 	this.reservasambnotificacio = reservas;
     }
     
-    public ArrayList<ReservaSenseNotificacio> getReservasSenseNotificacio() {
+    public List<ReservaSenseNotificacio> getReservasSenseNotificacio() {
 	return this.reservassensenotificacio;
     }
 
-    public void setReservasSenseNotificacio(ArrayList<ReservaSenseNotificacio> reservas) {
+    public void setReservasSenseNotificacio(List<ReservaSenseNotificacio> reservas) {
 	this.reservassensenotificacio = reservas;
     }
     
-    public ArrayList<ReservaAmbNotificacio> getNotificacions() {
+    public List<ReservaAmbNotificacio> getNotificacions() {
         return notificacions;
     }
 
-    public void setNotificacions(ArrayList<ReservaAmbNotificacio> notificacions) {
+    public void setNotificacions(List<ReservaAmbNotificacio> notificacions) {
         this.notificacions = notificacions;
     }
     

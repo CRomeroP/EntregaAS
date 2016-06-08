@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Domain.Controladors;
+package domain.Controladors;
 
 import Data.CtrlRecurs;
 import domain.Model.Recurs;
