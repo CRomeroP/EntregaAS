@@ -3,6 +3,8 @@ package domain.Model;
 
 import java.util.Set;
 import java.util.ArrayList;
+import java.util.Date;
+import javafx.scene.chart.PieChart.Data;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -91,7 +93,23 @@ public class Usuari  implements java.io.Serializable {
     public void setNotificacions(ArrayList<ReservaAmbNotificacio> notificacions) {
         this.notificacions = notificacions;
     }
-	
+    
+    public boolean tensSalaReserva(Date d, int hi, int hf) {
+        boolean ret = false; 
+        boolean b = true;
+        for (int i = 0; i < reservasambnotificacio.size() && b ; ++i) {
+            b = reservasambnotificacio.get(i).estaDisponible(d, hi, hf);
+            if (!b && reservasambnotificacio.get(i).etsSala()) return false;
+            else b = true;
+        }
+        for (int j = 0; j < reservassensenotificacio.size() && !b; ++j) {
+            b = reservassensenotificacio.get(j).estaDisponible(d, hi, hf); //crearlo
+            if (!b && reservassensenotificacio.get(j).etsSala()) return false;
+            else b = true;
+        }
+        return true;
+    }
+    	
 }
 
 

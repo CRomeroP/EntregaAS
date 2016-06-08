@@ -153,6 +153,10 @@ public class ReservaAmbNotificacio implements Serializable{
           
     }
     
+    public boolean etsSala () {
+        return false;
+    }
+    
     
     public void afegirUsuaris(ArrayList<Usuari> u){
         if (notificacions.size() + u.size() > 10); //activa[reservaATope]
