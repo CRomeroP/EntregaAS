@@ -10,6 +10,8 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.metamodel.MetadataSources;
 
+
+
 /**
  * Utility class per tenir SessionFactory de Hibernate singleton.
  */
@@ -24,7 +26,7 @@ public class HibernateSessionFactory {
                     .configure()
                     .build();
             try {
-                instance = new MetadataSources( registry ).buildMetadata().buildSessionFactory();
+                instance = new MetadataSources(registry).buildMetadata().buildSessionFactory();
             }
             catch (Exception e) {
                 StandardServiceRegistryBuilder.destroy(registry);

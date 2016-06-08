@@ -18,13 +18,9 @@ import org.hibernate.service.ServiceRegistry;
 
 public class CtrlRecursDB implements CtrlRecurs{
 	
-    private SessionFactory factory;
+    private SessionFactory factory =  HibernateSessionFactory.getInstance();
 	
     public CtrlRecursDB() {
-            Configuration configuration = new Configuration();
-            configuration.configure("hibernate.cfg.xml");
-            ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
-            factory = configuration.buildSessionFactory(serviceRegistry);
 	}
 	
     @Override
@@ -32,6 +28,7 @@ public class CtrlRecursDB implements CtrlRecurs{
         Session session = factory.getCurrentSession();
         session.beginTransaction();
         session.save(recurs);
+        System.out.println("insert");
         session.getTransaction().commit();
     }
     
