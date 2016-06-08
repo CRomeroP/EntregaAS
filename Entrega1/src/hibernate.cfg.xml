@@ -8,15 +8,15 @@
     <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.hbm2ddl.auto">create</property>
+    <property name="hibernate.connection.password">Kasikasi16</property>
+    <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/test</property>
     <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-    <property name="hibernate.connection.password">VGGep220995</property>
-    <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/postgres</property>
-    <mapping class="Entrega.Usuari"/>
-    <mapping class="Entrega.ReservaSenseNotificacio"/>
-    <mapping class="Entrega.Recurs"/>
-    <mapping class="Entrega.ReservaAmbNotificacio"/>
-    <mapping class="Entrega.Ordinador"/>
-    <mapping class="Entrega.Projector"/>
-    <mapping class="Entrega.Sala"/>
+    <mapping class="domain.Model.Usuari"/>
+    <mapping class="domain.Model.ReservaSenseNotificacio"/>
+    <mapping class="domain.Model.Recurs"/>
+    <mapping class="domain.Model.ReservaAmbNotificacio"/>
+    <mapping class="domain.Model.Ordinador"/>
+    <mapping class="domain.Model.Projector"/>
+    <mapping class="domain.Model.Sala"/>
   </session-factory>
 </hibernate-configuration>
