@@ -56,14 +56,15 @@ public class ControladorCrearReservaAmbNotificacio {
         CtrlUsuari cu = cf.getCtrlUsuari();
         Usuari usu = cu.get(username);
         boolean b = usu.tensSalaReservada(data, hi, hf);
-        if (b) { // excepcio sala solapada 
+        if (b) { // excepcio sala solapada
+            System.out.println("Tens sala solapada!!!!!");
         }
         else {
             CtrlReservaAmbNotificacio crn = cf.getCtrlReservaAmbNotificacio();
-            GestioMissatge gm = cf.getGestioMissatge();
+            //GestioMissatge gm = cf.getGestioMissatge();
             String mail = usu.getEmail();
             /* ENVIAR MISSATGE */
-            gm.enviarDadesReserva();
+            //gm.enviarDadesReserva();
             
         }
         this.nomR = nomR;
