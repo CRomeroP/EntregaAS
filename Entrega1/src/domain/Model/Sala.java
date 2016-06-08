@@ -96,4 +96,8 @@ public class Sala extends Recurs{
         return i;*/
        return null;
     }
+    @Override
+    public boolean etsSala() {
+        return true;
+    }
 }
