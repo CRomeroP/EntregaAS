@@ -83,6 +83,10 @@ public class ReservaSenseNotificacio implements Serializable{
     public Integer getHorafi() {
         return horafi;
     }
+    
+    public boolean estaDisponible (Date d, int horai, int horaf){
+        return true;
+    }
 
     public void setHorafi(Integer horafi) {
         this.horafi = horafi;
@@ -110,6 +114,10 @@ public class ReservaSenseNotificacio implements Serializable{
 
     public void setRecurs(Recurs recurs) {
         this.recurs = recurs;
-    }    
+    }
+
+    public boolean etsSala() {
+        return false;
+    }
     
 }

@@ -153,5 +153,9 @@ public class ReservaAmbNotificacio implements Serializable{
           
     }
     
+    public boolean etsSala () {
+        return false;
+    }
+    
     
 }

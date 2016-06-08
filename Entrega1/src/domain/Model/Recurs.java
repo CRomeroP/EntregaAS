@@ -97,6 +97,10 @@ public class Recurs  implements java.io.Serializable {
         }
         return result;
     }
+    
+    public boolean etsSala() {
+        return false;
+    }
 }
 
 
