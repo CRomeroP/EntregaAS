@@ -138,10 +138,19 @@ public class ReservaAmbNotificacio implements Serializable{
         return true;
     }
     
-    public ArrayList<InfoUsuari> getPossiblesUsuaris(List<Usuari> u){
-        ArrayList<InfoUsuari> ret = new ArrayList<InfoUsuari>();
-        
-        return null;
+    private ArrayList<Usuari> getUsuarisSenseNot(List<Usuari> u){
+        ArrayList<Usuari> llista = new ArrayList<>(u);
+        if (notificacions.size() == 10);//activa[reservaATope]
+        for (int i = 0; i < notificacions.size();i++){
+            llista.remove(notificacions.get(i));
+        }
+        return llista;
+    }
+    
+    public ArrayList<Usuari> getPossiblesUsuaris(List<Usuari> u){
+        //llançar excepcio data
+        return getUsuarisSenseNot(u);
+          
     }
     
     
