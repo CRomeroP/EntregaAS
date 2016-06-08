@@ -4,11 +4,10 @@ package Data;
 import Excepcions.NoHiHaUsuaris;
 import domain.Model.Usuari;
 import java.util.ArrayList;
-
 import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.criterion.Restrictions;
 
 public class CtrlUsuariDB implements CtrlUsuari{
@@ -16,7 +15,9 @@ public class CtrlUsuariDB implements CtrlUsuari{
     private SessionFactory factory;
 	
     public CtrlUsuariDB() {
-		factory = Sessio.getInstance();
+                AnnotationConfiguration config = new AnnotationConfiguration();
+                config.addAnnotatedClass(Usuari.class);
+		factory = config.buildSessionFactory();
 	}
 	
     public void insert(Usuari usuari) {
