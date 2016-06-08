@@ -3,6 +3,7 @@ package domain.Model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,9 +30,9 @@ public class Recurs  implements java.io.Serializable {
     @Column(name = "nom")
     private String nom;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "recurs")
-    private ArrayList<ReservaAmbNotificacio> reservasambnotificacio;
+    private List<ReservaAmbNotificacio> reservasambnotificacio;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "recurs")
-    private ArrayList<ReservaSenseNotificacio> reservassensenotificacio;
+    private List<ReservaSenseNotificacio> reservassensenotificacio;
     @Column(name = "type", unique = false, nullable = true, length = 50)
     private String type;     
 
@@ -50,16 +51,16 @@ public class Recurs  implements java.io.Serializable {
         this.nom = nom;
     }
     
-    public ArrayList<ReservaAmbNotificacio> getReservasAmbNotificacio() {
+    public List<ReservaAmbNotificacio> getReservasAmbNotificacio() {
 	return this.reservasambnotificacio;
     }
 
-    public void setReservasAmbNotificacio(ArrayList<ReservaAmbNotificacio> reservas) {
+    public void setReservasAmbNotificacio(List<ReservaAmbNotificacio> reservas) {
 	this.reservasambnotificacio = reservas;
     }
 
    
-    public ArrayList<ReservaSenseNotificacio> getReservasSenseNotificacio() {
+    public List<ReservaSenseNotificacio> getReservasSenseNotificacio() {
         return reservassensenotificacio;
     }
 
@@ -80,7 +81,7 @@ public class Recurs  implements java.io.Serializable {
     }
     
     public Info infoDisponible(Date d, int horai, int horaf){
-        Info result = null;
+        Info result = new Info();
         Boolean b = true;
         int i = 0;
         while ((i < this.reservasambnotificacio.size() || i < this.reservassensenotificacio.size()) && b){
@@ -96,6 +97,10 @@ public class Recurs  implements java.io.Serializable {
             result = getInfo(result);
         }
         return result;
+    }
+    
+    public boolean etsSala() {
+        return false;
     }
 }
 

@@ -9,11 +9,9 @@ import Data.CtrlReservaAmbNotificacio;
 import Data.CtrlUsuari;
 import domain.DBInterfaces.CtrlDataFactoria;
 import java.util.Date;
-import domain.Model.InfoUsuari;
 import domain.Model.ReservaAmbNotificacio;
 import domain.Model.Usuari;
 import java.util.ArrayList;
-import java.util.List;
 /**
  *
  * @author Víctor
@@ -29,16 +27,27 @@ public class ControladorAssignarUsuaris {
     
     private int horai;
             
-    public ArrayList<InfoUsuari> obteUsuarisAAssignar(String nomR, Date d, int hi){
+    public ArrayList<Usuari> obteUsuarisAAssignar(String nomR, Date d, int hi){
        CtrlDataFactoria factory = new CtrlDataFactoria();
        CtrlUsuari cu = factory.getCtrlUsuari();
        ArrayList<Usuari> u = cu.getAll();
        CtrlReservaAmbNotificacio cr = factory.getCtrlReservaAmbNotificacio();
        ReservaAmbNotificacio r = cr.get(nomR,d,hi);
-       ArrayList<InfoUsuari> result = r.getPossiblesUsuaris(u);
+       ArrayList<Usuari> result = r.getPossiblesUsuaris(u);
+       if (result.isEmpty());//activa[noHiHaUsuaris]
        this.nom = nomR;
        this.data = d;
        this.horai = hi;
        return result;
+    }
+    
+    public void afegirUsuarisReserva (ArrayList<Usuari> usuaris){
+        CtrlDataFactoria factory = new CtrlDataFactoria();
+        CtrlReservaAmbNotificacio cr = factory.getCtrlReservaAmbNotificacio();
+        ReservaAmbNotificacio rm = cr.get(this.nom, this.data, this.horai);
+        CtrlUsuari cu = factory.getCtrlUsuari();
+        ArrayList<Usuari> u = new ArrayList<>();
+        for (int i = 0; i < usuaris.size(); i++) u.add(cu.get(usuaris.get(i).getUsername()));
+        //rm.afegirUsuaris(u);
     }
 }

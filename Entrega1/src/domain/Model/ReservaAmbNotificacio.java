@@ -22,6 +22,7 @@ import javax.persistence.Temporal;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.PrimaryKeyJoinColumn;
 import static javax.persistence.TemporalType.DATE;
 import org.hibernate.annotations.Check;
@@ -52,13 +53,13 @@ public class ReservaAmbNotificacio implements Serializable{
     @Id
     @OneToOne
     private Recurs recurs;
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "esnotifica", joinColumns = {
         @JoinColumn(name = "recurs", nullable = false),
         @JoinColumn(name = "horaIni", nullable = false),
         @JoinColumn(name = "datar", nullable = false)},
         inverseJoinColumns = {@JoinColumn(name = "username", nullable = false)})
-    private ArrayList<Usuari> notificacions = new ArrayList<Usuari>(0);
+    private List<Usuari> notificacions;
 
     public ReservaAmbNotificacio() {
     }
@@ -70,6 +71,7 @@ public class ReservaAmbNotificacio implements Serializable{
         this.comentaris = comentaris;
         this.usuari = usuari;
         this.recurs = recurs;
+        this.notificacions.add(usuari);
     }
 
     public ReservaAmbNotificacio(ArrayList<Usuari> notificacions) {
@@ -126,11 +128,11 @@ public class ReservaAmbNotificacio implements Serializable{
         this.recurs = recurs;
     }    
 
-    public ArrayList<Usuari> getNotificacions() {
+    public List<Usuari> getNotificacions() {
         return notificacions;
     }
 
-    public void setNotificacions(ArrayList<Usuari> notificacions) {
+    public void setNotificacions(List<Usuari> notificacions) {
         this.notificacions = notificacions;
     }
     
@@ -138,11 +140,34 @@ public class ReservaAmbNotificacio implements Serializable{
         return true;
     }
     
-    public ArrayList<InfoUsuari> getPossiblesUsuaris(List<Usuari> u){
-        ArrayList<InfoUsuari> ret = new ArrayList<InfoUsuari>();
-        
-        return null;
+    private ArrayList<Usuari> getUsuarisSenseNot(List<Usuari> u){
+        ArrayList<Usuari> llista = new ArrayList<>(u);
+        if (notificacions.size() == 10);//activa[reservaATope]
+        for (int i = 0; i < notificacions.size();i++){
+            llista.remove(notificacions.get(i));
+        }
+        return llista;
     }
     
+    public ArrayList<Usuari> getPossiblesUsuaris(List<Usuari> u){
+        //llançar excepcio data
+        return getUsuarisSenseNot(u);
+          
+    }
+    
+    public boolean etsSala () {
+        return false;
+    }
+    
+    
+    public void afegirUsuaris(ArrayList<Usuari> u){
+        if (notificacions.size() + u.size() > 10); //activa[reservaATope]
+        ArrayList<String> emails = new ArrayList<>();
+        for (int i = 0; i < u.size(); i++){
+            emails.add(u.get(i).getEmail());
+            notificacions.add(u.get(i));
+        }
+        String username = usuari.getEmail();
+    }
     
 }
