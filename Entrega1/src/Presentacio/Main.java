@@ -20,16 +20,13 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         
-        
-        URL s;
-        
         Parent root = FXMLLoader.load(getClass().getResource("NuevaReservaVista.fxml"));
         
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
         stage.show();
-        //s = getClass().getResource("/NuevaReservaVista.fxml");
+        
     }
     public static void main(String[] args) {
         launch(args);

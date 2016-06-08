@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -24,7 +25,6 @@ import javafx.scene.control.Spinner;
  */
 public class ReservaVistaController implements Initializable {
 
-    
     @FXML
     private DatePicker calendario;
     @FXML
@@ -50,12 +50,11 @@ public class ReservaVistaController implements Initializable {
     
     @FXML
     private void exit(ActionEvent event) {
+        // get a handle to the stage
+        Stage stage = (Stage) buttoncancel.getScene().getWindow();
+        // do what you have to do
+        stage.close();
+        
     }
-    
-
-
-    
-
-    
     
 }
