@@ -7,7 +7,9 @@ package domain.Controladors;
 
 import Data.CtrlReservaAmbNotificacio;
 import Data.CtrlUsuari;
+import Data.CtrlRecurs;
 import domain.DBInterfaces.CtrlDataFactoria;
+import domain.Model.Recurs;
 import java.util.Date;
 import domain.Model.ReservaAmbNotificacio;
 import domain.Model.Usuari;
@@ -28,7 +30,7 @@ public class ControladorAssignarUsuaris {
     
     private int horai;
             
-    public ArrayList<Usuari> obteUsuarisAAssignar(String nomR, Date d, int hi){
+    public ArrayList<Usuari> obteUsuarisAAssignar(Recurs nomR, Date d, int hi){
        CtrlDataFactoria factory = new CtrlDataFactoria();
        CtrlUsuari cu = factory.getCtrlUsuari();
        ArrayList<Usuari> u = cu.getAll();
@@ -36,7 +38,7 @@ public class ControladorAssignarUsuaris {
        ReservaAmbNotificacio r = cr.get(nomR,d,hi);
        ArrayList<Usuari> result = r.getPossiblesUsuaris(u);
        if (result.isEmpty());//activa[noHiHaUsuaris]
-       this.nom = nomR;
+       this.nom = nomR.getNom();
        this.data = d;
        this.horai = hi;
        return result;
@@ -44,8 +46,10 @@ public class ControladorAssignarUsuaris {
     
     public void afegirUsuarisReserva (ArrayList<Usuari> usuaris){
         CtrlDataFactoria factory = new CtrlDataFactoria();
+        CtrlRecurs CtrlR = factory.getCtrlRecurs();
+        Recurs r = CtrlR.get(this.nom);
         CtrlReservaAmbNotificacio cr = factory.getCtrlReservaAmbNotificacio();
-        ReservaAmbNotificacio rm = cr.get(this.nom, this.data, this.horai);
+        ReservaAmbNotificacio rm = cr.get(r, this.data, this.horai);
         CtrlUsuari cu = factory.getCtrlUsuari();
         ArrayList<Usuari> u = new ArrayList<>();
         for (int i = 0; i < usuaris.size(); i++) u.add(cu.get(usuaris.get(i).getUsername()));

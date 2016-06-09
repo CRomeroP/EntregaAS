@@ -9,6 +9,7 @@ import Data.CtrlReservaAmbNotificacio;
 import Data.CtrlUsuari;
 import domain.DBInterfaces.CtrlDataFactoria;
 import domain.Model.Info;
+import domain.Model.Recurs;
 import domain.Model.ReservaAmbNotificacio;
 import domain.Model.Usuari;
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ public class ControladorCrearReservaAmbNotificacio {
         return recursos;
     }
     
-    public ArrayList<Usuari> obteUsuarisAAssignar (String nomR, Date d, int hi) {
+    public ArrayList<Usuari> obteUsuarisAAssignar (Recurs nomR, Date d, int hi) {
         ControladorAssignarUsuaris cau = new ControladorAssignarUsuaris();
         ArrayList<Usuari> usuaris = cau.obteUsuarisAAssignar(nomR, d, hi);
         return usuaris;

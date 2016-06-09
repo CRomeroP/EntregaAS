@@ -59,7 +59,7 @@ public class main2 {
         llista.add(u3);
         res.setNotificacions(llista);
         ControladorAssignarUsuaris cu = new ControladorAssignarUsuaris();
-        ArrayList<Usuari> usu = cu.obteUsuarisAAssignar("rec", d2, hi);
+        ArrayList<Usuari> usu = cu.obteUsuarisAAssignar(r, d2, hi);
         for (int i = 0; i < usu.size(); ++i){
             System.out.println(usu.get(i).getNom());
         }

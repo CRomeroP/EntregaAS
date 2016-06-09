@@ -36,9 +36,10 @@ public class CtrlReservaAmbNotificacioDB implements CtrlReservaAmbNotificacio{
     }
     
     @Override
-    public ReservaAmbNotificacio get(String nomRecurs, Date d, int hi) {
-        Session session = factory.getCurrentSession();
+    public ReservaAmbNotificacio get(Recurs nomRecurs, Date d, int hi) {
+        Session session = factory.openSession();
         session.beginTransaction();
+        System.out.println("adsasdf");
         ReservaAmbNotificacio representacio = (ReservaAmbNotificacio) session.createCriteria(ReservaAmbNotificacio.class)
                 .add(Restrictions.eq("recurs_nom", nomRecurs)).add(Restrictions.eq("datar", d)).add(Restrictions.eq("horaini", hi)).uniqueResult();
         return representacio;

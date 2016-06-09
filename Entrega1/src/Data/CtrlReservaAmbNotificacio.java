@@ -5,6 +5,7 @@
  */
 package Data;
 
+import domain.Model.Recurs;
 import domain.Model.ReservaAmbNotificacio;
 import java.util.Date;
 import java.util.List;
@@ -17,7 +18,7 @@ public interface CtrlReservaAmbNotificacio {
 
     public void insert(ReservaAmbNotificacio reserva);
 
-    public ReservaAmbNotificacio get(String nomRecurs, Date d, int hi);
+    public ReservaAmbNotificacio get(Recurs nomRecurs, Date d, int hi);
 
     public Boolean exists(String nomRecurs, Date d, int hi) throws Exception;
 
