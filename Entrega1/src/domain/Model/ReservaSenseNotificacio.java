@@ -38,9 +38,9 @@ public class ReservaSenseNotificacio implements Serializable{
     private Date data;
     @Id
     @Column(name = "horaini", unique = true, nullable = false)
-    private Integer horainici;
+    private int horainici;
     @Column(name = "horafi", unique = false, nullable = false)
-    private Integer horafi;
+    private int horafi;
     @Column(name = "comentaris", length = 255, unique = false, nullable = true)
     private String comentaris;
     @ManyToOne
@@ -54,7 +54,7 @@ public class ReservaSenseNotificacio implements Serializable{
     public ReservaSenseNotificacio() {
     }
 
-    public ReservaSenseNotificacio(Date data, Integer horainici, Integer horafi, String comentaris, Usuari usuari, Recurs recurs) {
+    public ReservaSenseNotificacio(Date data, int horainici, int horafi, String comentaris, Usuari usuari, Recurs recurs) {
         this.data = data;
         this.horainici = horainici;
         this.horafi = horafi;

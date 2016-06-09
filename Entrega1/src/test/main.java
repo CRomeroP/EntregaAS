@@ -5,11 +5,17 @@
  */
 package test;
 
+import Data.CtrlOrdinador;
 import Data.CtrlRecurs;
+import Data.CtrlReservaSenseNotificacio;
+import Data.CtrlUsuari;
 import domain.Controladors.ControladorConsultaRecursosDisponiblesPerData;
 import domain.DBInterfaces.CtrlDataFactoria;
 import domain.Model.Info;
+import domain.Model.Ordinador;
 import domain.Model.Recurs;
+import domain.Model.ReservaSenseNotificacio;
+import domain.Model.Usuari;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -21,15 +27,20 @@ public class main {
    
     public static void main(String[] args){
         CtrlDataFactoria factory = new CtrlDataFactoria();
-        CtrlRecurs CtrlR = factory.getCtrlRecurs();
+        CtrlOrdinador CtrlO = factory.getCtrlOrdinador();
+        CtrlReservaSenseNotificacio CtrlRSN = factory.getCtrlReservaSenseNotificacio();
+        CtrlUsuari CtrlU = factory.getCtrlUsuari();
         Date d = new Date(2016,6,8);
         int hi = 7;
         int hf = 9;
-        Recurs r = new Recurs("rec");
-        CtrlR.insert(r);
-        ArrayList<Info> result = new ArrayList<Info>();
+        Ordinador o = new Ordinador("ord", "sdmf","msd");
+        Usuari u = new Usuari("CR","dasfa","Carlos");
+        ReservaSenseNotificacio rsn = new ReservaSenseNotificacio(d,hi,hf,"",u,o);
+        CtrlO.insert(o);
+        CtrlRSN.insert(rsn);
+        CtrlU.insert(u);
         ControladorConsultaRecursosDisponiblesPerData ctrlCR = new ControladorConsultaRecursosDisponiblesPerData();
-        result = ctrlCR.obteRecursosDisponiblesPerData(d, hi, hf);
+        ArrayList<Info> result = ctrlCR.obteRecursosDisponiblesPerData(d, hi, hf);
         for (int i = 0; i < result.size(); ++i){
             System.out.println(result.get(i).getNom());
         }

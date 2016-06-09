@@ -1,12 +1,11 @@
 package Data;
 
 
-import domain.Model.ReservaSenseNotificacio;
-import Excepcions.NoHiHaRecursos;
 import domain.Model.Recurs;
+import domain.Model.Ordinador;
+import Excepcions.NoHiHaRecursos;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -18,42 +17,42 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.service.ServiceRegistry;
 
-public class CtrlReservaSenseNotificacioDB implements CtrlReservaSenseNotificacio{
+public class CtrlOrdinadorDB implements CtrlOrdinador{
 	
     private SessionFactory factory;
 	
-    public CtrlReservaSenseNotificacioDB  () {
-             factory = HibernateSessionFactory.getInstance();
+    public CtrlOrdinadorDB() {
+         factory = HibernateSessionFactory.getInstance();
 	}
+	
 
-    @Override
-    public void insert(ReservaSenseNotificacio rsn) {
+    public void insert(Ordinador ord) {
         Session session = factory.getCurrentSession();
         session.beginTransaction();
-        session.save(rsn);
+        
+        session.save(ord);
         System.out.println("insert");
         session.getTransaction().commit();
     }
     
     @Override
-    public ReservaSenseNotificacio get(String nomRecurs, Date d, int hi) {
+    public Ordinador get(String nom) {
         Session session = factory.getCurrentSession();
         session.beginTransaction();
-        ReservaSenseNotificacio representacio = (ReservaSenseNotificacio) session.createCriteria(ReservaSenseNotificacio.class)
-                .add(Restrictions.eq("recurs_nom", nomRecurs)).add(Restrictions.eq("datar", d)).add(Restrictions.eq("horaini", hi)).uniqueResult();
+        Ordinador representacio = (Ordinador) session.createCriteria(Recurs.class)
+                .add(Restrictions.eq("nom", nom)).uniqueResult();
         return representacio;
     }
 
     @Override
-    public Boolean exists(String nomRecurs, Date d, int hi)throws Exception {
+    public Boolean exists(String nom)throws Exception {
         return null;
     }
 
-    @Override
-    public ArrayList<ReservaSenseNotificacio> getAll() {
+    public ArrayList<Ordinador> getAll() {
         Session session = factory.getCurrentSession();
         session.beginTransaction();
-        ArrayList<ReservaSenseNotificacio> recursos = (ArrayList) session.createCriteria(ReservaSenseNotificacio.class).list();
+        ArrayList<Ordinador> recursos = (ArrayList) session.createCriteria(Recurs.class).list();
         if (recursos.isEmpty()) throw new NoHiHaRecursos();
         return recursos;
     }
