@@ -46,6 +46,7 @@ public class ReservaVistaController implements Initializable {
     
     @FXML
     private void ok(ActionEvent event) {
+        
     }
     
     @FXML
