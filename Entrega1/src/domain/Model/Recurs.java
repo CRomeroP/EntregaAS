@@ -85,11 +85,13 @@ public class Recurs  implements java.io.Serializable {
         int i = 0;
         while ((i < this.reservasambnotificacio.size() || i < this.reservassensenotificacio.size()) && b){
             if (i < this.reservasambnotificacio.size()){
+                System.out.println("hi");
                 if (!this.reservasambnotificacio.get(i).estaDisponible(d, horai, horaf)) b = false;
             }
             if (i < reservassensenotificacio.size()){
                 if (!this.reservassensenotificacio.get(i).estaDisponible(d, horai, horaf)) b = false;
             }
+            ++i;
         }
         if (b){
             Info result = new Info();

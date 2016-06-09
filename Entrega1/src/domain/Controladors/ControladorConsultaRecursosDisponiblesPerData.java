@@ -29,9 +29,7 @@ public class ControladorConsultaRecursosDisponiblesPerData {
         ArrayList<Recurs> r = cr.getAll(); 
         ArrayList<Info> recursos = new ArrayList<Info>();
         Info inf = new Info();
-        for (int i=0;i<r.size();++i){
-            System.out.println(r.size()); 
-            System.out.println(r.get(i).getNom() + i);
+        for (int i=0;i<r.size();++i){      
             inf = r.get(i).infoDisponible(d, horain, horafi);
             if (inf != null)recursos.add(inf);
         }
