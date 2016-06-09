@@ -66,11 +66,10 @@ public class ControladorCrearReservaAmbNotificacio {
             String mail = usu.getEmail();
             /* ENVIAR MISSATGE */
             //gm.enviarDadesReserva();
-            
-        }
         this.nomR = nomR;
         if (comentari != null) this.comentari = comentari;
         this.username = username;
+        }
     }
     
 }

@@ -142,7 +142,7 @@ public class ReservaAmbNotificacio implements Serializable{
     
     private ArrayList<Usuari> getUsuarisSenseNot(List<Usuari> u){
         ArrayList<Usuari> llista = new ArrayList<>(u);
-        if (notificacions.size() == 10);//activa[reservaATope]
+        if (notificacions.size() == 10) System.out.println("ReservaATope");
         for (int i = 0; i < notificacions.size();i++){
             llista.remove(notificacions.get(i));
         }

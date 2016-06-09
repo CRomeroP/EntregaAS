@@ -45,7 +45,6 @@ public class ControladorAssignarUsuaris {
        //como diferenciamos si reserva no existe o si es sin notificacion?? (excepcio 2)
        ArrayList<Usuari> result = r.getPossiblesUsuaris(u);
        if (result.isEmpty()) System.out.println("noHiHaProuUsuaris");
-       else if (result.size() >= 10) System.out.println("ReservaATope");
        this.nom = nomR.getNom();
        this.data = d;
        this.horai = hi;
