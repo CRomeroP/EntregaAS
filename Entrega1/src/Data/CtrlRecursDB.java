@@ -18,9 +18,10 @@ import org.hibernate.service.ServiceRegistry;
 
 public class CtrlRecursDB implements CtrlRecurs{
 	
-    private SessionFactory factory =  HibernateSessionFactory.getInstance();
+    private SessionFactory factory;
 	
     public CtrlRecursDB() {
+         factory = HibernateSessionFactory.getInstance();
 	}
 	
     @Override

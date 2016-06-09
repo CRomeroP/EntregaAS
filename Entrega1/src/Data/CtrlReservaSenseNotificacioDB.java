@@ -22,10 +22,7 @@ public class CtrlReservaSenseNotificacioDB implements CtrlReservaSenseNotificaci
     private SessionFactory factory;
 	
     public CtrlReservaSenseNotificacioDB  () {
-            Configuration configuration = new Configuration();
-            configuration.configure("hibernate.cfg.xml");
-            ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
-            factory = configuration.buildSessionFactory(serviceRegistry);
+             factory = HibernateSessionFactory.getInstance();
 	}
 	
     public void insert(ReservaSenseNotificacio reserva) {

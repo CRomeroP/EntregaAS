@@ -22,10 +22,7 @@ public class CtrlReservaAmbNotificacioDB implements CtrlReservaAmbNotificacio{
     private SessionFactory factory;
 	
     public CtrlReservaAmbNotificacioDB  () {
-            Configuration configuration = new Configuration();
-            configuration.configure("hibernate.cfg.xml");
-            ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
-            factory = configuration.buildSessionFactory(serviceRegistry);
+            factory = HibernateSessionFactory.getInstance();
 	}
 	
     public void insert(ReservaAmbNotificacio reserva) {

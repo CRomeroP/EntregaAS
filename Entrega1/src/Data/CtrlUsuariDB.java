@@ -18,10 +18,7 @@ public class CtrlUsuariDB implements CtrlUsuari{
     private SessionFactory factory;
 	
     public CtrlUsuariDB() {
-            Configuration configuration = new Configuration();
-            configuration.configure("hibernate.cfg.xml");
-            ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
-            factory = configuration.buildSessionFactory(serviceRegistry);
+            factory = HibernateSessionFactory.getInstance();
 	}
 	
     public void insert(Usuari usuari) {
