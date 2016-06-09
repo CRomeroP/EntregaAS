@@ -7,7 +7,16 @@ package Presentacio;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
+
+
 
 /**
  * FXML Controller class
@@ -16,6 +25,18 @@ import javafx.fxml.Initializable;
  */
 public class SeleccioRecursVistaController implements Initializable {
 
+    
+    
+    
+    @FXML
+    private Button buttoncancel;
+    @FXML
+    private TextField nametxt;
+    @FXML
+    private TextArea comentxt;
+    @FXML
+    private Button buttonok;
+    
     /**
      * Initializes the controller class.
      */
@@ -23,5 +44,19 @@ public class SeleccioRecursVistaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+        @FXML
+    private void ok(ActionEvent event) {
+        
+    }
+    
+    @FXML
+    private void exit(ActionEvent event) {
+        // get a handle to the stage
+        Stage stage = (Stage) buttoncancel.getScene().getWindow();
+        // do what you have to do
+        stage.close();
+        
+    }
     
 }
