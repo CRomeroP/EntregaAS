@@ -5,6 +5,8 @@
  */
 package domain.DBInterfaces;
 
+import Data.CtrlOrdinador;
+import Data.CtrlOrdinadorDB;
 import Data.CtrlRecurs;
 import Data.CtrlRecursDB;
 import Data.CtrlReservaAmbNotificacio;
@@ -38,6 +40,10 @@ public class CtrlDataFactoria {
     private final CtrlRecurs ctrlRecurs = new CtrlRecursDB();
     
     public CtrlRecurs getCtrlRecurs(){ return ctrlRecurs; }
+    
+    private final CtrlOrdinador ctrlOrdinador = new CtrlOrdinadorDB();
+    
+    public CtrlOrdinador getCtrlOrdinador(){ return ctrlOrdinador; }
     
     private final CtrlReservaAmbNotificacio ctrlReservaAmbNotificacio = new CtrlReservaAmbNotificacioDB();
     
