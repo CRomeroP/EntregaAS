@@ -29,8 +29,9 @@ public class CtrlOrdinadorDB implements CtrlOrdinador{
     public void insert(Ordinador ord) {
         Session session = factory.getCurrentSession();
         session.beginTransaction();
-        
+        Recurs r = (Recurs) ord;
         session.save(ord);
+        session.save(r);
         System.out.println("insert");
         session.getTransaction().commit();
     }

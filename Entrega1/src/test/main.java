@@ -13,6 +13,7 @@ import domain.Controladors.ControladorConsultaRecursosDisponiblesPerData;
 import domain.DBInterfaces.CtrlDataFactoria;
 import domain.Model.Info;
 import domain.Model.Ordinador;
+import domain.Model.Projector;
 import domain.Model.Recurs;
 import domain.Model.ReservaSenseNotificacio;
 import domain.Model.Usuari;
@@ -34,11 +35,13 @@ public class main {
         int hi = 7;
         int hf = 9;
         Ordinador o = new Ordinador("ord", "sdmf","msd");
+        Ordinador ord = new Ordinador("proj","radsf","lhdsaf");
         Usuari u = new Usuari("CR","dasfa","Carlos");
         ReservaSenseNotificacio rsn = new ReservaSenseNotificacio(d,hi,hf,"",u,o);
         CtrlO.insert(o);
-        CtrlRSN.insert(rsn);
+        CtrlO.insert(ord);
         CtrlU.insert(u);
+        CtrlRSN.insert(rsn);
         ControladorConsultaRecursosDisponiblesPerData ctrlCR = new ControladorConsultaRecursosDisponiblesPerData();
         ArrayList<Info> result = ctrlCR.obteRecursosDisponiblesPerData(d, hi, hf);
         for (int i = 0; i < result.size(); ++i){

@@ -26,13 +26,15 @@ public class ControladorConsultaRecursosDisponiblesPerData {
         
         CtrlDataFactoria factory = new CtrlDataFactoria();
         CtrlRecurs cr = factory.getCtrlRecurs();
-        ArrayList<Recurs> r = cr.getAll();
-        if (r.isEmpty()) System.out.println("buit");
+        ArrayList<Recurs> r = cr.getAll(); 
         ArrayList<Info> recursos = new ArrayList<Info>();
-        for (int i=0;i<r.size();i++){
-            recursos.add(r.get(i).infoDisponible(d, horain, horafi));
+        Info inf = new Info();
+        for (int i=0;i<r.size();++i){
+            System.out.println(r.size()); 
+            System.out.println(r.get(i).getNom() + i);
+            inf = r.get(i).infoDisponible(d, horain, horafi);
+            if (inf != null)recursos.add(inf);
         }
         return recursos;
-    }
-    
+    }  
 }
