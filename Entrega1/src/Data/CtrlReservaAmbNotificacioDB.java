@@ -41,7 +41,7 @@ public class CtrlReservaAmbNotificacioDB implements CtrlReservaAmbNotificacio{
         session.beginTransaction();
         System.out.println("adsasdf");
         ReservaAmbNotificacio representacio = (ReservaAmbNotificacio) session.createCriteria(ReservaAmbNotificacio.class)
-                .add(Restrictions.eq("recurs_nom", nomRecurs)).add(Restrictions.eq("datar", d)).add(Restrictions.eq("horaini", hi)).uniqueResult();
+                .add(Restrictions.eq("recurs", nomRecurs)).add(Restrictions.eq("data", d)).add(Restrictions.eq("horainici", hi)).uniqueResult();
         return representacio;
     }
 
