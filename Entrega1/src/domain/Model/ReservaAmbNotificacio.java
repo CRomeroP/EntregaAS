@@ -151,6 +151,7 @@ public class ReservaAmbNotificacio implements Serializable{
     
     public ArrayList<Usuari> getPossiblesUsuaris(List<Usuari> u){
         //llançar excepcio data
+        System.out.println("hijoputa");
         return getUsuarisSenseNot(u);
           
     }

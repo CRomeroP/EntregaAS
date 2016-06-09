@@ -12,6 +12,7 @@ import java.util.Date;
 import domain.Model.ReservaAmbNotificacio;
 import domain.Model.Usuari;
 import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author Víctor
