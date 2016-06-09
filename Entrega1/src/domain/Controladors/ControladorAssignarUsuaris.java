@@ -8,10 +8,12 @@ package domain.Controladors;
 import Data.CtrlReservaAmbNotificacio;
 import Data.CtrlUsuari;
 import Data.CtrlRecurs;
+import Data.CtrlReservaSenseNotificacio;
 import domain.DBInterfaces.CtrlDataFactoria;
 import domain.Model.Recurs;
 import java.util.Date;
 import domain.Model.ReservaAmbNotificacio;
+import domain.Model.ReservaSenseNotificacio;
 import domain.Model.Usuari;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,9 +37,15 @@ public class ControladorAssignarUsuaris {
        CtrlUsuari cu = factory.getCtrlUsuari();
        ArrayList<Usuari> u = cu.getAll();
        CtrlReservaAmbNotificacio cr = factory.getCtrlReservaAmbNotificacio();
+       CtrlReservaSenseNotificacio cr2 = factory.getCtrlReservaSenseNotificacio();
        ReservaAmbNotificacio r = cr.get(nomR,d,hi);
+       ReservaSenseNotificacio r2 = cr2.get(nomR,d,hi);
+       if (r == null && r2 == null) System.out.println("NoExisteixLaReserva");
+       else if (r == null && r != null) System.out.println("NoReservaAmbNotificacio");
+       //como diferenciamos si reserva no existe o si es sin notificacion?? (excepcio 2)
        ArrayList<Usuari> result = r.getPossiblesUsuaris(u);
-       if (result.isEmpty());//activa[noHiHaUsuaris]
+       if (result.isEmpty()) System.out.println("noHiHaProuUsuaris");
+       else if (result.size() >= 10) System.out.println("ReservaATope");
        this.nom = nomR.getNom();
        this.data = d;
        this.horai = hi;
@@ -45,6 +53,7 @@ public class ControladorAssignarUsuaris {
     }
     
     public void afegirUsuarisReserva (ArrayList<Usuari> usuaris){
+        //if (esNotifica.nb + usuaris.size() >= 10) System.out.println("ReservaATope");
         CtrlDataFactoria factory = new CtrlDataFactoria();
         CtrlRecurs CtrlR = factory.getCtrlRecurs();
         Recurs r = CtrlR.get(this.nom);
