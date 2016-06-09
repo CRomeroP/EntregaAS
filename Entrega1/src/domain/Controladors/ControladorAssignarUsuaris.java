@@ -42,7 +42,6 @@ public class ControladorAssignarUsuaris {
        ReservaSenseNotificacio r2 = cr2.get(nomR,d,hi);
        if (r == null && r2 == null) System.out.println("NoExisteixLaReserva");
        else if (r == null && r != null) System.out.println("NoReservaAmbNotificacio");
-       //como diferenciamos si reserva no existe o si es sin notificacion?? (excepcio 2)
        ArrayList<Usuari> result = r.getPossiblesUsuaris(u);
        if (result.isEmpty()) System.out.println("noHiHaProuUsuaris");
        else if (result.size() >= 10) System.out.println("ReservaATope");

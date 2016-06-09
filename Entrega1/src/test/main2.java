@@ -54,14 +54,15 @@ public class main2 {
         res.setRecurs(r);
         res.setUsuari(u);
         CtrlN.insert(res);
+        if (CtrlN.get(r,d2,9) != null) System.out.println("no null");
         List<Usuari> llista = new ArrayList<Usuari>();
         llista.add(u2);
         llista.add(u3);
         res.setNotificacions(llista);
         ControladorAssignarUsuaris cu = new ControladorAssignarUsuaris();
-        ArrayList<Usuari> usu = cu.obteUsuarisAAssignar(r, d2, hi);
+        ArrayList<Usuari> usu = cu.obteUsuarisAAssignar(r, d2, 9);
         for (int i = 0; i < usu.size(); ++i){
-            System.out.println(usu.get(i).getNom());
+            System.out.println(usu.get(i).getUsername());
         }
     }
 }

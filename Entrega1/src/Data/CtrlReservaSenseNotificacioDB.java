@@ -36,11 +36,11 @@ public class CtrlReservaSenseNotificacioDB implements CtrlReservaSenseNotificaci
     }
     
     @Override
-    public ReservaSenseNotificacio get(String nomRecurs, Date d, int hi) {
+    public ReservaSenseNotificacio get(Recurs nomRecurs, Date d, int hi) {
         Session session = factory.getCurrentSession();
         session.beginTransaction();
         ReservaSenseNotificacio representacio = (ReservaSenseNotificacio) session.createCriteria(ReservaSenseNotificacio.class)
-                .add(Restrictions.eq("recurs_nom", nomRecurs)).add(Restrictions.eq("datar", d)).add(Restrictions.eq("horaini", hi)).uniqueResult();
+                .add(Restrictions.eq("recurs", nomRecurs)).add(Restrictions.eq("data", d)).add(Restrictions.eq("horainici", hi)).uniqueResult();
         return representacio;
     }
 
