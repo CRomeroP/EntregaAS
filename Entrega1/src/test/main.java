@@ -42,6 +42,8 @@ public class main {
         CtrlO.insert(ord);
         CtrlU.insert(u);
         CtrlRSN.insert(rsn);
+        u = CtrlU.get("CR");
+        System.out.println(u.getNom());
         ControladorConsultaRecursosDisponiblesPerData ctrlCR = new ControladorConsultaRecursosDisponiblesPerData();
         ArrayList<Info> result = ctrlCR.obteRecursosDisponiblesPerData(d, hi, hf);
         for (int i = 0; i < result.size(); ++i){

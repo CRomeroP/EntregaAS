@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Presentacio;
+/*package Presentacio;
 
 import java.io.IOException;
 import java.net.URL;
@@ -29,7 +29,7 @@ import javafx.stage.Stage;
  *
  * @author xavier
  */
-public class ReservaVistaController implements Initializable {
+/*public class ReservaVistaController implements Initializable {
 
     @FXML
     private DatePicker calendario;
@@ -45,7 +45,7 @@ public class ReservaVistaController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    @Override
+  /*  @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
@@ -79,4 +79,4 @@ public class ReservaVistaController implements Initializable {
         
     }
     
-}
+}*/

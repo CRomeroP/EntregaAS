@@ -39,6 +39,7 @@ public class CtrlRecursDB implements CtrlRecurs{
         session.beginTransaction();
         Recurs representacio = (Recurs) session.createCriteria(Recurs.class)
                 .add(Restrictions.eq("nom", nom)).uniqueResult();
+        session.getTransaction().rollback();
         return representacio;
     }
 
@@ -49,8 +50,8 @@ public class CtrlRecursDB implements CtrlRecurs{
 
     @Override
     public ArrayList<Recurs> getAll() {
-        Session session = factory.getCurrentSession();
-        session.beginTransaction();
+        Session session = factory.openSession();
+        session.getTransaction().begin();
         ArrayList<Recurs> recursos = (ArrayList) session.createCriteria(Recurs.class).list();
         if (recursos.isEmpty()) throw new NoHiHaRecursos();
         return recursos;

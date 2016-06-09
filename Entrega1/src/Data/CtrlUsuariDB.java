@@ -28,11 +28,12 @@ public class CtrlUsuariDB implements CtrlUsuari{
         session.getTransaction().commit();
     }
 
+    @Override
     public Usuari get(String username) {
-    	Session session = factory.getCurrentSession();
-        session.beginTransaction();
+    	Session session = factory.openSession();
+        session.getTransaction().begin();
         Usuari usuari = (Usuari) session.createCriteria(Usuari.class)
-                .add(Restrictions.eq("nom", username)).uniqueResult();
+                .add(Restrictions.eq("username", username)).uniqueResult();
         return usuari;
     }
 
@@ -44,7 +45,7 @@ public class CtrlUsuariDB implements CtrlUsuari{
 
     public ArrayList<Usuari> getAll() {
     	Session session = factory.getCurrentSession();
-        session.beginTransaction();
+        session.getTransaction().begin();
         ArrayList<Usuari> usuaris = (ArrayList) session.createCriteria(Usuari.class).list();
         if (usuaris.isEmpty()) throw new NoHiHaUsuaris();
         return usuaris;

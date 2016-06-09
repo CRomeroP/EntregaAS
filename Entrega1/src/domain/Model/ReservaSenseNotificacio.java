@@ -85,7 +85,8 @@ public class ReservaSenseNotificacio implements Serializable{
     }
     
     public boolean estaDisponible (Date d, int horai, int horaf){
-        return true;
+        System.out.println(d + " " + data + " " + horai + " " + horainici + " "+ horaf + " " + horafi);
+        return ((d == this.data) && ((horaf <= this.horainici) || (horai >= this.horafi)));
     }
 
     public void setHorafi(Integer horafi) {
