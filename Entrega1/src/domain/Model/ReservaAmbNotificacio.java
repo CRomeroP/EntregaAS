@@ -152,7 +152,6 @@ public class ReservaAmbNotificacio implements Serializable{
         for (int i = 0; i < notificacions.size(); ++i){
            b = true;
            for (int j = 0; j < u.size() && b; ++j){
-               System.out.println(u.size() + " " + j + " " + notificacions.size() + " " + i);
                if((notificacions.get(i).getUsername()).equals(u.get(j).getUsername())){
                    u.remove(j);
                    b = false;
