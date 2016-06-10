@@ -56,13 +56,12 @@ public class main2 {
         CtrlN.insert(res);
         List<Usuari> llista = new ArrayList<Usuari>();
         llista.add(u2);
-        llista.add(u3);
         res.setNotificacions(llista);
         List<Usuari> l = res.getNotificacions();
         ControladorAssignarUsuaris cu = new ControladorAssignarUsuaris();
         ArrayList<Usuari> usu = cu.obteUsuarisAAssignar(r, d2, 7);
         for (int i = 0; i < usu.size(); ++i){
-            System.out.println(usu.get(i).getUsername() + "-----");
+            System.out.println(usu.get(i).getUsername());
         }
     }
 }
