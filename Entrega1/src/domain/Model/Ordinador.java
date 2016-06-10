@@ -74,4 +74,9 @@ public class Ordinador extends Recurs{
         i.setModel(this.model);
         return i;
     }
+    
+    @Override
+    public boolean etsSala() {
+        return true;
+    }
 }

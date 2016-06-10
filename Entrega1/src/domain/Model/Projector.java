@@ -61,5 +61,10 @@ public class Projector extends Recurs{
         i.setResolucio(this.resolucio);
         return i;
     }
+    
+    @Override
+    public boolean etsSala() {
+        return false;
+    }
            
 }

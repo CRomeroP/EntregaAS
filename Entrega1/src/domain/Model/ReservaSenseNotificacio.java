@@ -117,8 +117,8 @@ public class ReservaSenseNotificacio implements Serializable{
         this.recurs = recurs;
     }
 
-    public boolean etsSala() {
-        return false;
+    public boolean etsSala () {
+        return recurs.etsSala();
     }
     
 }
