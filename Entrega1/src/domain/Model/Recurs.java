@@ -33,7 +33,7 @@ public class Recurs  implements java.io.Serializable{
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "recurs")
     private List<ReservaSenseNotificacio> reservassensenotificacio;
     @Column(name = "type", unique = false, nullable = true, length = 50)
-    private String type;     
+    private Types type;     
 
     public Recurs() {
     }
@@ -67,11 +67,11 @@ public class Recurs  implements java.io.Serializable{
         this.reservassensenotificacio = reservassensenotificacio;
     }
 
-    public String getType() {
+    public Types getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Types type) {
         this.type = type;
     }
     
