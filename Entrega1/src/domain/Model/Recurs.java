@@ -4,8 +4,6 @@ package domain.Model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.lang.Object;
-import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -104,27 +101,6 @@ public class Recurs  implements java.io.Serializable{
     public boolean etsSala() {
         return false;
     }
-    
-   // @Override
-    /*public boolean equals(Object obj) {
-       if (!(obj instanceof Recurs))
-            return false;
-        if (obj == this)
-            return true;
-
-        Recurs rhs = (Recurs) obj;
-        return new EqualBuilder().
-            // if deriving: appendSuper(super.equals(obj)).
-            append(nom, rhs.nom).
-            isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 31 * hash + Objects.hashCode(this.nom);
-        return hash;
-    }*/
 }
 
 

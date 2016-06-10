@@ -16,7 +16,6 @@ import domain.Model.ReservaAmbNotificacio;
 import domain.Model.ReservaSenseNotificacio;
 import domain.Model.Usuari;
 import java.util.ArrayList;
-import java.util.List;
 /**
  *
  * @author Víctor

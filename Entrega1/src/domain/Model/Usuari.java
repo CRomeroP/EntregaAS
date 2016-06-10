@@ -1,11 +1,9 @@
 package domain.Model;
 // Generated 14-abr-2016 8:24:58 by Hibernate Tools 4.3.1
 
-import java.util.Set;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Date;
-import javafx.scene.chart.PieChart.Data;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
