@@ -33,29 +33,30 @@ public class CtrlReservaAmbNotificacioDB implements CtrlReservaAmbNotificacio{
         session.beginTransaction();
         session.save(ran);
         Usuari u = ran.getUsuari();
-        System.out.println(ran.getUsuari().getUsername());
-        System.out.println(u.getUsername());
         ran.getNotificacions().add(u);
         session.update(ran);
         u.getNotificacions().add(ran);
         session.update(u);
         session.getTransaction().commit();
+        session.close();
     }
     
     @Override
     public void afegirUsuariANotificacio(ReservaAmbNotificacio r, Usuari u) {
         Session session = factory.openSession();
+        session.beginTransaction();
         r.getNotificacions().add(u);
         session.update(r);
         u.getNotificacions().add(r);
         session.update(u);
+        session.getTransaction().commit();
+        session.close();
     }
     
     @Override
     public ReservaAmbNotificacio get(Recurs nomRecurs, Date d, int hi) {
         Session session = factory.openSession();
         session.beginTransaction();
-        System.out.println("adsasdf");
         ReservaAmbNotificacio representacio = (ReservaAmbNotificacio) session.createCriteria(ReservaAmbNotificacio.class)
                 .add(Restrictions.eq("recurs", nomRecurs)).add(Restrictions.eq("data", d)).add(Restrictions.eq("horainici", hi)).uniqueResult();
         return representacio;

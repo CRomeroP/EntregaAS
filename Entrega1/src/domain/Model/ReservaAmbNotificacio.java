@@ -5,6 +5,8 @@
  */
 package domain.Model;
 
+import Data.CtrlReservaAmbNotificacio;
+import domain.DBInterfaces.CtrlDataFactoria;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -133,25 +135,27 @@ public class ReservaAmbNotificacio implements Serializable{
     }
 
     public void setNotificacions(List<Usuari> notificacions) {
-        this.notificacions = notificacions;
+        CtrlDataFactoria factory = new CtrlDataFactoria();
+        CtrlReservaAmbNotificacio CtrlR = factory.getCtrlReservaAmbNotificacio();
+        for (int i = 0; i < notificacions.size(); ++i){
+            CtrlR.afegirUsuariANotificacio(this, notificacions.get(i));
+        }
+        System.out.println(this.notificacions.size());
     }
     
     public boolean estaDisponible (Date d, int horai, int horaf){
         return true;
     }
     
-    private ArrayList<Usuari> getUsuarisSenseNot(List<Usuari> u){
-        ArrayList<Usuari> llista = new ArrayList<>(u);
-        if (notificacions.size() == 10) System.out.println("ReservaATope");
-        for (int i = 0; i < notificacions.size();i++){
-            llista.remove(notificacions.get(i));
+    private ArrayList<Usuari> getUsuarisSenseNot(ArrayList<Usuari> u){
+        for (int i = 0; i < this.notificacions.size(); i++){
+            System.out.println(u.indexOf(this.notificacions.get(i)));
         }
-        return llista;
+        return u;
     }
     
-    public ArrayList<Usuari> getPossiblesUsuaris(List<Usuari> u){
+    public ArrayList<Usuari> getPossiblesUsuaris(ArrayList<Usuari> u){
         //llançar excepcio data
-        System.out.println("hijoputa");
         return getUsuarisSenseNot(u);
           
     }

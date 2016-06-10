@@ -42,9 +42,6 @@ public class main2 {
         CtrlRecurs CtrlR = factory.getCtrlRecurs();
         Recurs r = new Recurs("rec");
         CtrlR.insert(r);
-        Date d = new Date(2016,6,8);
-        int hi = 7;
-        int hf = 9;
         CtrlReservaAmbNotificacio CtrlN = factory.getCtrlReservaAmbNotificacio();
         ReservaAmbNotificacio res = new ReservaAmbNotificacio();
         Date d2 = new Date(2016,6,25);
@@ -54,15 +51,15 @@ public class main2 {
         res.setRecurs(r);
         res.setUsuari(u);
         CtrlN.insert(res);
-        if (CtrlN.get(r,d2,9) != null) System.out.println("no null");
         List<Usuari> llista = new ArrayList<Usuari>();
         llista.add(u2);
         llista.add(u3);
         res.setNotificacions(llista);
+        List<Usuari> l = res.getNotificacions();
         ControladorAssignarUsuaris cu = new ControladorAssignarUsuaris();
         ArrayList<Usuari> usu = cu.obteUsuarisAAssignar(r, d2, 9);
         for (int i = 0; i < usu.size(); ++i){
-            System.out.println(usu.get(i).getUsername());
+            System.out.println(usu.get(i).getUsername() + "-----");
         }
     }
 }
