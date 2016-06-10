@@ -10,5 +10,5 @@ package domain.Model;
  * @author carlos
  */
 public enum Types {
-    Ordinador,Projetor,Sala
+    Ordinador,Projector,Sala
 }

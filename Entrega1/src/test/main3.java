@@ -16,9 +16,12 @@ import domain.Controladors.ControladorCrearReservaAmbNotificacio;
 import domain.DBInterfaces.CtrlDataFactoria;
 import domain.Model.Info;
 import domain.Model.Ordinador;
+import domain.Model.Projector;
 import domain.Model.Recurs;
 import domain.Model.ReservaAmbNotificacio;
 import domain.Model.ReservaSenseNotificacio;
+import domain.Model.Sala;
+import domain.Model.Types;
 import domain.Model.Usuari;
 import java.util.ArrayList;
 import java.util.Date;
@@ -57,11 +60,25 @@ public class main3 {
         //RESULT son els recursos disponibles
         
         //FUNCIO2 reservo un recurs
+        CtrlRecurs CtrlR = factory.getCtrlRecurs();
         Info info = result.get(0);
         String nomrecurs = info.getNom();
-        Ordinador r2 = new Ordinador();
-        r2.setNom(nomrecurs);
-        CtrlO.insert(r2);
+        Ordinador aRes = new Ordinador();
+        if (CtrlR.get(nomrecurs).getType() == Types.Ordinador) {
+            System.out.println("entrooooo");
+            aRes.setNom(nomrecurs);
+            CtrlO.insert(aRes);
+        }
+        /*else if (CtrlR.get(nomrecurs).getType() == Types.Sala) {
+            Sala aRes = new Sala();
+            aRes.setNom(nomrecurs);
+            CtrlS.insert(aRes);
+        }
+        else if (CtrlR.get(nomrecurs).getType() == Types.Projector) {
+            Projector aRes = new Projector();
+            aRes.setNom(nomrecurs);
+            CtrlP.insert(aRes);
+        }*/
         Usuari u4 = new Usuari();
         u4.setUsername("marc");
         CtrlU.insert(u4);
@@ -78,13 +95,13 @@ public class main3 {
         u3.setUsername("paco");
         CtrlU.insert(u3);
         CtrlReservaAmbNotificacio CtrlN = factory.getCtrlReservaAmbNotificacio();
-        ReservaAmbNotificacio res = CtrlN.get(r2, d, hi);
+        ReservaAmbNotificacio res = CtrlN.get(aRes, d, hi);
         Date d2 = new Date(2016,6,10);
         List<Usuari> llista = new ArrayList<Usuari>();
         llista.add(u2);
         res.setNotificacions(llista);
         ControladorAssignarUsuaris cu = new ControladorAssignarUsuaris();
-        ArrayList<Usuari> usu = cu.obteUsuarisAAssignar(r2, d2, 9);
+        ArrayList<Usuari> usu = cu.obteUsuarisAAssignar(aRes, d2, 9);
         for (int i = 0; i < usu.size(); ++i){
             System.out.println(usu.get(i).getUsername());
         }

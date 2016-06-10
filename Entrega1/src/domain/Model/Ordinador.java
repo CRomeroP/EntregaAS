@@ -35,10 +35,10 @@ public class Ordinador extends Recurs{
     }
     
     public Ordinador(String name, String marca, String model){
-        super(name);
+        super(name,Types.Ordinador);
         this.marca = marca;   
         this.model = model;
-        new Recurs(name);
+        new Recurs(name,Types.Ordinador);
     }
     
     public String getMarca() {

@@ -38,8 +38,9 @@ public class Recurs  implements java.io.Serializable{
     public Recurs() {
     }
       
-    public Recurs(String nom) {
+    public Recurs(String nom, Types type) {
         this.nom = nom;
+        this.type = type;
     }
      
     public String getNom() {

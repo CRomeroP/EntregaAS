@@ -21,7 +21,7 @@ public class CtrlRecursDB implements CtrlRecurs{
 	
     @Override
     public void insert(Recurs recurs) {
-        Session session = factory.getCurrentSession();
+        Session session = factory.openSession();
         session.beginTransaction();
         session.save(recurs);
         System.out.println("insert");

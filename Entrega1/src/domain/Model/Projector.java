@@ -33,9 +33,9 @@ public class Projector extends Recurs{
     }
     
     public Projector(String name, String resolucio){
-        super(name);
+        super(name,Types.Projector);
         this.resolucio = resolucio;
-        new Recurs(name);
+        new Recurs(name,Types.Projector);
     }
     
     public String getResolucio() {

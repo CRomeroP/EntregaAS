@@ -42,12 +42,12 @@ public class Sala extends Recurs{
     }
     
     public Sala(String name, String ubicacio, Integer aforament, Projector nomProj, Ordinador nomPc){
-        super(name);
+        super(name,Types.Sala);
         this.ubicacio = ubicacio;
         this.aforament = aforament;
         this.nomprojector = nomProj;
         this.nomordinador = nomPc;
-        new Recurs(name);
+        new Recurs(name,Types.Sala);
     }
 
     public String getUbicacio() {

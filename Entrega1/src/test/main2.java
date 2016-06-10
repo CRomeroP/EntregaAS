@@ -14,6 +14,7 @@ import domain.DBInterfaces.CtrlDataFactoria;
 import domain.Model.Info;
 import domain.Model.Recurs;
 import domain.Model.ReservaAmbNotificacio;
+import domain.Model.Types;
 import domain.Model.Usuari;
 import java.util.ArrayList;
 import java.util.Date;
@@ -41,7 +42,7 @@ public class main2 {
         CtrlU.insert(u3);
         
         CtrlRecurs CtrlR = factory.getCtrlRecurs();
-        Recurs r = new Recurs("rec");
+        Recurs r = new Recurs("rec", Types.Ordinador);
         CtrlR.insert(r);
         Date d = new Date(2016,6,10);
         int hi = 7;

@@ -25,7 +25,7 @@ public class CtrlOrdinadorDB implements CtrlOrdinador{
 
     @Override
     public void insert(Ordinador ord) {
-        Session session = factory.getCurrentSession();
+        Session session = factory.openSession();
         session.beginTransaction();
         Recurs r = (Recurs) ord;
         session.save(ord);
@@ -35,7 +35,7 @@ public class CtrlOrdinadorDB implements CtrlOrdinador{
     
     @Override
     public Ordinador get(String nom) {
-        Session session = factory.getCurrentSession();
+        Session session = factory.openSession();
         session.beginTransaction();
         Ordinador representacio = (Ordinador) session.createCriteria(Recurs.class)
                 .add(Restrictions.eq("nom", nom)).uniqueResult();

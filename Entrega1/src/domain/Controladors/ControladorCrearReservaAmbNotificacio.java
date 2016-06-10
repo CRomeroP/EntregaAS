@@ -11,6 +11,7 @@ import domain.DBInterfaces.CtrlDataFactoria;
 import domain.Model.Info;
 import domain.Model.Recurs;
 import domain.Model.ReservaAmbNotificacio;
+import domain.Model.Types;
 import domain.Model.Usuari;
 import java.util.ArrayList;
 import java.util.Date;
@@ -56,13 +57,13 @@ public class ControladorCrearReservaAmbNotificacio {
         CtrlDataFactoria cf = new CtrlDataFactoria();
         CtrlUsuari cu = cf.getCtrlUsuari();
         Usuari usu = cu.get(username);
-        Recurs s = new Recurs(nomR);
+        Recurs s = new Recurs(nomR,Types.Ordinador);
         boolean b = usu.tensSalaReservada(data, hi, hf);
         if (b) {
             System.out.println("SalaSolapada");
         }
         else {
-            Recurs rec = new Recurs(nomR);
+            Recurs rec = new Recurs(nomR,Types.Ordinador);
             ReservaAmbNotificacio resamb = new ReservaAmbNotificacio(data, hi, hi, comentari, usu, rec);
             CtrlReservaAmbNotificacio CtrlR = cf.getCtrlReservaAmbNotificacio();
             CtrlR.insert(resamb);
