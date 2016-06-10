@@ -59,11 +59,11 @@ public class main3 {
         //FUNCIO2 reservo un recurs
         Info info = result.get(0);
         String nomrecurs = info.getNom();
-        CtrlRecurs CtrlR = factory.getCtrlRecurs();
-        Recurs r2 = new Recurs(nomrecurs);
-        CtrlR.insert(r2);
+        Ordinador r2 = new Ordinador();
+        r2.setNom(nomrecurs);
+        CtrlO.insert(r2);
         Usuari u4 = new Usuari();
-        u.setUsername("marc");
+        u4.setUsername("marc");
         CtrlU.insert(u4);
         ControladorCrearReservaAmbNotificacio c2 = new ControladorCrearReservaAmbNotificacio();
         c2.crearReservaAmbNotificacio(nomrecurs, "marc", "victor gay");
@@ -97,9 +97,9 @@ public class main3 {
         Usuari u6 = new Usuari();
         u3.setUsername("xavier");
         CtrlU.insert(u6);
-        ArrayList<Usuari> afegir = new ArrayList<>();
-        afegir.add(u5);
-        afegir.add(u6);
+        ArrayList<String> afegir = new ArrayList<>();
+        afegir.add(u5.getUsername());
+        afegir.add(u6.getUsername());
         cu.afegirUsuarisReserva(afegir);
         //assigno els usuaris a aquella reserva
     }

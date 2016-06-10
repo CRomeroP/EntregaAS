@@ -5,9 +5,9 @@
  */
 package domain.Model;
 
+import Data.CtrlReservaAmbNotificacio;
+import domain.DBInterfaces.CtrlDataFactoria;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -133,7 +133,11 @@ public class ReservaAmbNotificacio implements Serializable{
     }
 
     public void setNotificacions(List<Usuari> notificacions) {
-        this.notificacions = notificacions;
+        CtrlDataFactoria factory = new CtrlDataFactoria();
+        CtrlReservaAmbNotificacio CtrlR = factory.getCtrlReservaAmbNotificacio();
+        for (int i = 0; i < notificacions.size(); ++i){
+            CtrlR.afegirUsuariANotificacio(this, notificacions.get(i));
+        }
     }
     
     public boolean estaDisponible (Date d, int horai, int horaf){
@@ -141,22 +145,25 @@ public class ReservaAmbNotificacio implements Serializable{
         return ((d == this.data) && ((horaf <= this.horainici) || (horai >= this.horafi)));
     }
     
-    private ArrayList<Usuari> getUsuarisSenseNot(List<Usuari> u){
-        ArrayList<Usuari> llista = new ArrayList<>(u);
-        if (notificacions.size() == 10) System.out.println("ReservaATope");
-        for (int i = 0; i < notificacions.size();i++){
-            llista.remove(notificacions.get(i));
+    private ArrayList<Usuari> getUsuarisSenseNot(ArrayList<Usuari> u){
+        boolean b;
+        for (int i = 0; i < notificacions.size(); ++i){
+           b = true;
+           for (int j = 0; j < u.size() && b; ++j){
+               if((notificacions.get(i).getUsername()).equals(u.get(j).getUsername())){
+                   u.remove(j);
+                   b = false;
+               }
+           }
         }
-        return llista;
+        return u;
     }
     
-    public ArrayList<Usuari> getPossiblesUsuaris(List<Usuari> u){
+    public ArrayList<Usuari> getPossiblesUsuaris(ArrayList<Usuari> u){
         Date fechaActual = new Date();
         int error = data.compareTo(fechaActual);
         if ((error == 1) || (error == 0 && horainici > fechaActual.getHours())) System.out.println("ReservaCaducada");
-        System.out.println("hijoputa");
         return getUsuarisSenseNot(u);
-          
     }
     
     public boolean etsSala () {
@@ -165,13 +172,16 @@ public class ReservaAmbNotificacio implements Serializable{
     
     
     public void afegirUsuaris(ArrayList<Usuari> u){
-        if (notificacions.size() + u.size() > 10); //activa[reservaATope]
+        if (notificacions.size() + u.size() > 10) System.out.println("activa[reservaATope");
         ArrayList<String> emails = new ArrayList<>();
         for (int i = 0; i < u.size(); i++){
             emails.add(u.get(i).getEmail());
             notificacions.add(u.get(i));
         }
         String username = usuari.getEmail();
+        for (int i = 0; i < emails.size(); i++){
+            System.out.println(emails.get(i));
+        }
     }
     
 }

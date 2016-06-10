@@ -47,7 +47,7 @@ public class ControladorCrearReservaAmbNotificacio {
         return usuaris;
     }
     
-    public void assignarUsuarisAReserva (ArrayList<Usuari> usuaris) {
+    public void assignarUsuarisAReserva (ArrayList<String> usuaris) {
         ControladorAssignarUsuaris cau = new ControladorAssignarUsuaris();
         cau.afegirUsuarisReserva(usuaris);
     }
@@ -58,7 +58,7 @@ public class ControladorCrearReservaAmbNotificacio {
         Usuari usu = cu.get(username);
         Recurs s = new Recurs(nomR);
         boolean b = usu.tensSalaReservada(data, hi, hf);
-        if (b || !s.etsSala()) {
+        if (b) {
             System.out.println("SalaSolapada");
         }
         else {

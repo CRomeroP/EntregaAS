@@ -16,7 +16,6 @@ import domain.Model.ReservaAmbNotificacio;
 import domain.Model.ReservaSenseNotificacio;
 import domain.Model.Usuari;
 import java.util.ArrayList;
-import java.util.List;
 /**
  *
  * @author Víctor
@@ -50,8 +49,7 @@ public class ControladorAssignarUsuaris {
        return result;
     }
     
-    public void afegirUsuarisReserva (ArrayList<Usuari> usuaris){
-        //if (esNotifica.nb + usuaris.size() >= 10) System.out.println("ReservaATope");
+    public void afegirUsuarisReserva (ArrayList<String> usuaris){
         CtrlDataFactoria factory = new CtrlDataFactoria();
         CtrlRecurs CtrlR = factory.getCtrlRecurs();
         Recurs r = CtrlR.get(this.nom);
@@ -59,7 +57,7 @@ public class ControladorAssignarUsuaris {
         ReservaAmbNotificacio rm = cr.get(r, this.data, this.horai);
         CtrlUsuari cu = factory.getCtrlUsuari();
         ArrayList<Usuari> u = new ArrayList<>();
-        for (int i = 0; i < usuaris.size(); i++) u.add(cu.get(usuaris.get(i).getUsername()));
-        //rm.afegirUsuaris(u);
+        for (int i = 0; i < usuaris.size(); i++) u.add(cu.get(usuaris.get(i)));
+        rm.afegirUsuaris(u);
     }
 }
