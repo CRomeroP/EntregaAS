@@ -181,6 +181,9 @@ public class ReservaAmbNotificacio implements Serializable{
             notificacions.add(u.get(i));
         }
         String username = usuari.getEmail();
+        for (int i = 0; i < emails.size(); i++){
+            System.out.println(emails.get(i));
+        }
     }
     
 }

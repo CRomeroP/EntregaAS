@@ -35,11 +35,12 @@ public class CtrlRecursDB implements CtrlRecurs{
     
     @Override
     public Recurs get(String nom) {
-        Session session = factory.getCurrentSession();
+        Session session = factory.openSession();
         session.beginTransaction();
         Recurs representacio = (Recurs) session.createCriteria(Recurs.class)
                 .add(Restrictions.eq("nom", nom)).uniqueResult();
         session.getTransaction().rollback();
+        session.close();
         return representacio;
     }
 

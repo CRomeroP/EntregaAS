@@ -47,7 +47,7 @@ public class ControladorCrearReservaAmbNotificacio {
         return usuaris;
     }
     
-    public void assignarUsuarisAReserva (ArrayList<Usuari> usuaris) {
+    public void assignarUsuarisAReserva (ArrayList<String> usuaris) {
         ControladorAssignarUsuaris cau = new ControladorAssignarUsuaris();
         cau.afegirUsuarisReserva(usuaris);
     }

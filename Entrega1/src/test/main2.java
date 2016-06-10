@@ -37,6 +37,7 @@ public class main2 {
         CtrlU.insert(u2);
         Usuari u3 = new Usuari();
         u3.setUsername("paco");
+        u3.setEmail("a@a.com");
         CtrlU.insert(u3);
         
         CtrlRecurs CtrlR = factory.getCtrlRecurs();
@@ -63,5 +64,8 @@ public class main2 {
         for (int i = 0; i < usu.size(); ++i){
             System.out.println(usu.get(i).getUsername());
         }
+        ArrayList<String> us = new ArrayList<>();
+        us.add("paco");
+        cu.afegirUsuarisReserva(us);
     }
 }
