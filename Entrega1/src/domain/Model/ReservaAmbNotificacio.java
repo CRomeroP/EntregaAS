@@ -59,7 +59,7 @@ public class ReservaAmbNotificacio implements Serializable{
         @JoinColumn(name = "horaIni", nullable = false),
         @JoinColumn(name = "datar", nullable = false)},
         inverseJoinColumns = {@JoinColumn(name = "username", nullable = false)})
-    private List<Usuari> notificacions;
+    private List<Usuari> notificacions = new ArrayList<Usuari>();
 
     public ReservaAmbNotificacio() {
     }

@@ -7,6 +7,7 @@ package Data;
 
 import domain.Model.Recurs;
 import domain.Model.ReservaAmbNotificacio;
+import domain.Model.Usuari;
 import java.util.Date;
 import java.util.List;
 
@@ -17,6 +18,8 @@ import java.util.List;
 public interface CtrlReservaAmbNotificacio {
 
     public void insert(ReservaAmbNotificacio reserva);
+    
+    public void afegirUsuariANotificacio(ReservaAmbNotificacio reserva, Usuari u);
 
     public ReservaAmbNotificacio get(Recurs nomRecurs, Date d, int hi);
 

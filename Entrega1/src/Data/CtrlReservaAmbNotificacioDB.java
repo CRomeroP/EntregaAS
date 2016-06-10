@@ -4,6 +4,7 @@ package Data;
 import Excepcions.NoHiHaRecursos;
 import domain.Model.Recurs;
 import domain.Model.ReservaAmbNotificacio;
+import domain.Model.Usuari;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,12 +28,27 @@ public class CtrlReservaAmbNotificacioDB implements CtrlReservaAmbNotificacio{
 	}
  
     @Override
-    public void insert(ReservaAmbNotificacio rsn) {
-        Session session = factory.getCurrentSession();
+    public void insert(ReservaAmbNotificacio ran) {
+        Session session = factory.openSession();
         session.beginTransaction();
-        session.save(rsn);
-        System.out.println("insert");
+        session.save(ran);
+        Usuari u = ran.getUsuari();
+        System.out.println(ran.getUsuari().getUsername());
+        System.out.println(u.getUsername());
+        ran.getNotificacions().add(u);
+        session.update(ran);
+        u.getNotificacions().add(ran);
+        session.update(u);
         session.getTransaction().commit();
+    }
+    
+    @Override
+    public void afegirUsuariANotificacio(ReservaAmbNotificacio r, Usuari u) {
+        Session session = factory.openSession();
+        r.getNotificacions().add(u);
+        session.update(r);
+        u.getNotificacions().add(r);
+        session.update(u);
     }
     
     @Override

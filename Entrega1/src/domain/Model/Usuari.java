@@ -36,7 +36,7 @@ public class Usuari  implements java.io.Serializable {
     @OneToMany(mappedBy = "usuari")
     private List<ReservaSenseNotificacio> reservassensenotificacio;
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "notificacions")
-    private List<ReservaAmbNotificacio> notificacions;
+    private List<ReservaAmbNotificacio> notificacions = new ArrayList<ReservaAmbNotificacio>();
 
     public Usuari() {
     }
