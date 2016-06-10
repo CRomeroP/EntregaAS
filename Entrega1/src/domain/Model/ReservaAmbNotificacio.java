@@ -140,7 +140,6 @@ public class ReservaAmbNotificacio implements Serializable{
         for (int i = 0; i < notificacions.size(); ++i){
             CtrlR.afegirUsuariANotificacio(this, notificacions.get(i));
         }
-        System.out.println(this.notificacions.size());
     }
     
     public boolean estaDisponible (Date d, int horai, int horaf){
@@ -149,8 +148,15 @@ public class ReservaAmbNotificacio implements Serializable{
     }
     
     private ArrayList<Usuari> getUsuarisSenseNot(ArrayList<Usuari> u){
-        for (int i = 0; i < this.notificacions.size(); i++){
-            System.out.println(u.indexOf(this.notificacions.get(i)));
+        boolean b;
+        for (int i = 0; i < notificacions.size(); ++i){
+           b = true;
+           for (int j = 0; j < u.size() && b; ++j){
+               if((notificacions.get(i).getUsername()).equals(u.get(j).getUsername())){
+                   u.remove(j);
+                   b = false;
+               }
+           }
         }
         return u;
     }
@@ -159,9 +165,7 @@ public class ReservaAmbNotificacio implements Serializable{
         Date fechaActual = new Date();
         int error = data.compareTo(fechaActual);
         if ((error == 1) || (error == 0 && horainici > fechaActual.getHours())) System.out.println("ReservaCaducada");
-
         return getUsuarisSenseNot(u);
-          
     }
     
     public boolean etsSala () {
