@@ -4,25 +4,21 @@ package Data;
 import Excepcions.NoHiHaUsuaris;
 import domain.Model.Usuari;
 import java.util.ArrayList;
-import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.AnnotationConfiguration;
-import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.service.ServiceRegistry;
 
 public class CtrlUsuariDB implements CtrlUsuari{
 	
-    private SessionFactory factory;
+    private final SessionFactory factory;
 	
     public CtrlUsuariDB() {
             factory = HibernateSessionFactory.getInstance();
 	}
 	
+    @Override
     public void insert(Usuari usuari) {
-        Session session = factory.getCurrentSession();
+        Session session = factory.openSession();
         session.beginTransaction();
         session.save(usuari);
         session.getTransaction().commit();
@@ -38,13 +34,15 @@ public class CtrlUsuariDB implements CtrlUsuari{
     }
 
 
+    @Override
     public Boolean exists(String userName)throws Exception {
         return null;
     }
 
 
+    @Override
     public ArrayList<Usuari> getAll() {
-    	Session session = factory.getCurrentSession();
+    	Session session = factory.openSession();
         session.getTransaction().begin();
         ArrayList<Usuari> usuaris = (ArrayList) session.createCriteria(Usuari.class).list();
         if (usuaris.isEmpty()) throw new NoHiHaUsuaris();

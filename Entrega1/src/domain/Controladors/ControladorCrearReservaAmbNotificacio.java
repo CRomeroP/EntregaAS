@@ -56,6 +56,7 @@ public class ControladorCrearReservaAmbNotificacio {
         CtrlDataFactoria cf = new CtrlDataFactoria();
         CtrlUsuari cu = cf.getCtrlUsuari();
         Usuari usu = cu.get(username);
+        Recurs s = new Recurs(nomR);
         boolean b = usu.tensSalaReservada(data, hi, hf);
         if (b) {
             System.out.println("SalaSolapada");

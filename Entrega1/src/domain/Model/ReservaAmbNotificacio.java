@@ -9,8 +9,6 @@ import Data.CtrlReservaAmbNotificacio;
 import domain.Adapters.IGestioMissatgeAdapter;
 import domain.DBInterfaces.CtrlDataFactoria;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;

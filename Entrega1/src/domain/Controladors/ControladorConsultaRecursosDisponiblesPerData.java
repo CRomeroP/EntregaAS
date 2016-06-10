@@ -11,7 +11,6 @@ import java.util.Date;
 import domain.DBInterfaces.CtrlDataFactoria;
 import domain.Model.Info;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -34,7 +33,7 @@ public class ControladorConsultaRecursosDisponiblesPerData {
             inf = r.get(i).infoDisponible(d, horain, horafi);
             if (inf != null)recursos.add(inf);
         }
-        if (recursos.size() == 0) System.out.println("NoHiHaRecursos");
+        if (recursos.isEmpty()) System.out.println("NoHiHaRecursos");
         return recursos;
     }  
 }

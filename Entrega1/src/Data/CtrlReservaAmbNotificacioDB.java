@@ -8,20 +8,15 @@ import domain.Model.Usuari;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.Set;
 
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.service.ServiceRegistry;
+
 
 public class CtrlReservaAmbNotificacioDB implements CtrlReservaAmbNotificacio{
 	
-    private SessionFactory factory;
+    private final SessionFactory factory;
 	
     public CtrlReservaAmbNotificacioDB  () {
              factory = HibernateSessionFactory.getInstance();
