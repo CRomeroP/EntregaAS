@@ -57,18 +57,21 @@ public class ControladorCrearReservaAmbNotificacio {
         CtrlUsuari cu = cf.getCtrlUsuari();
         Usuari usu = cu.get(username);
         boolean b = usu.tensSalaReservada(data, hi, hf);
-        if (b) { // excepcio sala solapada
-            System.out.println("Tens sala solapada!!!!!");
+        if (b) {
+            System.out.println("SalaSolapada");
         }
         else {
-            CtrlReservaAmbNotificacio crn = cf.getCtrlReservaAmbNotificacio();
+            Recurs rec = new Recurs(nomR);
+            ReservaAmbNotificacio resamb = new ReservaAmbNotificacio(data, hi, hi, comentari, usu, rec);
+            CtrlReservaAmbNotificacio CtrlR = cf.getCtrlReservaAmbNotificacio();
+            CtrlR.insert(resamb);
             //GestioMissatge gm = cf.getGestioMissatge();
             String mail = usu.getEmail();
             /* ENVIAR MISSATGE */
             //gm.enviarDadesReserva();
-        this.nomR = nomR;
-        if (comentari != null) this.comentari = comentari;
-        this.username = username;
+            this.nomR = nomR;
+            if (comentari != null) this.comentari = comentari;
+            this.username = username;
         }
     }
     

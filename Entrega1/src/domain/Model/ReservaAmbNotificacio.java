@@ -137,7 +137,8 @@ public class ReservaAmbNotificacio implements Serializable{
     }
     
     public boolean estaDisponible (Date d, int horai, int horaf){
-        return true;
+        System.out.println(d + " " + data + " " + horai + " " + horainici + " "+ horaf + " " + horafi);
+        return ((d == this.data) && ((horaf <= this.horainici) || (horai >= this.horafi)));
     }
     
     private ArrayList<Usuari> getUsuarisSenseNot(List<Usuari> u){
@@ -150,14 +151,16 @@ public class ReservaAmbNotificacio implements Serializable{
     }
     
     public ArrayList<Usuari> getPossiblesUsuaris(List<Usuari> u){
-        //llançar excepcio data
+        Date fechaActual = new Date();
+        int error = data.compareTo(fechaActual);
+        if ((error == 1) || (error == 0 && horainici > fechaActual.getHours())) System.out.println("ReservaCaducada");
         System.out.println("hijoputa");
         return getUsuarisSenseNot(u);
           
     }
     
     public boolean etsSala () {
-        return false;
+        return recurs.etsSala();
     }
     
     
