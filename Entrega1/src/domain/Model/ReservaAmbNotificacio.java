@@ -6,6 +6,7 @@
 package domain.Model;
 
 import Data.CtrlReservaAmbNotificacio;
+import domain.Adapters.IGestioMissatgeAdapter;
 import domain.DBInterfaces.CtrlDataFactoria;
 import java.util.Date;
 import java.util.HashSet;
@@ -181,9 +182,10 @@ public class ReservaAmbNotificacio implements Serializable{
             notificacions.add(u.get(i));
         }
         String username = usuari.getEmail();
-        for (int i = 0; i < emails.size(); i++){
-            System.out.println(emails.get(i));
-        }
+        CtrlDataFactoria factory = new CtrlDataFactoria();
+        IGestioMissatgeAdapter gm = factory.getIGestioMissatgeAdapter();
+        gm.enviarDadesReserva(this.recurs.getNom(), this.data, this.horainici, this.horafi, username,this.comentaris, emails);
+
     }
     
 }

@@ -16,6 +16,8 @@ import Data.CtrlReservaSenseNotificacioDB;
 import Data.CtrlUsuari;
 import Data.CtrlUsuariDB;
 import Data.Sessio;
+import domain.Adapters.GestioMissatgeAdapter;
+import domain.Adapters.IGestioMissatgeAdapter;
 /**
  *
  * @author carlos
@@ -52,5 +54,9 @@ public class CtrlDataFactoria {
     private final CtrlReservaSenseNotificacio ctrlReservaSenseNotificacio = new CtrlReservaSenseNotificacioDB();
     
     public CtrlReservaSenseNotificacio getCtrlReservaSenseNotificacio() { return ctrlReservaSenseNotificacio; }
+    
+    private final IGestioMissatgeAdapter IGestioMissatgeAdapter = new GestioMissatgeAdapter();
+    
+    public IGestioMissatgeAdapter getIGestioMissatgeAdapter() { return IGestioMissatgeAdapter; }
     
 }
