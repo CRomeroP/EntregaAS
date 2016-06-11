@@ -28,7 +28,7 @@ public class Recurs  implements java.io.Serializable{
     @Id
     @Column(name = "nom")
     private String nom;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "recurs")
+    @OneToMany(mappedBy = "recurs")
     private List<ReservaAmbNotificacio> reservasambnotificacio;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "recurs")
     private List<ReservaSenseNotificacio> reservassensenotificacio;

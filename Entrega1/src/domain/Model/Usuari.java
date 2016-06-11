@@ -99,19 +99,17 @@ public class Usuari  implements java.io.Serializable {
     }
     
     public boolean tensSalaReservada(Date d, int hi, int hf) {
-        boolean ret = false; 
         boolean b = true;
         for (int i = 0; i < reservasambnotificacio.size() && b ; ++i) {
             b = reservasambnotificacio.get(i).estaDisponible(d, hi, hf);
-            if (!b && reservasambnotificacio.get(i).etsSala()) return false;
-            else b = true;
+            if (!b && reservasambnotificacio.get(i).etsSala()) return true;
         }
         for (int j = 0; j < reservassensenotificacio.size() && !b; ++j) {
             b = reservassensenotificacio.get(j).estaDisponible(d, hi, hf); //crearlo
-            if (!b && reservassensenotificacio.get(j).etsSala()) return false;
+            if (!b && reservassensenotificacio.get(j).etsSala()) return true;
             else b = true;
         }
-        return true;
+        return false;
     }
     	
 }

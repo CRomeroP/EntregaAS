@@ -7,9 +7,11 @@ package test;
 
 import Data.CtrlInicialState;
 import Data.CtrlOrdinador;
+import Data.CtrlProjector;
 import Data.CtrlRecurs;
 import Data.CtrlReservaAmbNotificacio;
 import Data.CtrlReservaSenseNotificacio;
+import Data.CtrlSala;
 import Data.CtrlUsuari;
 import domain.Controladors.ControladorAssignarUsuaris;
 import domain.Controladors.ControladorConsultaRecursosDisponiblesPerData;
@@ -49,27 +51,23 @@ public class main4 {
         //CAS US 3.1
         ControladorCrearReservaAmbNotificacio c1 = new ControladorCrearReservaAmbNotificacio();
         Date d = new Date(2016,7,10);
+        Date d2 = new Date(2016,8,10);
         ArrayList<Info> info = new ArrayList<>();
-        info = c1.obteRecursosDisponibles(d, 1, 23);
+        info = c1.obteRecursosDisponibles(d2, 1, 23);
         for (int i = 0; i < info.size(); ++i) {
             System.out.println(info.get(i).getNom());
         }
         //CAS US 3.2
-        c1.crearReservaAmbNotificacio("BENQ333", "marc1161", "fdkflfk");
-        
-        //CAS US 3.3    
-       /*// ArrayList<Usuari> usuaris = c1.obteUsuarisAAssignar(nomR, d, 0)
-        //CAS US 3.3
-        ControladorAssignarUsuaris c3 = new ControladorAssignarUsuaris();
-        Date d2 = new Date(2016,8,10);
-        Sala s1 = new Sala();
-        s1.setNom("Sala d'actes FIB");
-        ArrayList<String> usuaris = new ArrayList<String>();
-        ArrayList<Usuari> usu = c2.obteUsuarisAAssignar(s1, d2, 7);
-        for (int i = 0; i < usu.size(); ++i) {
-            System.out.println(usu.get(i).getUsername());
-            usuaris.add(usu.get(i).getUsername());
-        }        
-        c1.assignarUsuarisAReserva(usuaris);*/
+        c1.crearReservaAmbNotificacio("Sala d'actes Pompeu", "marc1161", "fdkflfk");
+        //CAS US 3.3 
+        CtrlSala cs = factory.getCtrlSala();
+        Sala s1 =  cs.get("Sala d'actes Pompeu");
+        ArrayList<Usuari> usuaris = c1.obteUsuarisAAssignar(s1, d2, 1);
+        ArrayList<String> noms = new ArrayList<String>();
+        for (int i = 0; i < usuaris.size(); ++i) {
+            noms.add(usuaris.get(i).getNom());
+        }
+        //CAS US 3.4      
+        c1.assignarUsuarisAReserva(noms);
     }
 }

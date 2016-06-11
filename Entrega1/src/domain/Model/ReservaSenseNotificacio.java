@@ -18,6 +18,8 @@ import javax.persistence.IdClass;
 import javax.persistence.PrimaryKeyJoinColumn;
 import static javax.persistence.TemporalType.DATE;
 import org.hibernate.annotations.Check;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  *
@@ -39,10 +41,12 @@ public class ReservaSenseNotificacio implements Serializable{
     private int horafi;
     @Column(name = "comentaris", length = 255, unique = false, nullable = true)
     private String comentaris;
+    @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToOne
     @PrimaryKeyJoinColumn
     private Usuari usuari;
     @Id
+    @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToOne
     @PrimaryKeyJoinColumn
     private Recurs recurs;

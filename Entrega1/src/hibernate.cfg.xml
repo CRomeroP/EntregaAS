@@ -8,8 +8,13 @@
     <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.hbm2ddl.auto">create</property>
+<<<<<<< HEAD
     <property name="hibernate.connection.password">VGGep220995</property>
     <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/postgres</property>
+=======
+    <property name="hibernate.connection.password">Kasikasi16</property>
+    <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/test</property>
+>>>>>>> 9e11316b83475dd65c1a4117ef88804e14ff6db9
     <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
     <mapping class="domain.Model.Usuari"/>
     <mapping class="domain.Model.ReservaSenseNotificacio"/>

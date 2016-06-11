@@ -45,7 +45,7 @@ public class ControladorCrearReservaAmbNotificacio {
     
     public ArrayList<Usuari> obteUsuarisAAssignar (Recurs nomR, Date d, int hi) {
         ControladorAssignarUsuaris cau = new ControladorAssignarUsuaris();
-        ArrayList<Usuari> usuaris = cau.obteUsuarisAAssignar(nomR, d, hi);
+        ArrayList<Usuari> usuaris = cau.obteUsuarisAAssignar(nomR, data, this.hi);
         return usuaris;
     }
     
