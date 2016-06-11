@@ -46,6 +46,7 @@ public class ControladorAssignarUsuaris {
        this.nom = nomR.getNom();
        this.data = d;
        this.horai = hi;
+       System.out.println(result.size());
        return result;
     }
     
@@ -54,11 +55,12 @@ public class ControladorAssignarUsuaris {
         CtrlRecurs CtrlR = factory.getCtrlRecurs();
         Recurs r = CtrlR.get(this.nom);
         CtrlReservaAmbNotificacio cr = factory.getCtrlReservaAmbNotificacio();
-        System.out.println("ENTREM:             " + this.data + this.horai);
         ReservaAmbNotificacio rm = cr.get(r, this.data, this.horai);
+        if(rm == null) System.out.println("null");
         CtrlUsuari cu = factory.getCtrlUsuari();
         ArrayList<Usuari> u = new ArrayList<>();
         for (int i = 0; i < usuaris.size(); i++) u.add(cu.get(usuaris.get(i)));
+        System.out.println(u.size());
         rm.afegirUsuaris(u);
     }
 }

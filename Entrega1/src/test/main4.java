@@ -53,7 +53,7 @@ public class main4 {
         Date d = new Date(2016,7,10);
         Date d2 = new Date(2016,8,10);
         ArrayList<Info> info = new ArrayList<>();
-        info = c1.obteRecursosDisponibles(d2, 1, 23);
+        info = c1.obteRecursosDisponibles(d2, 19, 23);
         for (int i = 0; i < info.size(); ++i) {
             System.out.println(info.get(i).getNom());
         }
@@ -62,11 +62,13 @@ public class main4 {
         //CAS US 3.3 
         CtrlSala cs = factory.getCtrlSala();
         Sala s1 =  cs.get("Sala d'actes Pompeu");
-        ArrayList<Usuari> usuaris = c1.obteUsuarisAAssignar(s1, d2, 1);
+        ArrayList<Usuari> usuaris = c1.obteUsuarisAAssignar(s1, d2, 19);
+        System.out.println(usuaris.size());
         ArrayList<String> noms = new ArrayList<String>();
         for (int i = 0; i < usuaris.size(); ++i) {
-            noms.add(usuaris.get(i).getNom());
+            noms.add(usuaris.get(i).getUsername());
         }
+        System.out.println(noms.size());
         //CAS US 3.4      
         c1.assignarUsuarisAReserva(noms);
     }
