@@ -7,12 +7,16 @@ package domain.Factories;
 
 import Data.CtrlOrdinador;
 import Data.CtrlOrdinadorDB;
+import Data.CtrlProjector;
+import Data.CtrlProjectorDB;
 import Data.CtrlRecurs;
 import Data.CtrlRecursDB;
 import Data.CtrlReservaAmbNotificacio;
 import Data.CtrlReservaAmbNotificacioDB;
 import Data.CtrlReservaSenseNotificacio;
 import Data.CtrlReservaSenseNotificacioDB;
+import Data.CtrlSala;
+import Data.CtrlSalaDB;
 import Data.CtrlUsuari;
 import Data.CtrlUsuariDB;
 import Data.Sessio;
@@ -54,5 +58,13 @@ public class CtrlDataFactoria {
     private final CtrlReservaSenseNotificacio ctrlReservaSenseNotificacio = new CtrlReservaSenseNotificacioDB();
     
     public CtrlReservaSenseNotificacio getCtrlReservaSenseNotificacio() { return ctrlReservaSenseNotificacio; }
+    
+    private final CtrlSala ctrlSala = new CtrlSalaDB();
+    
+    public CtrlSala getCtrlSala() { return ctrlSala; }
+ 
+    private final CtrlProjector ctrlProjector = new CtrlProjectorDB();
+    
+    public CtrlProjector getCtrlProjector() { return ctrlProjector; }
     
 }

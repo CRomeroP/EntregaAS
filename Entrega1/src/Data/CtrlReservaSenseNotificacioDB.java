@@ -21,7 +21,7 @@ public class CtrlReservaSenseNotificacioDB implements CtrlReservaSenseNotificaci
 
     @Override
     public void insert(ReservaSenseNotificacio rsn) {
-        Session session = factory.getCurrentSession();
+        Session session = factory.openSession();
         session.beginTransaction();
         session.save(rsn);
         System.out.println("insert");
