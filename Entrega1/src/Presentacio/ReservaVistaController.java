@@ -42,7 +42,7 @@ public class ReservaVistaController implements Initializable {
     @FXML
     private Button buttoncancel;
     @FXML
-    private label lael;
+    private Label lael;
     
     static Stage stageactual;
     
