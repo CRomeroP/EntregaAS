@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -27,6 +29,7 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import javafx.util.converter.LocalTimeStringConverter;
 
 /**
  * FXML Controller class
@@ -74,11 +77,86 @@ public class ReservaVistaController implements Initializable {
         };
         this.calendario.setDayCellFactory(dayCellFactory);
         // TODO
-        SpinnerValueFactory<LocalTime> spinini;
+        SpinnerValueFactory<LocalTime> spinini = new SpinnerValueFactory<LocalTime>() {
+            
+                {
+                    //setConverter(new LocalTimeStringConverter(FormatStyle.MEDIUM));
+                     setConverter(new LocalTimeStringConverter(DateTimeFormatter.ofPattern("HH:mm"), DateTimeFormatter.ofPattern("HH:mm")));
+
+                }
+            @Override
+            public void decrement(int i) {
+                System.out.println("i");
+                if (getValue() == null){
+                    setValue(LocalTime.now());
+                    System.out.println("i");
+                }
+                else {
+                    LocalTime time = (LocalTime) getValue();
+                    setValue(time.minusMinutes(30));
+                    System.out.println("i");
+                }
+            }
+
+            @Override
+            public void increment(int i) {
+                System.out.println("i");
+                if (this.getValue() == null){
+                    System.out.println("i");
+                    setValue(LocalTime.now());
+                }
+                else {
+                    LocalTime time = (LocalTime) getValue();
+                    setValue(time.plusMinutes(30));
+                    System.out.println("i");
+                }
+            }
+        };
+        int seconds = LocalTime.now().getSecond();
+        spinini.setValue(LocalTime.now().minusSeconds(seconds).minusMinutes(LocalTime.now().getMinute()).plusHours(1));
+        spinhini.setValueFactory(spinini);
+        spinhini.setEditable(true);
         /*spininsi();
         
         
         spinhini.setValueFactory(LocalTime.now());*/
+        SpinnerValueFactory<LocalTime> spinfi = new SpinnerValueFactory<LocalTime>() {
+                {
+                    //setConverter(new LocalTimeStringConverter(FormatStyle.MEDIUM));
+                     setConverter(new LocalTimeStringConverter(DateTimeFormatter.ofPattern("HH:mm"), DateTimeFormatter.ofPattern("HH:mm")));
+
+                }
+            @Override
+            public void decrement(int i) {
+                System.out.println("i");
+                if (getValue() == null){
+                    setValue(LocalTime.now());
+                    System.out.println("i");
+                }
+                else {
+                    LocalTime time = (LocalTime) getValue();
+                    setValue(time.minusMinutes(30));
+                    System.out.println("i");
+                }
+            }
+
+            @Override
+            public void increment(int i) {
+                System.out.println("i");
+                if (this.getValue() == null){
+                    System.out.println("i");
+                    setValue(LocalTime.now());
+                }
+                else {
+                    LocalTime time = (LocalTime) getValue();
+                    setValue(time.plusMinutes(30));
+                    System.out.println("i");
+                }
+            }
+        };
+        spinfi.setValue(LocalTime.now().minusSeconds(seconds).minusMinutes(LocalTime.now().getMinute()).plusHours(2));
+        spinhfi.setValueFactory(spinfi);
+        spinhfi.setEditable(true);
     }
     
     @FXML
