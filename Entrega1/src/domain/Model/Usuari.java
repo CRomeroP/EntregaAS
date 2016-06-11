@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 
 
@@ -29,11 +31,14 @@ public class Usuari  implements java.io.Serializable {
     private String nom;
     @Column(name = "email", length = 50)    
     private String email;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuari")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(mappedBy = "usuari")
     private List<ReservaAmbNotificacio> reservasambnotificacio;
+    @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(mappedBy = "usuari")
     private List<ReservaSenseNotificacio> reservassensenotificacio;
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "notificacions")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @ManyToMany(mappedBy = "notificacions")
     private List<ReservaAmbNotificacio> notificacions = new ArrayList<ReservaAmbNotificacio>();
 
     public Usuari() {

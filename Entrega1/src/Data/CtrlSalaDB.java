@@ -31,6 +31,7 @@ public class CtrlSalaDB implements CtrlSala{
         session.save(sala);
         session.save(r);
         session.getTransaction().commit();
+        session.close();
     }
     
     @Override
@@ -39,6 +40,7 @@ public class CtrlSalaDB implements CtrlSala{
         session.beginTransaction();
         Sala representacio = (Sala) session.createCriteria(Recurs.class)
                 .add(Restrictions.eq("nom", nom)).uniqueResult();
+        session.close();
         return representacio;
     }
 

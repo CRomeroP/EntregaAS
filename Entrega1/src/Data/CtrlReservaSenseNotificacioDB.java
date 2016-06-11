@@ -26,6 +26,7 @@ public class CtrlReservaSenseNotificacioDB implements CtrlReservaSenseNotificaci
         session.save(rsn);
         System.out.println("insert");
         session.getTransaction().commit();
+        session.close();
     }
     
     @Override
@@ -34,6 +35,7 @@ public class CtrlReservaSenseNotificacioDB implements CtrlReservaSenseNotificaci
         session.beginTransaction();
         ReservaSenseNotificacio representacio = (ReservaSenseNotificacio) session.createCriteria(ReservaSenseNotificacio.class)
                 .add(Restrictions.eq("recurs", nomRecurs)).add(Restrictions.eq("data", d)).add(Restrictions.eq("horainici", hi)).uniqueResult();
+        session.close();
         return representacio;
     }
 

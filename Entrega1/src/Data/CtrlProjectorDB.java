@@ -43,6 +43,7 @@ public class CtrlProjectorDB implements CtrlProjector {
         session.beginTransaction();
         Projector proj = (Projector) session.createCriteria(Recurs.class)
                 .add(Restrictions.eq("nom", nom)).uniqueResult();
+        session.close();
         return proj;
     }
 

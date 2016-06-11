@@ -5,6 +5,7 @@
  */
 package domain.Controladors;
 
+import Data.CtrlRecurs;
 import Data.CtrlReservaAmbNotificacio;
 import Data.CtrlUsuari;
 import domain.Factories.CtrlDataFactoria;
@@ -36,7 +37,7 @@ public class ControladorCrearReservaAmbNotificacio {
     public ArrayList<Info> obteRecursosDisponibles(Date d, int horain, int horafi) {
         ControladorConsultaRecursosDisponiblesPerData cd = new ControladorConsultaRecursosDisponiblesPerData();
         ArrayList<Info> recursos = cd.obteRecursosDisponiblesPerData(d, horain, horafi);
-        this.data = data;
+        this.data = d;
         this.hi = horain;
         this.hf = horafi;
         return recursos;
@@ -57,16 +58,16 @@ public class ControladorCrearReservaAmbNotificacio {
         CtrlDataFactoria cf = new CtrlDataFactoria();
         CtrlUsuari cu = cf.getCtrlUsuari();
         Usuari usu = cu.get(username);
-        Recurs s = new Recurs(nomR,Types.Ordinador);
+        CtrlRecurs CtrlR = cf.getCtrlRecurs();
+        Recurs s = CtrlR.get(nomR);
         boolean b = usu.tensSalaReservada(data, hi, hf);
         if (b) {
             System.out.println("SalaSolapada");
         }
         else {
-            Recurs rec = new Recurs(nomR,Types.Ordinador);
-            ReservaAmbNotificacio resamb = new ReservaAmbNotificacio(data, hi, hi, comentari, usu, rec);
-            CtrlReservaAmbNotificacio CtrlR = cf.getCtrlReservaAmbNotificacio();
-            CtrlR.insert(resamb);
+            ReservaAmbNotificacio resamb = new ReservaAmbNotificacio(data, hi, hf, comentari, usu, s);
+            CtrlReservaAmbNotificacio CtrlA = cf.getCtrlReservaAmbNotificacio();
+            CtrlA.insert(resamb);
             //GestioMissatge gm = cf.getGestioMissatge();
             String mail = usu.getEmail();
             /* ENVIAR MISSATGE */
