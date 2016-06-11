@@ -162,7 +162,13 @@ public class ReservaVistaController implements Initializable {
     @FXML
     private void handleOkAction(ActionEvent event) throws Exception{
         lael.setText("entramos en la funcion");  
-        Parent root = FXMLLoader.load(getClass().getResource("SeleccioRecursVista.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SeleccioRecursVista.fxml"));
+        
+        Parent root = (Parent)fxmlLoader.load();
+        SeleccioRecursVistaController  controller = fxmlLoader.<SeleccioRecursVistaController>getController();
+        controller.setData(calendario.getValue());
+        controller.setHfi(spinhini.getValue());
+        controller.setHini(spinhfi.getValue());
         Scene scene = new Scene(root);
         Stage stage = (Stage) buttoncancel.getScene().getWindow();
         stage.close();

@@ -141,7 +141,7 @@ public class ReservaAmbNotificacio implements Serializable{
     }
 
     public void setNotificacions(List<Usuari> notificacions) {
-        CtrlDataFactoria factory = new CtrlDataFactoria();
+        CtrlDataFactoria factory = CtrlDataFactoria.getInstance();
         CtrlReservaAmbNotificacio CtrlR = factory.getCtrlReservaAmbNotificacio();
         for (int i = 0; i < notificacions.size(); ++i){
             CtrlR.afegirUsuariANotificacio(this, notificacions.get(i));
@@ -192,8 +192,8 @@ public class ReservaAmbNotificacio implements Serializable{
             notificacions.add(u.get(i));
         }
         String username = usuari.getEmail();
-        CtrlDataFactoria factory = new CtrlDataFactoria();
-        ServiceLocator sv = new ServiceLocator(); 
+        CtrlDataFactoria factory = CtrlDataFactoria.getInstance();
+        ServiceLocator sv = ServiceLocator.getInstance();
         IGestioMissatgeAdapter gm = sv.getIGestioMissatgeAdapter();
         gm.enviarDadesReserva(this.recurs.getNom(), this.data, this.horainici, this.horafi, username,this.comentaris, emails);
 

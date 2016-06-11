@@ -32,7 +32,7 @@ public class ControladorAssignarUsuaris {
     private int horai;
             
     public ArrayList<Usuari> obteUsuarisAAssignar(Recurs nomR, Date d, int hi){
-       CtrlDataFactoria factory = new CtrlDataFactoria();
+       CtrlDataFactoria factory = CtrlDataFactoria.getInstance();
        CtrlUsuari cu = factory.getCtrlUsuari();
        ArrayList<Usuari> u = cu.getAll();
        CtrlReservaAmbNotificacio cr = factory.getCtrlReservaAmbNotificacio();
@@ -50,7 +50,7 @@ public class ControladorAssignarUsuaris {
     }
     
     public void afegirUsuarisReserva (ArrayList<String> usuaris){
-        CtrlDataFactoria factory = new CtrlDataFactoria();
+        CtrlDataFactoria factory = CtrlDataFactoria.getInstance();
         CtrlRecurs CtrlR = factory.getCtrlRecurs();
         Recurs r = CtrlR.get(this.nom);
         CtrlReservaAmbNotificacio cr = factory.getCtrlReservaAmbNotificacio();

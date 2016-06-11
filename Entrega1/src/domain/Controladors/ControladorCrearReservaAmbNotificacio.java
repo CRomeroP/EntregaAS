@@ -55,7 +55,7 @@ public class ControladorCrearReservaAmbNotificacio {
     }
     
     public void crearReservaAmbNotificacio (String nomR, String username, String comentari) {
-        CtrlDataFactoria cf = new CtrlDataFactoria();
+        CtrlDataFactoria cf = CtrlDataFactoria.getInstance();
         CtrlUsuari cu = cf.getCtrlUsuari();
         Usuari usu = cu.get(username);
         CtrlRecurs CtrlR = cf.getCtrlRecurs();

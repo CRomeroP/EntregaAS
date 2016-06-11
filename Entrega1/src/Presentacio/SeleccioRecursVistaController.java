@@ -75,7 +75,6 @@ public class SeleccioRecursVistaController implements Initializable {
         
         Date d = new Date();
         
-        
         ArrayList<Info> info = ccran.obteRecursosDisponibles(d, 1, 18);
         ArrayList<String> nom;
         nom = new ArrayList<String>();
