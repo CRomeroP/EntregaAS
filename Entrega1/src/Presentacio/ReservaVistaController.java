@@ -44,7 +44,6 @@ public class ReservaVistaController implements Initializable {
     @FXML
     private Label lael;
     
-    static Stage stageactual;
     
     /**
      * Initializes the controller class.
@@ -52,11 +51,22 @@ public class ReservaVistaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        SpinnerValueFactory<LocalTime> spinini;
+        spinini();
+        
+        
+        spinhini.setValueFactory(LocalTime.now());
     }
     
     @FXML
-    private void handleOkAction(ActionEvent event) {
-        lael.setText("entramos en la funcion");                
+    private void handleOkAction(ActionEvent event) throws Exception{
+        lael.setText("entramos en la funcion");  
+        Parent root = FXMLLoader.load(getClass().getResource("SeleccioRecursVista.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) buttoncancel.getScene().getWindow();
+        stage.close();
+        stage.setScene(scene);
+        stage.show();
         
     }
     
