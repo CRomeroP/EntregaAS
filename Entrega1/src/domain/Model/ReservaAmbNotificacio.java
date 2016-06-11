@@ -152,6 +152,7 @@ public class ReservaAmbNotificacio implements Serializable{
         CtrlDataFactoria factory = CtrlDataFactoria.getInstance();
         CtrlReservaAmbNotificacio CtrlR = factory.getCtrlReservaAmbNotificacio();
         for (int i = 0; i < notificacions.size(); ++i){
+            System.out.println(i + " +++++++ " + notificacions.get(i).getUsername());
             CtrlR.afegirUsuariANotificacio(this, notificacions.get(i));
         }
     }
@@ -182,8 +183,9 @@ public class ReservaAmbNotificacio implements Serializable{
     
     public ArrayList<Usuari> getPossiblesUsuaris(ArrayList<Usuari> u){
         Date fechaActual = new Date();
-        int error = data.compareTo(fechaActual);
-        if ((error == 1) || (error == 0 && horainici > fechaActual.getHours())) throw new ReservaCaducada();
+        //int error = data.compareTo(fechaActual);
+        if ((data.compareTo(fechaActual) < 0) || (data.compareTo(fechaActual) == 0 && horainici > fechaActual.getHours())) throw new ReservaCaducada();
+        //if ((error == 1) || (error == 0 && horainici > fechaActual.getHours())) throw new ReservaCaducada();
         return getUsuarisSenseNot(u);
     }
     
@@ -195,14 +197,19 @@ public class ReservaAmbNotificacio implements Serializable{
     public void afegirUsuaris(ArrayList<Usuari> u){
         if (notificacions.size() + u.size() > 10) throw new ReservaATope();
         ArrayList<String> emails = new ArrayList<>();
+        CtrlDataFactoria factory = CtrlDataFactoria.getInstance();
+        CtrlReservaAmbNotificacio CtrlR = factory.getCtrlReservaAmbNotificacio();
 
         for (int i = 0; i < u.size(); i++){
             if(u.get(i) == null) System.out.println("es null");
             emails.add(u.get(i).getEmail());
             notificacions.add(u.get(i));
+            CtrlR.afegirUsuariANotificacio(this, u.get(i));
+        }
+        for (int i = 0; i < notificacions.size(); ++i) {
+            System.out.println("A PARTIR DE AQUI: " + notificacions.get(i).getUsername());
         }
         String username = usuari.getEmail();
-        CtrlDataFactoria factory = CtrlDataFactoria.getInstance();
         ServiceLocator sv = ServiceLocator.getInstance();
         IGestioMissatgeAdapter gm = sv.getIGestioMissatgeAdapter();
         gm.enviarDadesReserva(this.recurs.getNom(), this.data, this.horainici, this.horafi, username,this.comentaris, emails);
