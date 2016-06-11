@@ -5,15 +5,23 @@
  */
 package Presentacio;
 
+import domain.Controladors.ControladorCrearReservaAmbNotificacio;
+import domain.Model.Info;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import java.lang.String;
 
 
 
@@ -37,12 +45,29 @@ public class SeleccioRecursVistaController implements Initializable {
     @FXML
     private Button buttonok;
     
+    @FXML
+    private ListView  listRecurs;
+    
+    private ControladorCrearReservaAmbNotificacio ccran = new ControladorCrearReservaAmbNotificacio();
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+        Date d = new Date();
+        
+        
+        ArrayList<Info> info = ccran.obteRecursosDisponibles(d, 1, 18);
+        ArrayList<String> nom;
+        nom = new ArrayList<String>();
+        for (Info info1 : info) {
+            nom.add(info1.getNom());
+        }
+        ObservableList<String> lnoms = FXCollections.observableList(nom);
+        listRecurs.setItems(lnoms);
+
     }    
     
         @FXML

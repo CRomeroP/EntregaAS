@@ -35,6 +35,16 @@ public class CtrlInicialState {
     
     public CtrlInicialState (CtrlDataFactoria factory) {
         this.factory = factory;
+
+    }
+
+    public CtrlInicialState() {
+        this.factory = CtrlDataFactoria.getInstance();
+        inicialitzaRecursos();
+        inicialitzaReservesAmbNotificacio();
+        inicialitzaReservesSenseNotificacio();
+        inicialitzaUsuaris();
+        
     }
     
     public void inicialitzaUsuaris() {
