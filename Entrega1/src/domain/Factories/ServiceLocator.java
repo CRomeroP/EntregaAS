@@ -5,6 +5,7 @@
  */
 package domain.Factories;
 
+import Excepcions.ServeiNoDisponible;
 import domain.Adapters.GestioMissatgeAdapter;
 import domain.Adapters.IGestioMissatgeAdapter;
 import java.util.Random;
@@ -37,6 +38,6 @@ public class ServiceLocator {
      */
     private void maybeFail() {
         int failChance = new Random().nextInt(10);
-        if (failChance == 5)System.out.println("Servei no disponible");
+        if (failChance == 5) throw new ServeiNoDisponible();
     }
 }

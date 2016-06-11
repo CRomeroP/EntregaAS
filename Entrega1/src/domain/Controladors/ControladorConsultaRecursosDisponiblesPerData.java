@@ -6,11 +6,13 @@
 package domain.Controladors;
 
 import Data.CtrlRecurs;
+import Excepcions.NoHiHaRecursos;
 import domain.Model.Recurs;
 import java.util.Date;
 import domain.Factories.CtrlDataFactoria;
 import domain.Model.Info;
 import java.util.ArrayList;
+import Excepcions.PeriodeErroni;
 
 /**
  *
@@ -23,7 +25,7 @@ public class ControladorConsultaRecursosDisponiblesPerData {
     
     public ArrayList<Info> obteRecursosDisponiblesPerData(Date d, int horain, int horafi){
         
-        if (horafi < horain) System.out.println("PeriodeErroni");
+        if (horafi < horain) throw new  PeriodeErroni();
         CtrlDataFactoria factory = CtrlDataFactoria.getInstance();
         CtrlRecurs cr = factory.getCtrlRecurs();
         ArrayList<Recurs> r = cr.getAll();
@@ -33,7 +35,7 @@ public class ControladorConsultaRecursosDisponiblesPerData {
             inf = r.get(i).infoDisponible(d, horain, horafi);
             if (inf != null)recursos.add(inf);
         }
-        if (recursos.isEmpty()) System.out.println("NoHiHaRecursos");
+        if (recursos.isEmpty()) throw new NoHiHaRecursos();
         return recursos;
     }  
 }
