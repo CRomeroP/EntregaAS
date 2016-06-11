@@ -8,6 +8,7 @@ import domain.Model.Usuari;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -40,9 +41,14 @@ public class CtrlReservaAmbNotificacioDB implements CtrlReservaAmbNotificacio{
     public void afegirUsuariANotificacio(ReservaAmbNotificacio r, Usuari u) {
         Session session = factory.openSession();
         session.beginTransaction();
-        r.getNotificacions().add(u);
-        session.update(r);
-        u.getNotificacions().add(r);
+        List<ReservaAmbNotificacio> a = u.getNotificacions();
+        if(a != null){
+                a.add(r);
+        }
+        else {
+            a = new ArrayList<ReservaAmbNotificacio>();
+            a.add(r);
+        }
         session.update(u);
         session.getTransaction().commit();
         session.close();
