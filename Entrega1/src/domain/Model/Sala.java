@@ -83,18 +83,16 @@ public class Sala extends Recurs{
     }
     
     public Info getInfo(Info i){
-       /* i.setAforament(this.aforament);
+        i.setAforament(this.aforament);
         i.setUbicacio(this.ubicacio);
         if (this.nomordinador != null){
-            Ordinador o = Ordinador.get(this.nomordinador);
-            i = o.getInfo(i);
+            i.setModelOrdSala(this.nomordinador.getModel());
+            i.setMarcaOrdSala(this.nomordinador.getMarca());
         }
         if (this.nomordinador != null){
-            Projector p = Projector.get(this.nomprojector);
-            i = p.getInfo(i);
+            i.setResolucioProjSala(this.nomprojector.getResolucio());
         }
-        return i;*/
-       return null;
+        return i;
     }
     @Override
     public boolean etsSala() {

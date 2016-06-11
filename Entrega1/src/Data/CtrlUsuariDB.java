@@ -31,6 +31,7 @@ public class CtrlUsuariDB implements CtrlUsuari{
         session.getTransaction().begin();
         Usuari usuari = (Usuari) session.createCriteria(Usuari.class)
                 .add(Restrictions.eq("username", username)).uniqueResult();
+        session.close();
         return usuari;
     }
 

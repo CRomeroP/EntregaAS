@@ -83,13 +83,31 @@ public class Recurs  implements java.io.Serializable{
     public Info infoDisponible(Date d, int horai, int horaf){
         Boolean b = true;
         int i = 0;
-        while ((i < this.reservasambnotificacio.size() || i < this.reservassensenotificacio.size()) && b){
+            System.out.println("size de sense: " + this.reservassensenotificacio.size());
+        while ((i < this.reservasambnotificacio.size() || i < this.reservassensenotificacio.size()) && b){            
+            System.out.println("size de sense (dintre while): " + this.reservassensenotificacio.size());       
+            System.out.println("size amb (dintre while): " + this.reservasambnotificacio.size());
             if (i < this.reservasambnotificacio.size()){
-                System.out.println("hi");
-                if (!this.reservasambnotificacio.get(i).estaDisponible(d, horai, horaf)) return null;
-            }
-            if (i < reservassensenotificacio.size()){
-                if (!this.reservassensenotificacio.get(i).estaDisponible(d, horai, horaf)) return null;
+                System.out.println("------");
+                if (!this.reservasambnotificacio.get(i).estaDisponible(d, horai, horaf)) {
+                    System.out.println("------------entra if-----------");
+                    return null;
+                }
+                else {
+                    System.out.println("esta disponible");
+
+                }
+            }        
+            System.out.println("size de sense (dintre while 2): " + this.reservassensenotificacio.size());
+            if (i < this.reservassensenotificacio.size()){
+                System.out.println("++++++");
+                if (!this.reservassensenotificacio.get(i).estaDisponible(d, horai, horaf)) {
+                    System.out.println("++++++++++++entra if+++++++++++");                    
+                    return null;
+                }
+                else {
+                    System.out.println("esta disponible");
+                }
             }
             ++i;
         }

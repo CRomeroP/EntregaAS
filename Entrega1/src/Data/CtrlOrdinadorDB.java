@@ -31,6 +31,7 @@ public class CtrlOrdinadorDB implements CtrlOrdinador{
         session.save(ord);
         session.save(r);
         session.getTransaction().commit();
+        session.close();
     }
     
     @Override
@@ -39,6 +40,7 @@ public class CtrlOrdinadorDB implements CtrlOrdinador{
         session.beginTransaction();
         Ordinador representacio = (Ordinador) session.createCriteria(Recurs.class)
                 .add(Restrictions.eq("nom", nom)).uniqueResult();
+        session.close();
         return representacio;
     }
 

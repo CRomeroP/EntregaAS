@@ -26,7 +26,7 @@ public class ControladorConsultaRecursosDisponiblesPerData {
         if (horafi < horain) System.out.println("PeriodeErroni");
         CtrlDataFactoria factory = new CtrlDataFactoria();
         CtrlRecurs cr = factory.getCtrlRecurs();
-        ArrayList<Recurs> r = cr.getAll(); 
+        ArrayList<Recurs> r = cr.getAll();
         ArrayList<Info> recursos = new ArrayList<Info>();
         Info inf = new Info();
         for (int i=0;i<r.size();++i){      

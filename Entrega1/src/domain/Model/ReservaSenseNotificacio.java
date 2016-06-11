@@ -5,6 +5,7 @@
  */
 package domain.Model;
 
+import Data.ReservaPK;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import java.io.Serializable;
+import javax.persistence.IdClass;
 import javax.persistence.PrimaryKeyJoinColumn;
 import static javax.persistence.TemporalType.DATE;
 import org.hibernate.annotations.Check;
@@ -22,15 +24,16 @@ import org.hibernate.annotations.Check;
  * @author carlos
  */
 @Entity
+@IdClass(ReservaPK.class)
 @Table(name = "ReservaSenseNotificacio")
 @Check(constraints = "(horafi > horaini) AND (horaini >= 0 AND horaini < 24) AND (horafi > 0 AND horafi < 25)")
 public class ReservaSenseNotificacio implements Serializable{
     @Id
     @Temporal(DATE)
-    @Column(name = "datar", unique = true, nullable = false)    
+    @Column(name = "datar")    
     private Date data;
     @Id
-    @Column(name = "horaini", unique = true, nullable = false)
+    @Column(name = "horaini")
     private int horainici;
     @Column(name = "horafi", unique = false, nullable = false)
     private int horafi;
@@ -77,9 +80,14 @@ public class ReservaSenseNotificacio implements Serializable{
         return horafi;
     }
     
+    /*public boolean estaDisponible (Date d, int horai, int horaf){
+        System.out.println(d + " " + data + " " + horai + " " + horainici + " "+ horaf + " " + horafi);
+        return !((d == this.data) && ((horaf >= this.horainici) && (horai <= this.horafi)));
+    }*/
+    
     public boolean estaDisponible (Date d, int horai, int horaf){
         System.out.println(d + " " + data + " " + horai + " " + horainici + " "+ horaf + " " + horafi);
-        return ((d == this.data) && ((horaf <= this.horainici) || (horai >= this.horafi)));
+        return ((((d.compareTo(this.data))==0 && ((horaf <= this.horainici) || (horai >= this.horafi)))) ||  (d.compareTo(this.data) != 0));
     }
 
     public void setHorafi(Integer horafi) {

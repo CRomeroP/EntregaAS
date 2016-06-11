@@ -60,6 +60,7 @@ public class CtrlReservaAmbNotificacioDB implements CtrlReservaAmbNotificacio{
         session.beginTransaction();
         ReservaAmbNotificacio representacio = (ReservaAmbNotificacio) session.createCriteria(ReservaAmbNotificacio.class)
                 .add(Restrictions.eq("recurs", nomRecurs)).add(Restrictions.eq("data", d)).add(Restrictions.eq("horainici", hi)).uniqueResult();
+        session.close();
         return representacio;
     }
 
