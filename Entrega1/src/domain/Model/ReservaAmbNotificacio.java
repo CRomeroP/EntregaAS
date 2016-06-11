@@ -7,6 +7,8 @@ package domain.Model;
 
 import Data.CtrlReservaAmbNotificacio;
 import Data.ReservaPK;
+import Excepcions.ReservaATope;
+import Excepcions.ReservaCaducada;
 import domain.Adapters.IGestioMissatgeAdapter;
 import domain.Factories.CtrlDataFactoria;
 import domain.Factories.ServiceLocator;
@@ -181,7 +183,7 @@ public class ReservaAmbNotificacio implements Serializable{
     public ArrayList<Usuari> getPossiblesUsuaris(ArrayList<Usuari> u){
         Date fechaActual = new Date();
         int error = data.compareTo(fechaActual);
-        if ((error == 1) || (error == 0 && horainici > fechaActual.getHours())) System.out.println("ReservaCaducada");
+        if ((error == 1) || (error == 0 && horainici > fechaActual.getHours())) throw new ReservaCaducada();
         return getUsuarisSenseNot(u);
     }
     
@@ -191,8 +193,9 @@ public class ReservaAmbNotificacio implements Serializable{
     
     
     public void afegirUsuaris(ArrayList<Usuari> u){
-        if (notificacions.size() + u.size() > 10) System.out.println("activa[reservaATope");
-        ArrayList<String> emails = new ArrayList<String>();
+        if (notificacions.size() + u.size() > 10) throw new ReservaATope();
+        ArrayList<String> emails = new ArrayList<>();
+
         for (int i = 0; i < u.size(); i++){
             if(u.get(i) == null) System.out.println("es null");
             emails.add(u.get(i).getEmail());
