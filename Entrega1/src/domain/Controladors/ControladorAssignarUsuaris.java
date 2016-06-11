@@ -9,7 +9,7 @@ import Data.CtrlReservaAmbNotificacio;
 import Data.CtrlUsuari;
 import Data.CtrlRecurs;
 import Data.CtrlReservaSenseNotificacio;
-import domain.DBInterfaces.CtrlDataFactoria;
+import domain.Factories.CtrlDataFactoria;
 import domain.Model.Recurs;
 import java.util.Date;
 import domain.Model.ReservaAmbNotificacio;

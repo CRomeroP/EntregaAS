@@ -8,7 +8,7 @@ package domain.Controladors;
 import Data.CtrlRecurs;
 import domain.Model.Recurs;
 import java.util.Date;
-import domain.DBInterfaces.CtrlDataFactoria;
+import domain.Factories.CtrlDataFactoria;
 import domain.Model.Info;
 import java.util.ArrayList;
 

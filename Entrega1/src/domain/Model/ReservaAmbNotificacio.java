@@ -7,7 +7,8 @@ package domain.Model;
 
 import Data.CtrlReservaAmbNotificacio;
 import domain.Adapters.IGestioMissatgeAdapter;
-import domain.DBInterfaces.CtrlDataFactoria;
+import domain.Factories.CtrlDataFactoria;
+import domain.Factories.ServiceLocator;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -181,7 +182,8 @@ public class ReservaAmbNotificacio implements Serializable{
         }
         String username = usuari.getEmail();
         CtrlDataFactoria factory = new CtrlDataFactoria();
-        IGestioMissatgeAdapter gm = factory.getIGestioMissatgeAdapter();
+        ServiceLocator sv = new ServiceLocator(); 
+        IGestioMissatgeAdapter gm = sv.getIGestioMissatgeAdapter();
         gm.enviarDadesReserva(this.recurs.getNom(), this.data, this.horainici, this.horafi, username,this.comentaris, emails);
 
     }

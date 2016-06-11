@@ -7,7 +7,7 @@ package domain.Controladors;
 
 import Data.CtrlReservaAmbNotificacio;
 import Data.CtrlUsuari;
-import domain.DBInterfaces.CtrlDataFactoria;
+import domain.Factories.CtrlDataFactoria;
 import domain.Model.Info;
 import domain.Model.Recurs;
 import domain.Model.ReservaAmbNotificacio;

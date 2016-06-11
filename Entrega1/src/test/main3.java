@@ -13,7 +13,7 @@ import Data.CtrlUsuari;
 import domain.Controladors.ControladorAssignarUsuaris;
 import domain.Controladors.ControladorConsultaRecursosDisponiblesPerData;
 import domain.Controladors.ControladorCrearReservaAmbNotificacio;
-import domain.DBInterfaces.CtrlDataFactoria;
+import domain.Factories.CtrlDataFactoria;
 import domain.Model.Info;
 import domain.Model.Ordinador;
 import domain.Model.Projector;

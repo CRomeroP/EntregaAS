@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package domain.DBInterfaces;
+package domain.Factories;
 
 import Data.CtrlOrdinador;
 import Data.CtrlOrdinadorDB;
@@ -54,9 +54,5 @@ public class CtrlDataFactoria {
     private final CtrlReservaSenseNotificacio ctrlReservaSenseNotificacio = new CtrlReservaSenseNotificacioDB();
     
     public CtrlReservaSenseNotificacio getCtrlReservaSenseNotificacio() { return ctrlReservaSenseNotificacio; }
-    
-    private final IGestioMissatgeAdapter IGestioMissatgeAdapter = new GestioMissatgeAdapter();
-    
-    public IGestioMissatgeAdapter getIGestioMissatgeAdapter() { return IGestioMissatgeAdapter; }
     
 }
