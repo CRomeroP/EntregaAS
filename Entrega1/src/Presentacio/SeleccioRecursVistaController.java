@@ -54,16 +54,11 @@ public class SeleccioRecursVistaController implements Initializable {
     private LocalTime hfi;
     private LocalDate data;
 
-    public void setHini(LocalTime hini) {
+    public void setdatas(LocalDate data, LocalTime hfi, LocalTime hini) {
         this.hini = hini;
-    }
-
-    public void setHfi(LocalTime hfi) {
         this.hfi = hfi;
-    }
-
-    public void setData(LocalDate data) {
         this.data = data;
+        filldata();
     }
     public void filldata() { 
     
