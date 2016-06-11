@@ -26,6 +26,7 @@ public class CtrlRecursDB implements CtrlRecurs{
         session.save(recurs);
         System.out.println("insert");
         session.getTransaction().commit();
+        session.close();
     }
     
     @Override

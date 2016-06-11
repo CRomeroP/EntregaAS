@@ -22,6 +22,7 @@ public class CtrlUsuariDB implements CtrlUsuari{
         session.beginTransaction();
         session.save(usuari);
         session.getTransaction().commit();
+        session.close();
     }
 
     @Override
