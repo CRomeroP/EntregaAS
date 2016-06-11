@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Presentacio;
+import Data.CtrlInicialState;
 import java.net.URL;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -31,6 +32,7 @@ public class Main extends Application {
         
     }
     public static void main(String[] args) {
+        CtrlInicialState cis = new CtrlInicialState();
         launch(args);
     }
 }
