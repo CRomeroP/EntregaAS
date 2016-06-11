@@ -5,6 +5,8 @@
  */
 package domain.Model;
 
+import domain.Factories.CtrlDataFactoria;
+
 /**
  *
  * @author Víctor
@@ -22,6 +24,7 @@ public class Info {
     private String marcaOrdSala;
     private String modelOrdSala;
     private String resolucioProjSala;
+    private CtrlDataFactoria factory;
 
     public void setNom(String nom) {
         this.nom = nom;
@@ -93,6 +96,20 @@ public class Info {
 
     public String getResolucioProjSala() {
         return resolucioProjSala;
+    }
+    
+    public String toString(){
+        String s = "";
+        s += nom + "; ";
+        if(marca != null) s += "Ordinador(marca:" + marca + ", model:" + model + ")";
+        if(resolucio != null) s+= "Projector(resolucio:" + resolucio + ")";
+        if(ubicacio != null) {
+            s+= "Sala(aforament:" + Integer.toString(aforament) + " , ubicacio:" + ubicacio;
+            if(marcaOrdSala != null) s+= ", OrdSala(marca:" + marcaOrdSala + ", model:" + modelOrdSala +")";
+            if(resolucioProjSala != null) s+= ", ProjSala(resolucio:" + resolucioProjSala + ")";
+            s+= ")";
+        }
+        return s;
     }
     
 }
