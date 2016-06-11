@@ -54,6 +54,7 @@ public class ControladorAssignarUsuaris {
         CtrlRecurs CtrlR = factory.getCtrlRecurs();
         Recurs r = CtrlR.get(this.nom);
         CtrlReservaAmbNotificacio cr = factory.getCtrlReservaAmbNotificacio();
+        System.out.println("ENTREM:             " + this.data + this.horai);
         ReservaAmbNotificacio rm = cr.get(r, this.data, this.horai);
         CtrlUsuari cu = factory.getCtrlUsuari();
         ArrayList<Usuari> u = new ArrayList<>();

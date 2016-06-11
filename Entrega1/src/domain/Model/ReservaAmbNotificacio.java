@@ -28,9 +28,12 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Embeddable;
 import javax.persistence.IdClass;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import static javax.persistence.TemporalType.DATE;
 import org.hibernate.annotations.Check;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  *
@@ -55,13 +58,16 @@ public class ReservaAmbNotificacio implements Serializable{
     private Integer horafi;
     @Column(name = "comentaris", length = 255, unique = false, nullable = true)
     private String comentaris;
+    @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToOne
     @PrimaryKeyJoinColumn
     private Usuari usuari;
     @Id
-    @OneToOne
+    @ManyToOne
+    @PrimaryKeyJoinColumn
     private Recurs recurs;
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "esnotifica", joinColumns = {
         @JoinColumn(name = "recurs", nullable = false),
         @JoinColumn(name = "horaIni", nullable = false),
