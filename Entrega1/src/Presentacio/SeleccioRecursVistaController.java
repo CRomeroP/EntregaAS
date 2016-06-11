@@ -65,18 +65,8 @@ public class SeleccioRecursVistaController implements Initializable {
     public void setData(LocalDate data) {
         this.data = data;
     }
+    public void filldata() { 
     
-    private ControladorCrearReservaAmbNotificacio ccran = new ControladorCrearReservaAmbNotificacio();
-    
-    
-    
-    
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        
         Date d = Date.from(data.atStartOfDay(ZoneId.systemDefault()).toInstant());
         
         ArrayList<Info> info = ccran.obteRecursosDisponibles(d, hini.getHour(), hfi.getHour());
@@ -87,10 +77,23 @@ public class SeleccioRecursVistaController implements Initializable {
         }
         ObservableList<String> lnoms = FXCollections.observableList(nom);
         listRecurs.setItems(lnoms);
+        
+    }
+    
+    private ControladorCrearReservaAmbNotificacio ccran = new ControladorCrearReservaAmbNotificacio();
+    
+    
+    
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+       
 
     }    
     
-        @FXML
+    @FXML
     private void ok(ActionEvent event) {
         
     }
