@@ -41,6 +41,10 @@ public class ReservaVistaController implements Initializable {
     private Button buttonok;
     @FXML
     private Button buttoncancel;
+    @FXML
+    private label lael;
+    
+    static Stage stageactual;
     
     /**
      * Initializes the controller class.
@@ -51,27 +55,13 @@ public class ReservaVistaController implements Initializable {
     }
     
     @FXML
-    private void ok(ActionEvent event) {
-        
-                
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("SelecioRecursVista.fxml"));
-            
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) buttonok.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-            
-            
-        } catch (IOException ex) {
-            
-            //Logger.getLogger(ReservaVistaController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    private void handleOkAction(ActionEvent event) {
+        lael.setText("entramos en la funcion");                
         
     }
     
     @FXML
-    private void exit(ActionEvent event) {
+    private void handleExitAction(ActionEvent event) {
         // get a handle to the stage
         Stage stage = (Stage) buttoncancel.getScene().getWindow();
         // do what you have to do
