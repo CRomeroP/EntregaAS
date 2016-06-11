@@ -22,6 +22,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.lang.String;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 
 
@@ -44,9 +46,24 @@ public class SeleccioRecursVistaController implements Initializable {
     private TextArea comentxt;
     @FXML
     private Button buttonok;
-    
     @FXML
     private ListView  listRecurs;
+    
+    private LocalTime hini;
+    private LocalTime hfi;
+    private LocalDate data;
+
+    public void setHini(LocalTime hini) {
+        this.hini = hini;
+    }
+
+    public void setHfi(LocalTime hfi) {
+        this.hfi = hfi;
+    }
+
+    public void setData(LocalDate data) {
+        this.data = data;
+    }
     
     private ControladorCrearReservaAmbNotificacio ccran = new ControladorCrearReservaAmbNotificacio();
     

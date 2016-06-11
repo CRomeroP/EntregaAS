@@ -30,7 +30,7 @@
                   <Label fx:id="lael" text="Hora Inicio" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                   <Label text="Hora fin" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                   <Spinner fx:id="spinhini" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                  <Spinner fx:id="spinhfin" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <Spinner fx:id="spinhfi" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                </children>
             </GridPane>
             <HBox alignment="BOTTOM_LEFT" prefHeight="24.0" prefWidth="429.0">
