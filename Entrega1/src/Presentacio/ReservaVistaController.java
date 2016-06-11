@@ -22,6 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.stage.Stage;
 
 /**
@@ -52,10 +53,10 @@ public class ReservaVistaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         SpinnerValueFactory<LocalTime> spinini;
-        spinini();
+        /*spininsi();
         
         
-        spinhini.setValueFactory(LocalTime.now());
+        spinhini.setValueFactory(LocalTime.now());*/
     }
     
     @FXML
