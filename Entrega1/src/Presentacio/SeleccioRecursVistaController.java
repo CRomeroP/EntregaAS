@@ -24,6 +24,7 @@ import javafx.stage.Stage;
 import java.lang.String;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.ZoneId;
 
 
 
@@ -73,9 +74,9 @@ public class SeleccioRecursVistaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        Date d = new Date();
+        Date d = Date.from(data.atStartOfDay(ZoneId.systemDefault()).toInstant());
         
-        ArrayList<Info> info = ccran.obteRecursosDisponibles(d, 1, 18);
+        ArrayList<Info> info = ccran.obteRecursosDisponibles(d, hini.getHour(), hfi.getHour());
         ArrayList<String> nom;
         nom = new ArrayList<String>();
         for (Info info1 : info) {

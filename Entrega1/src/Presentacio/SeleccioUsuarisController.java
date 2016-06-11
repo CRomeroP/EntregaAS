@@ -7,7 +7,10 @@ package Presentacio;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 
 /**
  * FXML Controller class
@@ -16,6 +19,12 @@ import javafx.fxml.Initializable;
  */
 public class SeleccioUsuarisController implements Initializable {
 
+    
+    
+    @FXML
+    private Button buttonok;
+    @FXML
+    private ListView  listRecurs;
     /**
      * Initializes the controller class.
      */

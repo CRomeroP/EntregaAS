@@ -29,8 +29,10 @@ public class ControladorCrearReservaAmbNotificacio {
     private Date data;
     private int hi;
     private int hf;
+    private ControladorAssignarUsuaris assignarUsuaris;
     
     public ControladorCrearReservaAmbNotificacio() {
+        assignarUsuaris = new ControladorAssignarUsuaris();
         
     }
     
@@ -44,14 +46,11 @@ public class ControladorCrearReservaAmbNotificacio {
     }
     
     public ArrayList<Usuari> obteUsuarisAAssignar (Recurs nomR, Date d, int hi) {
-        ControladorAssignarUsuaris cau = new ControladorAssignarUsuaris();
-        ArrayList<Usuari> usuaris = cau.obteUsuarisAAssignar(nomR, data, this.hi);
-        return usuaris;
+        return assignarUsuaris.obteUsuarisAAssignar(nomR, d, hi);
     }
     
     public void assignarUsuarisAReserva (ArrayList<String> usuaris) {
-        ControladorAssignarUsuaris cau = new ControladorAssignarUsuaris();
-        cau.afegirUsuarisReserva(usuaris);
+        assignarUsuaris.afegirUsuarisReserva(usuaris);
     }
     
     public void crearReservaAmbNotificacio (String nomR, String username, String comentari) {
