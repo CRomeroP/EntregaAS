@@ -8,10 +8,9 @@ package domain.Controladors;
 import Data.CtrlRecurs;
 import domain.Model.Recurs;
 import java.util.Date;
-import domain.DBInterfaces.CtrlDataFactoria;
+import domain.Factories.CtrlDataFactoria;
 import domain.Model.Info;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -24,6 +23,7 @@ public class ControladorConsultaRecursosDisponiblesPerData {
     
     public ArrayList<Info> obteRecursosDisponiblesPerData(Date d, int horain, int horafi){
         
+        if (horafi < horain) System.out.println("PeriodeErroni");
         CtrlDataFactoria factory = new CtrlDataFactoria();
         CtrlRecurs cr = factory.getCtrlRecurs();
         ArrayList<Recurs> r = cr.getAll(); 
@@ -33,6 +33,7 @@ public class ControladorConsultaRecursosDisponiblesPerData {
             inf = r.get(i).infoDisponible(d, horain, horafi);
             if (inf != null)recursos.add(inf);
         }
+        if (recursos.isEmpty()) System.out.println("NoHiHaRecursos");
         return recursos;
     }  
 }

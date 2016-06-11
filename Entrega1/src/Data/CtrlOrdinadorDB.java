@@ -6,39 +6,36 @@ import domain.Model.Ordinador;
 import Excepcions.NoHiHaRecursos;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
-import org.hibernate.SQLQuery;
+
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
+
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.service.ServiceRegistry;
 
 public class CtrlOrdinadorDB implements CtrlOrdinador{
 	
-    private SessionFactory factory;
+    private final SessionFactory factory;
 	
     public CtrlOrdinadorDB() {
          factory = HibernateSessionFactory.getInstance();
 	}
 	
 
+    @Override
     public void insert(Ordinador ord) {
-        Session session = factory.getCurrentSession();
+        Session session = factory.openSession();
         session.beginTransaction();
         Recurs r = (Recurs) ord;
         session.save(ord);
         session.save(r);
-        System.out.println("insert");
         session.getTransaction().commit();
     }
     
     @Override
     public Ordinador get(String nom) {
-        Session session = factory.getCurrentSession();
+        Session session = factory.openSession();
         session.beginTransaction();
         Ordinador representacio = (Ordinador) session.createCriteria(Recurs.class)
                 .add(Restrictions.eq("nom", nom)).uniqueResult();
@@ -50,6 +47,7 @@ public class CtrlOrdinadorDB implements CtrlOrdinador{
         return null;
     }
 
+    @Override
     public ArrayList<Ordinador> getAll() {
         Session session = factory.getCurrentSession();
         session.beginTransaction();

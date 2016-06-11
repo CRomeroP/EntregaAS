@@ -9,9 +9,7 @@ import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 /**
@@ -35,9 +33,9 @@ public class Projector extends Recurs{
     }
     
     public Projector(String name, String resolucio){
-        super(name);
+        super(name,Types.Projector);
         this.resolucio = resolucio;
-        new Recurs(name);
+        new Recurs(name,Types.Projector);
     }
     
     public String getResolucio() {
@@ -60,6 +58,11 @@ public class Projector extends Recurs{
     public Info getInfo(Info i){
         i.setResolucio(this.resolucio);
         return i;
+    }
+    
+    @Override
+    public boolean etsSala() {
+        return false;
     }
            
 }

@@ -13,7 +13,7 @@ import org.hibernate.cfg.Configuration;
 public class HibernateConnector {
  
     private static HibernateConnector me;
-    private Configuration cfg;
+    private final Configuration cfg;
     private SessionFactory sessionFactory;
  
     private HibernateConnector() throws HibernateException {

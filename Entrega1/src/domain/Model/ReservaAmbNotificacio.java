@@ -5,9 +5,11 @@
  */
 package domain.Model;
 
+import Data.CtrlReservaAmbNotificacio;
+import domain.Adapters.IGestioMissatgeAdapter;
+import domain.Factories.CtrlDataFactoria;
+import domain.Factories.ServiceLocator;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -59,7 +61,7 @@ public class ReservaAmbNotificacio implements Serializable{
         @JoinColumn(name = "horaIni", nullable = false),
         @JoinColumn(name = "datar", nullable = false)},
         inverseJoinColumns = {@JoinColumn(name = "username", nullable = false)})
-    private List<Usuari> notificacions;
+    private List<Usuari> notificacions = new ArrayList<Usuari>();
 
     public ReservaAmbNotificacio() {
     }
@@ -133,41 +135,57 @@ public class ReservaAmbNotificacio implements Serializable{
     }
 
     public void setNotificacions(List<Usuari> notificacions) {
-        this.notificacions = notificacions;
+        CtrlDataFactoria factory = new CtrlDataFactoria();
+        CtrlReservaAmbNotificacio CtrlR = factory.getCtrlReservaAmbNotificacio();
+        for (int i = 0; i < notificacions.size(); ++i){
+            CtrlR.afegirUsuariANotificacio(this, notificacions.get(i));
+        }
     }
     
     public boolean estaDisponible (Date d, int horai, int horaf){
-        return true;
+        System.out.println(d + " " + data + " " + horai + " " + horainici + " "+ horaf + " " + horafi);
+        return ((d == this.data) && ((horaf <= this.horainici) || (horai >= this.horafi)));
     }
     
-    private ArrayList<Usuari> getUsuarisSenseNot(List<Usuari> u){
-        ArrayList<Usuari> llista = new ArrayList<>(u);
-        if (notificacions.size() == 10);//activa[reservaATope]
-        for (int i = 0; i < notificacions.size();i++){
-            llista.remove(notificacions.get(i));
+    private ArrayList<Usuari> getUsuarisSenseNot(ArrayList<Usuari> u){
+        boolean b;
+        for (int i = 0; i < notificacions.size(); ++i){
+           b = true;
+           for (int j = 0; j < u.size() && b; ++j){
+               if((notificacions.get(i).getUsername()).equals(u.get(j).getUsername())){
+                   u.remove(j);
+                   b = false;
+               }
+           }
         }
-        return llista;
+        return u;
     }
     
-    public ArrayList<Usuari> getPossiblesUsuaris(List<Usuari> u){
-        //llançar excepcio data
+    public ArrayList<Usuari> getPossiblesUsuaris(ArrayList<Usuari> u){
+        Date fechaActual = new Date();
+        int error = data.compareTo(fechaActual);
+        if ((error == 1) || (error == 0 && horainici > fechaActual.getHours())) System.out.println("ReservaCaducada");
         return getUsuarisSenseNot(u);
-          
     }
     
     public boolean etsSala () {
-        return false;
+        return recurs.etsSala();
     }
     
     
     public void afegirUsuaris(ArrayList<Usuari> u){
-        if (notificacions.size() + u.size() > 10); //activa[reservaATope]
+        if (notificacions.size() + u.size() > 10) System.out.println("activa[reservaATope");
         ArrayList<String> emails = new ArrayList<>();
         for (int i = 0; i < u.size(); i++){
             emails.add(u.get(i).getEmail());
             notificacions.add(u.get(i));
         }
         String username = usuari.getEmail();
+        CtrlDataFactoria factory = new CtrlDataFactoria();
+        ServiceLocator sv = new ServiceLocator(); 
+        IGestioMissatgeAdapter gm = sv.getIGestioMissatgeAdapter();
+        gm.enviarDadesReserva(this.recurs.getNom(), this.data, this.horainici, this.horafi, username,this.comentaris, emails);
+
     }
     
 }

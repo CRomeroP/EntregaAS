@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package domain.DBInterfaces;
+package domain.Factories;
 
 import Data.CtrlOrdinador;
 import Data.CtrlOrdinadorDB;
@@ -16,6 +16,8 @@ import Data.CtrlReservaSenseNotificacioDB;
 import Data.CtrlUsuari;
 import Data.CtrlUsuariDB;
 import Data.Sessio;
+import domain.Adapters.GestioMissatgeAdapter;
+import domain.Adapters.IGestioMissatgeAdapter;
 /**
  *
  * @author carlos

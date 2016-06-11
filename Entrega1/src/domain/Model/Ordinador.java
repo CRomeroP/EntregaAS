@@ -9,11 +9,8 @@ import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-import org.hibernate.annotations.Check;
 
 /**
  *
@@ -38,10 +35,10 @@ public class Ordinador extends Recurs{
     }
     
     public Ordinador(String name, String marca, String model){
-        super(name);
+        super(name,Types.Ordinador);
         this.marca = marca;   
         this.model = model;
-        new Recurs(name);
+        new Recurs(name,Types.Ordinador);
     }
     
     public String getMarca() {
@@ -73,5 +70,10 @@ public class Ordinador extends Recurs{
         i.setMarca(this.marca);
         i.setModel(this.model);
         return i;
+    }
+    
+    @Override
+    public boolean etsSala() {
+        return true;
     }
 }

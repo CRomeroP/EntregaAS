@@ -7,9 +7,11 @@ package domain.Controladors;
 
 import Data.CtrlReservaAmbNotificacio;
 import Data.CtrlUsuari;
-import domain.DBInterfaces.CtrlDataFactoria;
+import domain.Factories.CtrlDataFactoria;
 import domain.Model.Info;
+import domain.Model.Recurs;
 import domain.Model.ReservaAmbNotificacio;
+import domain.Model.Types;
 import domain.Model.Usuari;
 import java.util.ArrayList;
 import java.util.Date;
@@ -40,13 +42,13 @@ public class ControladorCrearReservaAmbNotificacio {
         return recursos;
     }
     
-    public ArrayList<Usuari> obteUsuarisAAssignar (String nomR, Date d, int hi) {
+    public ArrayList<Usuari> obteUsuarisAAssignar (Recurs nomR, Date d, int hi) {
         ControladorAssignarUsuaris cau = new ControladorAssignarUsuaris();
         ArrayList<Usuari> usuaris = cau.obteUsuarisAAssignar(nomR, d, hi);
         return usuaris;
     }
     
-    public void assignarUsuarisAReserva (ArrayList<Usuari> usuaris) {
+    public void assignarUsuarisAReserva (ArrayList<String> usuaris) {
         ControladorAssignarUsuaris cau = new ControladorAssignarUsuaris();
         cau.afegirUsuarisReserva(usuaris);
     }
@@ -55,21 +57,24 @@ public class ControladorCrearReservaAmbNotificacio {
         CtrlDataFactoria cf = new CtrlDataFactoria();
         CtrlUsuari cu = cf.getCtrlUsuari();
         Usuari usu = cu.get(username);
+        Recurs s = new Recurs(nomR,Types.Ordinador);
         boolean b = usu.tensSalaReservada(data, hi, hf);
-        if (b) { // excepcio sala solapada
-            System.out.println("Tens sala solapada!!!!!");
+        if (b) {
+            System.out.println("SalaSolapada");
         }
         else {
-            CtrlReservaAmbNotificacio crn = cf.getCtrlReservaAmbNotificacio();
+            Recurs rec = new Recurs(nomR,Types.Ordinador);
+            ReservaAmbNotificacio resamb = new ReservaAmbNotificacio(data, hi, hi, comentari, usu, rec);
+            CtrlReservaAmbNotificacio CtrlR = cf.getCtrlReservaAmbNotificacio();
+            CtrlR.insert(resamb);
             //GestioMissatge gm = cf.getGestioMissatge();
             String mail = usu.getEmail();
             /* ENVIAR MISSATGE */
             //gm.enviarDadesReserva();
-            
+            this.nomR = nomR;
+            if (comentari != null) this.comentari = comentari;
+            this.username = username;
         }
-        this.nomR = nomR;
-        if (comentari != null) this.comentari = comentari;
-        this.username = username;
     }
     
 }

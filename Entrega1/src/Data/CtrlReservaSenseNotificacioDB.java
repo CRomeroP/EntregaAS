@@ -7,20 +7,13 @@ import domain.Model.Recurs;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.Set;
-
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.service.ServiceRegistry;
 
 public class CtrlReservaSenseNotificacioDB implements CtrlReservaSenseNotificacio{
 	
-    private SessionFactory factory;
+    private final SessionFactory factory;
 	
     public CtrlReservaSenseNotificacioDB  () {
              factory = HibernateSessionFactory.getInstance();
@@ -36,11 +29,11 @@ public class CtrlReservaSenseNotificacioDB implements CtrlReservaSenseNotificaci
     }
     
     @Override
-    public ReservaSenseNotificacio get(String nomRecurs, Date d, int hi) {
-        Session session = factory.getCurrentSession();
+    public ReservaSenseNotificacio get(Recurs nomRecurs, Date d, int hi) {
+        Session session = factory.openSession();
         session.beginTransaction();
         ReservaSenseNotificacio representacio = (ReservaSenseNotificacio) session.createCriteria(ReservaSenseNotificacio.class)
-                .add(Restrictions.eq("recurs_nom", nomRecurs)).add(Restrictions.eq("datar", d)).add(Restrictions.eq("horaini", hi)).uniqueResult();
+                .add(Restrictions.eq("recurs", nomRecurs)).add(Restrictions.eq("data", d)).add(Restrictions.eq("horainici", hi)).uniqueResult();
         return representacio;
     }
 

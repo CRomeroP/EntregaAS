@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -24,7 +23,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "recurs")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class Recurs  implements java.io.Serializable {
+public class Recurs  implements java.io.Serializable{
     
     @Id
     @Column(name = "nom")
@@ -34,13 +33,14 @@ public class Recurs  implements java.io.Serializable {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "recurs")
     private List<ReservaSenseNotificacio> reservassensenotificacio;
     @Column(name = "type", unique = false, nullable = true, length = 50)
-    private String type;     
+    private Types type;     
 
     public Recurs() {
     }
       
-    public Recurs(String nom) {
+    public Recurs(String nom, Types type) {
         this.nom = nom;
+        this.type = type;
     }
      
     public String getNom() {
@@ -68,11 +68,11 @@ public class Recurs  implements java.io.Serializable {
         this.reservassensenotificacio = reservassensenotificacio;
     }
 
-    public String getType() {
+    public Types getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Types type) {
         this.type = type;
     }
     
@@ -86,20 +86,17 @@ public class Recurs  implements java.io.Serializable {
         while ((i < this.reservasambnotificacio.size() || i < this.reservassensenotificacio.size()) && b){
             if (i < this.reservasambnotificacio.size()){
                 System.out.println("hi");
-                if (!this.reservasambnotificacio.get(i).estaDisponible(d, horai, horaf)) b = false;
+                if (!this.reservasambnotificacio.get(i).estaDisponible(d, horai, horaf)) return null;
             }
             if (i < reservassensenotificacio.size()){
-                if (!this.reservassensenotificacio.get(i).estaDisponible(d, horai, horaf)) b = false;
+                if (!this.reservassensenotificacio.get(i).estaDisponible(d, horai, horaf)) return null;
             }
             ++i;
         }
-        if (b){
-            Info result = new Info();
-            result.setNom(this.nom);
-            result = getInfo(result);
-            return result;
-        }
-        return null;
+        Info result = new Info();
+        result.setNom(this.nom);
+        result = getInfo(result);
+        return result;
     }
     
     public boolean etsSala() {

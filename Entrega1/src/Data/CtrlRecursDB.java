@@ -5,20 +5,15 @@ import domain.Model.Recurs;
 import Excepcions.NoHiHaRecursos;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.service.ServiceRegistry;
+
 
 public class CtrlRecursDB implements CtrlRecurs{
 	
-    private SessionFactory factory;
+    private final SessionFactory factory;
 	
     public CtrlRecursDB() {
          factory = HibernateSessionFactory.getInstance();
@@ -26,19 +21,22 @@ public class CtrlRecursDB implements CtrlRecurs{
 	
     @Override
     public void insert(Recurs recurs) {
-        Session session = factory.getCurrentSession();
+        Session session = factory.openSession();
         session.beginTransaction();
         session.save(recurs);
         System.out.println("insert");
         session.getTransaction().commit();
+        session.close();
     }
     
     @Override
     public Recurs get(String nom) {
-        Session session = factory.getCurrentSession();
+        Session session = factory.openSession();
         session.beginTransaction();
         Recurs representacio = (Recurs) session.createCriteria(Recurs.class)
                 .add(Restrictions.eq("nom", nom)).uniqueResult();
+        session.getTransaction().rollback();
+        session.close();
         return representacio;
     }
 
@@ -49,8 +47,8 @@ public class CtrlRecursDB implements CtrlRecurs{
 
     @Override
     public ArrayList<Recurs> getAll() {
-        Session session = factory.getCurrentSession();
-        session.beginTransaction();
+        Session session = factory.openSession();
+        session.getTransaction().begin();
         ArrayList<Recurs> recursos = (ArrayList) session.createCriteria(Recurs.class).list();
         if (recursos.isEmpty()) throw new NoHiHaRecursos();
         return recursos;
