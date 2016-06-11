@@ -17,6 +17,9 @@ public class GestioMissatgeAdapter implements IGestioMissatgeAdapter{
     @Override
     public void enviarDadesReserva(String nomR, Date data, int horaIni, int horaFi, String username, String comentari, ArrayList<String> emails){
         System.out.println("arriba al servei");
+        for (int i = 0; i < emails.size(); ++i) {
+            System.out.println("emails: " + emails.get(i));
+        }
     }
 
     

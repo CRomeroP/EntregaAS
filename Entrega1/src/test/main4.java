@@ -45,5 +45,28 @@ public class main4 {
         System.out.println("Reserves Sense Notiifcacio inicialitzades");
         inicial.inicialitzaReservesAmbNotificacio();
         System.out.println("Reserves Amb Notiifcacio inicialitzades");
+        
+        //CAS US 1
+        ControladorConsultaRecursosDisponiblesPerData c1 = new ControladorConsultaRecursosDisponiblesPerData();
+        Date d = new Date(2018,6,11);
+        ArrayList<Info> info = new ArrayList<>();
+        info = c1.obteRecursosDisponiblesPerData(d, 8, 20);
+        for (int i = 0; i < info.size(); ++i) {
+            System.out.println(info.get(i).getNom());
+        }
+        
+
+        //CAS US 2
+        ControladorAssignarUsuaris c2 = new ControladorAssignarUsuaris();
+        Date d2 = new Date(2016,8,10);
+        Sala s1 = new Sala();
+        s1.setNom("Sala d'actes FIB");
+        ArrayList<String> usuaris = new ArrayList<String>();
+        ArrayList<Usuari> usu = c2.obteUsuarisAAssignar(s1, d2, 7);
+        for (int i = 0; i < usu.size(); ++i) {
+            System.out.println(usu.get(i).getUsername());
+            usuaris.add(usu.get(i).getUsername());
+        }        
+        c2.afegirUsuarisReserva(usuaris);
     }
 }
