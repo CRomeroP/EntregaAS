@@ -68,6 +68,9 @@ public class SeleccioRecursVistaController implements Initializable {
     
     private ControladorCrearReservaAmbNotificacio ccran = new ControladorCrearReservaAmbNotificacio();
     
+    
+    
+    
     /**
      * Initializes the controller class.
      */
