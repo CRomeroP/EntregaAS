@@ -9,6 +9,7 @@ import Excepcions.NoHiHaRecursos;
 import domain.Model.Projector;
 import domain.Model.Recurs;
 import java.util.ArrayList;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -29,21 +30,33 @@ public class CtrlProjectorDB implements CtrlProjector {
     @Override
     public void insert(Projector proj) {
         Session session = factory.getCurrentSession();
-        session.beginTransaction();
-        Recurs r = (Recurs) proj;
-        session.save(proj);
-        session.save(r);
-        System.out.println("insert");
-        session.getTransaction().commit();
+        try {session.beginTransaction();
+            Recurs r = (Recurs) proj;
+            session.save(proj);
+            session.save(r);
+            session.getTransaction().commit();
+        }catch (HibernateException e){
+            if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+                throw e;
+            }
+        }
     }
     
     @Override
     public Projector get(String nom) {
+        Projector proj = new Projector();
         Session session = factory.getCurrentSession();
-        session.beginTransaction();
-        Projector proj = (Projector) session.createCriteria(Recurs.class)
+        try{session.beginTransaction();
+            proj = (Projector) session.createCriteria(Recurs.class)
                 .add(Restrictions.eq("nom", nom)).uniqueResult();
-        session.close();
+            session.close();
+        }catch (HibernateException e){
+            if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+                throw e;
+            }
+        }
         return proj;
     }
 
@@ -54,10 +67,17 @@ public class CtrlProjectorDB implements CtrlProjector {
 
     @Override
     public ArrayList<Projector> getAll() {
+        ArrayList<Projector> projectors = new ArrayList<Projector>();
         Session session = factory.getCurrentSession();
-        session.beginTransaction();
-        ArrayList<Projector> recursos = (ArrayList) session.createCriteria(Recurs.class).list();
-        if (recursos.isEmpty()) throw new NoHiHaRecursos();
-        return recursos;
+        try{session.beginTransaction();
+            projectors = (ArrayList) session.createCriteria(Recurs.class).list();
+            if (projectors.isEmpty()) throw new NoHiHaRecursos();
+        }catch (HibernateException e){
+            if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+                throw e;
+            }
+        }
+        return projectors;
     }
 }

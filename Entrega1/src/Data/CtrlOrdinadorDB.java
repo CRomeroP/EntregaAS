@@ -6,6 +6,7 @@ import domain.Model.Ordinador;
 import Excepcions.NoHiHaRecursos;
 
 import java.util.ArrayList;
+import org.hibernate.HibernateException;
 
 
 
@@ -26,22 +27,35 @@ public class CtrlOrdinadorDB implements CtrlOrdinador{
     @Override
     public void insert(Ordinador ord) {
         Session session = factory.openSession();
-        session.beginTransaction();
-        Recurs r = (Recurs) ord;
-        session.save(ord);
-        session.save(r);
-        session.getTransaction().commit();
-        session.close();
+        try{session.beginTransaction();
+            Recurs r = (Recurs) ord;
+            session.save(ord);
+            session.save(r);
+            session.getTransaction().commit();
+            session.close();
+        }catch (HibernateException e){
+            if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+                throw e;
+            }
+        }
     }
     
     @Override
     public Ordinador get(String nom) {
+        Ordinador ord = new Ordinador();
         Session session = factory.openSession();
-        session.beginTransaction();
-        Ordinador representacio = (Ordinador) session.createCriteria(Recurs.class)
+        try{session.beginTransaction();
+            ord = (Ordinador) session.createCriteria(Recurs.class)
                 .add(Restrictions.eq("nom", nom)).uniqueResult();
-        session.close();
-        return representacio;
+            session.close();
+        }catch (HibernateException e){
+            if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+                throw e;
+            }
+        }
+        return ord;
     }
 
     @Override
@@ -51,10 +65,17 @@ public class CtrlOrdinadorDB implements CtrlOrdinador{
 
     @Override
     public ArrayList<Ordinador> getAll() {
+        ArrayList<Ordinador> ordinadors = new ArrayList<Ordinador>();
         Session session = factory.getCurrentSession();
-        session.beginTransaction();
-        ArrayList<Ordinador> recursos = (ArrayList) session.createCriteria(Recurs.class).list();
-        if (recursos.isEmpty()) throw new NoHiHaRecursos();
-        return recursos;
+        try{session.beginTransaction();
+            ArrayList<Ordinador> orinaors = (ArrayList) session.createCriteria(Recurs.class).list();
+            if (ordinadors.isEmpty()) throw new NoHiHaRecursos();
+        }catch (HibernateException e){
+            if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+                throw e;
+            }
+        }
+        return ordinadors;
     }
 }

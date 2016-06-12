@@ -5,6 +5,7 @@ import domain.Model.Recurs;
 import Excepcions.NoHiHaRecursos;
 
 import java.util.ArrayList;
+import org.hibernate.HibernateException;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -22,22 +23,35 @@ public class CtrlRecursDB implements CtrlRecurs{
     @Override
     public void insert(Recurs recurs) {
         Session session = factory.openSession();
-        session.beginTransaction();
-        session.save(recurs);
-        System.out.println("insert");
-        session.getTransaction().commit();
-        session.close();
+        try{session.beginTransaction();
+            session.save(recurs);
+            System.out.println("insert");
+            session.getTransaction().commit();
+            session.close();
+        }catch (HibernateException e){
+            if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+                throw e;
+            }
+        }
     }
     
     @Override
     public Recurs get(String nom) {
+        Recurs rec = new Recurs();
         Session session = factory.openSession();
-        session.beginTransaction();
-        Recurs representacio = (Recurs) session.createCriteria(Recurs.class)
-                .add(Restrictions.eq("nom", nom)).uniqueResult();
-        session.getTransaction().rollback();
-        session.close();
-        return representacio;
+        try{ session.beginTransaction();
+            rec = (Recurs) session.createCriteria(Recurs.class)
+                    .add(Restrictions.eq("nom", nom)).uniqueResult();
+            session.getTransaction().rollback();
+            session.close();
+        }catch (HibernateException e){
+            if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+                throw e;
+            }
+        }
+        return rec;
     }
 
     @Override
@@ -47,10 +61,17 @@ public class CtrlRecursDB implements CtrlRecurs{
 
     @Override
     public ArrayList<Recurs> getAll() {
+        ArrayList<Recurs> recursos = new ArrayList<Recurs>();
         Session session = factory.openSession();
-        session.getTransaction().begin();
-        ArrayList<Recurs> recursos = (ArrayList) session.createCriteria(Recurs.class).list();
-        if (recursos.isEmpty()) throw new NoHiHaRecursos();
+        try{session.getTransaction().begin();
+            recursos = (ArrayList) session.createCriteria(Recurs.class).list();
+            if (recursos.isEmpty()) throw new NoHiHaRecursos();
+        }catch (HibernateException e){
+            if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+                throw e;
+            }
+        }
         return recursos;
     }
 }

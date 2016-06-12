@@ -6,6 +6,7 @@ import Excepcions.NoHiHaRecursos;
 import domain.Model.Sala;
 
 import java.util.ArrayList;
+import org.hibernate.HibernateException;
 
 
 
@@ -26,22 +27,35 @@ public class CtrlSalaDB implements CtrlSala{
     @Override
     public void insert(Sala sala) {
         Session session = factory.openSession();
-        session.beginTransaction();
-        Recurs r = (Recurs) sala;
-        session.save(sala);
-        session.save(r);
-        session.getTransaction().commit();
-        session.close();
+        try{session.beginTransaction();
+            Recurs r = (Recurs) sala;
+            session.save(sala);
+            session.save(r);
+            session.getTransaction().commit();
+            session.close();
+        }catch (HibernateException e){
+            if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+                throw e;
+            }
+        }
     }
     
     @Override
     public Sala get(String nom) {
+        Sala sal = new Sala();
         Session session = factory.openSession();
-        session.beginTransaction();
-        Sala representacio = (Sala) session.createCriteria(Recurs.class)
-                .add(Restrictions.eq("nom", nom)).uniqueResult();
-        session.close();
-        return representacio;
+        try{session.beginTransaction();
+            sal = (Sala) session.createCriteria(Recurs.class)
+                    .add(Restrictions.eq("nom", nom)).uniqueResult();
+            session.close();
+        }catch (HibernateException e){
+            if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+                throw e;
+            }
+        }
+        return sal;
     }
 
     @Override
@@ -51,10 +65,17 @@ public class CtrlSalaDB implements CtrlSala{
 
     @Override
     public ArrayList<Sala> getAll() {
+        ArrayList<Sala> salas = new ArrayList<Sala>();
         Session session = factory.getCurrentSession();
-        session.beginTransaction();
-        ArrayList<Sala> recursos = (ArrayList) session.createCriteria(Recurs.class).list();
-        if (recursos.isEmpty()) throw new NoHiHaRecursos();
-        return recursos;
+        try{session.beginTransaction();
+            salas = (ArrayList) session.createCriteria(Recurs.class).list();
+            if (salas.isEmpty()) throw new NoHiHaRecursos();
+        }catch (HibernateException e){
+            if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+                throw e;
+            }
+        }
+        return salas;
     }
 }
