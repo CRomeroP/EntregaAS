@@ -193,8 +193,15 @@ public class ReservaAmbNotificacio implements Serializable{
     }
     
     public ArrayList<Usuari> getPossiblesUsuaris(ArrayList<Usuari> u){
-        Date fechaActual = new Date();
-        if (fechaActual.after(data)) throw new ReservaCaducada("La reserva ha caducat");
+        int year2 = data.getYear() + 1900;
+        int month2 = data.getMonth()+ 1;
+        Calendar c = Calendar.getInstance();
+        c.setTime(data);
+        int day2 = c.get(Calendar.DAY_OF_MONTH);
+        Date d = c.getTime();
+        c.setTime(data);
+                
+        if (d.after(data)) throw new ReservaCaducada("La reserva ha caducat");
         return getUsuarisSenseNot(u);
     }
     
@@ -216,16 +223,11 @@ public class ReservaAmbNotificacio implements Serializable{
             u.get(i).addNotificacio(this);
         }
         setNotificacions(u);
-        CtrlR.afegirUsuariANotificacio(this);
-        
-        while (j < notificacions.size()) {
-            System.out.println("A PARTIR DE AQUI: " + notificacions.get(j).getUsername());
-            ++j;
-        }
-        String username = usuari.getUsername();
         CtrlAdaptersFactoria ca = CtrlAdaptersFactoria.getInstance();
         IGestioMissatgeAdapter gm = ca.getIGestioMissatgeAdapter();
+        String username = usuari.getUsername();
         gm.enviarDadesReserva(this.recurs.getNom(), this.data, this.horainici, this.horafi, username,this.comentaris, emails);
+        CtrlR.afegirUsuariANotificacio(this);
 
     }
     

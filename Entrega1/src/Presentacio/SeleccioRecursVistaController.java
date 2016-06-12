@@ -8,6 +8,7 @@ package Presentacio;
 import Excepcions.NoHiHaProuUsuaris;
 import Excepcions.NoHiHaUsuaris;
 import domain.Controladors.ControladorCrearReservaAmbNotificacio;
+import domain.Factories.CtrlDataFactoria;
 import domain.Model.Info;
 import java.net.URL;
 import java.util.ArrayList;
@@ -73,7 +74,8 @@ public class SeleccioRecursVistaController implements Initializable {
         this.info = i;
         filldata();
     }
-    private ControladorCrearReservaAmbNotificacio ccran = new ControladorCrearReservaAmbNotificacio();
+    private CtrlDataFactoria factory = CtrlDataFactoria.getInstance();
+    private ControladorCrearReservaAmbNotificacio ccran = factory.getControladorCrearReservaAmbNotificacio();
     
     public void filldata() { 
     
@@ -153,7 +155,7 @@ public class SeleccioRecursVistaController implements Initializable {
                     al.setContentText("Reserva realitzada correctament.");
                     al.showAndWait();
                 } else {
-                s.show();
+//                s.show();
                 }
             }
             

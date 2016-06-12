@@ -6,6 +6,7 @@
 package Presentacio;
 
 import domain.Controladors.ControladorCrearReservaAmbNotificacio;
+import domain.Factories.CtrlDataFactoria;
 import domain.Model.Info;
 import domain.Model.Usuari;
 import java.net.URL;
@@ -64,7 +65,8 @@ public class SeleccioUsuarisController implements Initializable {
     private Stage s;
     
 
-    private ControladorCrearReservaAmbNotificacio ccran = new ControladorCrearReservaAmbNotificacio();
+    private CtrlDataFactoria factory = CtrlDataFactoria.getInstance();
+    private ControladorCrearReservaAmbNotificacio ccran = factory.getControladorCrearReservaAmbNotificacio();
 
     public void inicial(String nomrecurs, int horai, Date d) {
         this.nomrecurs = nomrecurs;
@@ -117,6 +119,10 @@ public class SeleccioUsuarisController implements Initializable {
             alert.setHeaderText("Ok");
             alert.setContentText("Reserva realitzada correctament.");
             alert.showAndWait();
+            s = (Stage) buttoncancel.getScene().getWindow();
+            s.close();
+            System.exit(0);
+
             
             
         }catch(Exception ex){
@@ -127,7 +133,7 @@ public class SeleccioUsuarisController implements Initializable {
             alert.setContentText(ex.getMessage());
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK){
-                s.show();
+                //s.show();
             }
             
         }

@@ -22,6 +22,7 @@ import Data.CtrlUsuariDB;
 import Data.Sessio;
 import domain.Adapters.GestioMissatgeAdapter;
 import domain.Adapters.IGestioMissatgeAdapter;
+import domain.Controladors.ControladorCrearReservaAmbNotificacio;
 /**
  *
  * @author carlos
@@ -66,5 +67,9 @@ public class CtrlDataFactoria {
     private final CtrlProjector ctrlProjector = new CtrlProjectorDB();
     
     public CtrlProjector getCtrlProjector() { return ctrlProjector; }
+    
+    private final ControladorCrearReservaAmbNotificacio ctrlRan = new ControladorCrearReservaAmbNotificacio();
+    
+    public ControladorCrearReservaAmbNotificacio getControladorCrearReservaAmbNotificacio() { return ctrlRan; }
     
 }

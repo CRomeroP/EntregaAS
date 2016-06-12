@@ -73,14 +73,14 @@ public class ControladorCrearReservaAmbNotificacio {
         boolean b = usu.tensSalaReservada(data, hi, hf);
         if (b) throw new SalaSolapada("La sala solapa");
         ReservaAmbNotificacio resamb = new ReservaAmbNotificacio(data, hi, hf, comentari, usu, s);
-        CtrlReservaAmbNotificacio CtrlA = cf.getCtrlReservaAmbNotificacio();
-        CtrlA.insert(resamb);
         String mail = usu.getEmail();
         ArrayList<String> emails = new ArrayList<>();
         emails.add(mail);
         CtrlAdaptersFactoria ca = CtrlAdaptersFactoria.getInstance();
         IGestioMissatgeAdapter gm = ca.getIGestioMissatgeAdapter();
         gm.enviarDadesReserva(nomR, this.data, this.hi, this.hf, username, this.comentari, emails);
+        CtrlReservaAmbNotificacio CtrlA = cf.getCtrlReservaAmbNotificacio();
+        CtrlA.insert(resamb);
         this.nomR = nomR;
         if (comentari != null) this.comentari = comentari;
         this.username = username;

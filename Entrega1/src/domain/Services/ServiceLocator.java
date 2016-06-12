@@ -32,7 +32,7 @@ public class ServiceLocator {
         return servei;
     }   
     private void maybeFail() {
-        int failChance = new Random().nextInt(10);
-        if (failChance == 5) throw new ServeiNoDisponible("El servei no esta disponible");
+        int failChance = new Random().nextInt(2);
+        if (failChance == 1) throw new ServeiNoDisponible("El servei no esta disponible");
     }
 }

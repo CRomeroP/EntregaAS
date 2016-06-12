@@ -10,6 +10,7 @@ import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 /**
@@ -18,9 +19,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "projector")
-@AttributeOverrides({
-        @AttributeOverride(name="nom", column=@Column(name="nomprojector")),
-})
+@PrimaryKeyJoinColumn(name = "nom")
 public class Projector extends Recurs{
 
     @Column(name = "resolucio")    

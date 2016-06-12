@@ -8,6 +8,7 @@ package Presentacio;
 import Excepcions.DadesNoIntroduides;
 import Excepcions.PeriodeErroni;
 import domain.Controladors.ControladorCrearReservaAmbNotificacio;
+import domain.Factories.CtrlDataFactoria;
 import domain.Model.Info;
 import java.io.IOException;
 import java.net.URL;
@@ -66,7 +67,9 @@ public class ReservaVistaController implements Initializable {
     private Label lael;
     
     private Stage s;
-    private ControladorCrearReservaAmbNotificacio ccran = new ControladorCrearReservaAmbNotificacio();
+    private CtrlDataFactoria factory = CtrlDataFactoria.getInstance();
+    private ControladorCrearReservaAmbNotificacio ccran = factory.getControladorCrearReservaAmbNotificacio();
+            
     
     
     /**

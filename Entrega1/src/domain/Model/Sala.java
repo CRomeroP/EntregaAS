@@ -11,6 +11,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import org.hibernate.annotations.Check;
 
@@ -21,9 +22,7 @@ import org.hibernate.annotations.Check;
 @Entity
 @Table(name = "sala")
 @Check(constraints = "aforament > 0")
-@AttributeOverrides({
-        @AttributeOverride(name="nom", column=@Column(name="nomsala")),
-})
+@PrimaryKeyJoinColumn(name = "nom")
 public class Sala extends Recurs{
     
     @Column(name = "ubicacio")
@@ -80,6 +79,7 @@ public class Sala extends Recurs{
         this.nomprojector = nomprojector;
     }
     
+    @Override
     public Info getInfo(Info i){
         i.setAforament(this.aforament);
         i.setUbicacio(this.ubicacio);
@@ -87,7 +87,7 @@ public class Sala extends Recurs{
             i.setModelOrdSala(this.nomordinador.getModel());
             i.setMarcaOrdSala(this.nomordinador.getMarca());
         }
-        if (this.nomordinador != null){
+        if (this.nomprojector != null){
             i.setResolucioProjSala(this.nomprojector.getResolucio());
         }
         return i;

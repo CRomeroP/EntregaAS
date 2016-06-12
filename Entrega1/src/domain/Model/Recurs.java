@@ -3,6 +3,7 @@ package domain.Model;
 
 import Data.CtrlOrdinador;
 import Data.CtrlProjector;
+import Data.CtrlSala;
 import domain.Factories.CtrlDataFactoria;
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,7 +26,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "recurs")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Recurs  implements java.io.Serializable{
     
     @Id
@@ -112,7 +113,7 @@ public class Recurs  implements java.io.Serializable{
         Info result = new Info();
         System.out.println("llego");
         result.setNom(this.nom);
-        System.out.println("paso");
+        System.out.println(this.nom);
         result = getInfo(result);
         return result;
     }
