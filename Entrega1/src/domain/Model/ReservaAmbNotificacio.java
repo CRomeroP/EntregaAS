@@ -72,9 +72,9 @@ public class ReservaAmbNotificacio implements Serializable{
     @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "esnotifica", joinColumns = {
-        @JoinColumn(name = "recurs", nullable = false),
+        @JoinColumn(name = "datar", nullable = false),
         @JoinColumn(name = "horaIni", nullable = false),
-        @JoinColumn(name = "datar", nullable = false)},
+        @JoinColumn(name = "recurs", nullable = false)},
         inverseJoinColumns = {@JoinColumn(name = "username", nullable = false)})
     private List<Usuari> notificacions = new ArrayList<Usuari>();
 
