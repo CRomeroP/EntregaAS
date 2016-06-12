@@ -208,7 +208,7 @@ public class ReservaAmbNotificacio implements Serializable{
             System.out.println("A PARTIR DE AQUI: " + notificacions.get(j).getUsername());
             ++j;
         }
-        String username = usuari.getEmail();
+        String username = usuari.getUsername();
         ServiceLocator sv = ServiceLocator.getInstance();
         IGestioMissatgeAdapter gm = sv.getIGestioMissatgeAdapter();
         gm.enviarDadesReserva(this.recurs.getNom(), this.data, this.horainici, this.horafi, username,this.comentaris, emails);
