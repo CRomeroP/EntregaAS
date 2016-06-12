@@ -96,6 +96,9 @@ public class SeleccioRecursVistaController implements Initializable {
     
     @FXML
     private void ok(ActionEvent event)  throws Exception{
+        String nomr = info.get(listRecurs.getSelectionModel().getSelectedIndex()).getNom();
+        ccran.crearReservaAmbNotificacio(nomr, nametxt.getText(), comentxt.getText());
+        
         
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SeleccioUsuaris.fxml"));
         
@@ -107,7 +110,7 @@ public class SeleccioRecursVistaController implements Initializable {
         stage.close();
         stage.setScene(scene);
         SeleccioUsuarisController  controller = fxmlLoader.<SeleccioUsuarisController>getController();
-        controller.inicial(info.get(listRecurs.getSelectionModel().getSelectedIndex()).getNom(), hini.getHour(), Date.from(data.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        controller.inicial(nomr, hini.getHour(), Date.from(data.atStartOfDay(ZoneId.systemDefault()).toInstant()));
         stage.show();
         
     }
