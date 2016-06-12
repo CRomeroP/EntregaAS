@@ -25,6 +25,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -81,7 +82,7 @@ public class SeleccioUsuarisController implements Initializable {
     }    
     
     @FXML 
-    public void handleMouseClick(ActionEvent event) {
+    public void handleMouseClick(MouseEvent arg0) {
         
         totaluserscount = listusers.getSelectionModel().getSelectedIndices().size() + 1;
         if(totaluserscount > 10) {
