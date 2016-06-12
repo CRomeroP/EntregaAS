@@ -112,7 +112,11 @@ public class SeleccioUsuarisController implements Initializable {
                 noms.add(nom.toString());
             }
             ccran.assignarUsuarisAReserva(noms);
-            
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Info Dialog");
+            alert.setHeaderText("Ok");
+            alert.setContentText("Reserva realitzada correctament.");
+            alert.showAndWait();
             
             
         }catch(Exception ex){
