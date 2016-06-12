@@ -183,14 +183,10 @@ public class ReservaAmbNotificacio implements Serializable{
     
     public ArrayList<Usuari> getPossiblesUsuaris(ArrayList<Usuari> u){
         Date fechaActual = new Date();
-<<<<<<< HEAD
-        int error = data.compareTo(fechaActual);
-        if ((error == 1) || (error == 0 && horainici > fechaActual.getHours()));// throw new ReservaCaducada();
-=======
+
         //int error = data.compareTo(fechaActual);
         if ((data.compareTo(fechaActual) < 0) || (data.compareTo(fechaActual) == 0 && horainici > fechaActual.getHours())) throw new ReservaCaducada();
         //if ((error == 1) || (error == 0 && horainici > fechaActual.getHours())) throw new ReservaCaducada();
->>>>>>> 67eef7c97baed4fe6e00baab95f47762638d68cf
         return getUsuarisSenseNot(u);
     }
     
