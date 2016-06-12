@@ -8,6 +8,8 @@ package domain.Controladors;
 import Data.CtrlRecurs;
 import Data.CtrlReservaAmbNotificacio;
 import Data.CtrlUsuari;
+import domain.Adapters.IGestioMissatgeAdapter;
+import domain.Factories.CtrlAdaptersFactoria;
 import domain.Factories.CtrlDataFactoria;
 import domain.Model.Info;
 import domain.Model.Recurs;
@@ -73,10 +75,12 @@ public class ControladorCrearReservaAmbNotificacio {
             ReservaAmbNotificacio resamb = new ReservaAmbNotificacio(data, hi, hf, comentari, usu, s);
             CtrlReservaAmbNotificacio CtrlA = cf.getCtrlReservaAmbNotificacio();
             CtrlA.insert(resamb);
-            //GestioMissatge gm = cf.getGestioMissatge();
             String mail = usu.getEmail();
-            /* ENVIAR MISSATGE */
-            //gm.enviarDadesReserva();
+            ArrayList<String> emails = new ArrayList<>();
+            emails.add(mail);
+            CtrlAdaptersFactoria ca = CtrlAdaptersFactoria.getInstance();
+            IGestioMissatgeAdapter gm = ca.getIGestioMissatgeAdapter();
+            gm.enviarDadesReserva(nomR, this.data, this.hi, this.hf, username, this.comentari, emails);
             this.nomR = nomR;
             if (comentari != null) this.comentari = comentari;
             this.username = username;
