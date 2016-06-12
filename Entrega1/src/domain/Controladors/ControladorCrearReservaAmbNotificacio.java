@@ -71,7 +71,7 @@ public class ControladorCrearReservaAmbNotificacio {
         CtrlRecurs CtrlR = cf.getCtrlRecurs();
         Recurs s = CtrlR.get(nomR);
         boolean b = usu.tensSalaReservada(data, hi, hf);
-        if (b) throw new SalaSolapada();
+        if (b) throw new SalaSolapada("La sala solapa");
         ReservaAmbNotificacio resamb = new ReservaAmbNotificacio(data, hi, hf, comentari, usu, s);
         CtrlReservaAmbNotificacio CtrlA = cf.getCtrlReservaAmbNotificacio();
         CtrlA.insert(resamb);

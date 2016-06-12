@@ -10,5 +10,9 @@ package Excepcions;
  * @author Víctor
  */
 public class ServeiNoDisponible extends RuntimeException{
-    
+
+    public ServeiNoDisponible(String message) {
+        super(message);
+    }
+
 }

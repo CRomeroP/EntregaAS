@@ -71,7 +71,7 @@ public class CtrlProjectorDB implements CtrlProjector {
         Session session = factory.getCurrentSession();
         try{session.beginTransaction();
             projectors = (ArrayList) session.createCriteria(Recurs.class).list();
-            if (projectors.isEmpty()) throw new NoHiHaRecursos();
+            if (projectors.isEmpty()) throw new NoHiHaRecursos("No hi ha recursos");
         }catch (HibernateException e){
             if (session.getTransaction() != null) {
                 session.getTransaction().rollback();

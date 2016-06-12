@@ -2,6 +2,7 @@ package Data;
 
 
 import Excepcions.NoHiHaUsuaris;
+import Excepcions.UsuariNoExisteix;
 import domain.Model.Usuari;
 import java.util.ArrayList;
 import org.hibernate.HibernateException;
@@ -47,6 +48,7 @@ public class CtrlUsuariDB implements CtrlUsuari{
                 throw e;
             }
         }
+        if (usuari == null) throw new UsuariNoExisteix("L'usuari no existeix.");
         return usuari;
     }
 
@@ -63,7 +65,7 @@ public class CtrlUsuariDB implements CtrlUsuari{
     	Session session = factory.openSession();
         try{session.getTransaction().begin();
             usuaris = (ArrayList) session.createCriteria(Usuari.class).list();
-            if (usuaris.isEmpty()) throw new NoHiHaUsuaris();
+            if (usuaris.isEmpty()) throw new NoHiHaUsuaris("No hi ha recursos");
         }catch (HibernateException e){
             if (session.getTransaction() != null) {
                 session.getTransaction().rollback();

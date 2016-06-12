@@ -9,11 +9,10 @@ package Excepcions;
  *
  * @author Víctor
  */
-public class SalaSolapada  extends RuntimeException{
+public class UsuariNoExisteix extends RuntimeException{
 
-    public SalaSolapada(String message) {
+    public UsuariNoExisteix(String message) {
         super(message);
     }
 
-    
 }

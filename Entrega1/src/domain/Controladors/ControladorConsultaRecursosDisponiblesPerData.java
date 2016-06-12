@@ -25,7 +25,7 @@ public class ControladorConsultaRecursosDisponiblesPerData {
     
     public ArrayList<Info> obteRecursosDisponiblesPerData(Date d, int horain, int horafi){
         
-        if (horafi < horain) throw new  PeriodeErroni();
+        if (horafi < horain) throw new  PeriodeErroni("El periode es erroni");
         CtrlDataFactoria factory = CtrlDataFactoria.getInstance();
         CtrlRecurs cr = factory.getCtrlRecurs();
         ArrayList<Recurs> r = cr.getAll();
@@ -35,7 +35,7 @@ public class ControladorConsultaRecursosDisponiblesPerData {
             inf = r.get(i).infoDisponible(d, horain, horafi);
             if (inf != null)recursos.add(inf);
         }
-        if (recursos.isEmpty()) throw new NoHiHaRecursos();
+        if (recursos.isEmpty()) throw new NoHiHaRecursos("No hi ha recursos disponibles");
         return recursos;
     }  
 }

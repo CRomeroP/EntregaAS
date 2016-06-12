@@ -65,7 +65,7 @@ public class CtrlRecursDB implements CtrlRecurs{
         Session session = factory.openSession();
         try{session.getTransaction().begin();
             recursos = (ArrayList) session.createCriteria(Recurs.class).list();
-            if (recursos.isEmpty()) throw new NoHiHaRecursos();
+            if (recursos.isEmpty()) throw new NoHiHaRecursos("No hi ha recursos");
         }catch (HibernateException e){
             if (session.getTransaction() != null) {
                 session.getTransaction().rollback();

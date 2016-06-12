@@ -10,5 +10,9 @@ package Excepcions;
  * @author Víctor
  */
 public class NoReservaAmbNotificacio extends RuntimeException{
-    
+
+    public NoReservaAmbNotificacio(String message) {
+        super(message);
+    }
+
 }
