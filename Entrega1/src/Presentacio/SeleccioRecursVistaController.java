@@ -66,9 +66,6 @@ public class SeleccioRecursVistaController implements Initializable {
     }
     private ControladorCrearReservaAmbNotificacio ccran = new ControladorCrearReservaAmbNotificacio();
     
-    /*public void setHini(LocalTime hini) {
-
-    }*/
     public void filldata() { 
     
         Date d = Date.from(data.atStartOfDay(ZoneId.systemDefault()).toInstant());
