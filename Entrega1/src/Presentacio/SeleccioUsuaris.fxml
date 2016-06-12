@@ -15,8 +15,8 @@
             <ListView fx:id="listusers" prefHeight="344.0" prefWidth="464.0" />
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="buttonok" mnemonicParsing="false" text="ok" />
-                  <Button fx:id="buttoncancel" mnemonicParsing="false" text="cancel" />
+                  <Button fx:id="buttonok" mnemonicParsing="false" onAction="#ok" text="ok" />
+                  <Button fx:id="buttoncancel" mnemonicParsing="false" onAction="#exit" text="cancel" />
                </children>
             </HBox>
          </children>
