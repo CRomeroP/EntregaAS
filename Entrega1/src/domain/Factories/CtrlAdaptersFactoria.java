@@ -14,17 +14,17 @@ import java.util.Random;
  *
  * @author Víctor
  */
-public class ServiceLocator {
-    private static ServiceLocator instance;
+public class CtrlAdaptersFactoria {
+    private static CtrlAdaptersFactoria instance;
 
-    public static ServiceLocator getInstance() {
+    public static CtrlAdaptersFactoria getInstance() {
         if (instance == null) {
-            instance = new ServiceLocator();
+            instance = new CtrlAdaptersFactoria();
         }
         return instance;
     }
 
-    public ServiceLocator() {}
+    public CtrlAdaptersFactoria() {}
        
     private final IGestioMissatgeAdapter IGestioMissatgeAdapter = new GestioMissatgeAdapter();
     

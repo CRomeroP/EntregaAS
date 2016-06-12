@@ -1,0 +1,24 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package domain.Services;
+
+import java.util.ArrayList;
+import java.util.Date;
+
+/**
+ *
+ * @author Víctor
+ */
+public class Servei {
+    
+    public void enviarDadesReserva(String nomR, Date data, int horaIni, int horaFi, String username, String comentari, ArrayList<String> emails){
+        System.out.println("arriba al servei");
+        for (int i = 0; i < emails.size(); ++i) {
+            System.out.println("emails: " + emails.get(i));
+        }
+    }
+    
+}

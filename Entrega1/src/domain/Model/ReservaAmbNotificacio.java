@@ -12,7 +12,7 @@ import Excepcions.ReservaATope;
 import Excepcions.ReservaCaducada;
 import domain.Adapters.IGestioMissatgeAdapter;
 import domain.Factories.CtrlDataFactoria;
-import domain.Factories.ServiceLocator;
+import domain.Factories.CtrlAdaptersFactoria;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -209,8 +209,8 @@ public class ReservaAmbNotificacio implements Serializable{
             ++j;
         }
         String username = usuari.getUsername();
-        ServiceLocator sv = ServiceLocator.getInstance();
-        IGestioMissatgeAdapter gm = sv.getIGestioMissatgeAdapter();
+        CtrlAdaptersFactoria ca = CtrlAdaptersFactoria.getInstance();
+        IGestioMissatgeAdapter gm = ca.getIGestioMissatgeAdapter();
         gm.enviarDadesReserva(this.recurs.getNom(), this.data, this.horainici, this.horafi, username,this.comentaris, emails);
 
     }

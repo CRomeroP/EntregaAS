@@ -5,6 +5,8 @@
  */
 package domain.Adapters;
 
+import domain.Services.Servei;
+import domain.Services.ServiceLocator;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -16,10 +18,9 @@ public class GestioMissatgeAdapter implements IGestioMissatgeAdapter{
 
     @Override
     public void enviarDadesReserva(String nomR, Date data, int horaIni, int horaFi, String username, String comentari, ArrayList<String> emails){
-        System.out.println("arriba al servei");
-        for (int i = 0; i < emails.size(); ++i) {
-            System.out.println("emails: " + emails.get(i));
-        }
+        ServiceLocator sv = ServiceLocator.getInstance();
+        Servei s = sv.getServeiMissatgeria();
+        s.enviarDadesReserva(nomR, data, horaIni, horaFi, username, comentari, emails);
     }
 
     
