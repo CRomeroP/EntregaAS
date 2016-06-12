@@ -45,8 +45,11 @@ public class ControladorCrearReservaAmbNotificacio {
         return recursos;
     }
     
-    public ArrayList<Usuari> obteUsuarisAAssignar (Recurs nomR, Date d, int hi) {
-        return assignarUsuaris.obteUsuarisAAssignar(nomR, d, hi);
+    public ArrayList<Usuari> obteUsuarisAAssignar (String nomR, Date d, int hi) {
+        CtrlDataFactoria factory = CtrlDataFactoria.getInstance();
+        CtrlRecurs CtrlR = factory.getCtrlRecurs();
+        Recurs r = CtrlR.get(nomR);
+        return assignarUsuaris.obteUsuarisAAssignar(r, d, hi);
     }
     
     public void assignarUsuarisAReserva (ArrayList<String> usuaris) {

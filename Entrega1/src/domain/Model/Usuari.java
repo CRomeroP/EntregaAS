@@ -111,6 +111,10 @@ public class Usuari  implements java.io.Serializable {
         }
         return false;
     }
+    
+    public void addNotificacio(ReservaAmbNotificacio r){
+        this.notificacions.add(r);
+    }
     	
 }
 

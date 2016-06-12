@@ -58,19 +58,17 @@ public class SeleccioRecursVistaController implements Initializable {
     private LocalDate data;
     private ArrayList<Info> info;
 
+    public void setdatas(LocalDate data, LocalTime hfi, LocalTime hini) {
+        this.hini = hini;
+        this.hfi = hfi;
+        this.data = data;
+        filldata();
+    }
     private ControladorCrearReservaAmbNotificacio ccran = new ControladorCrearReservaAmbNotificacio();
     
-    public void setHini(LocalTime hini) {
-        this.hini = hini;
-    }
+    /*public void setHini(LocalTime hini) {
 
-    public void setHfi(LocalTime hfi) {
-        this.hfi = hfi;
-    }
-
-    public void setData(LocalDate data) {
-        this.data = data;
-    }
+    }*/
     public void filldata() { 
     
         Date d = Date.from(data.atStartOfDay(ZoneId.systemDefault()).toInstant());

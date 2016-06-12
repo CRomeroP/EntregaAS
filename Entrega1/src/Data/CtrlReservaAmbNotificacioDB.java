@@ -27,10 +27,10 @@ public class CtrlReservaAmbNotificacioDB implements CtrlReservaAmbNotificacio{
     public void insert(ReservaAmbNotificacio ran) {
         Session session = factory.openSession();
         session.beginTransaction();
-        session.save(ran);
         Usuari u = ran.getUsuari();
         ran.getNotificacions().add(u);
-        session.update(ran);
+        session.save(ran);
+        System.out.println(ran.getNotificacions().size());
         u.getNotificacions().add(ran);
         session.update(u);
         session.getTransaction().commit();
@@ -38,18 +38,11 @@ public class CtrlReservaAmbNotificacioDB implements CtrlReservaAmbNotificacio{
     }
     
     @Override
-    public void afegirUsuariANotificacio(ReservaAmbNotificacio r, Usuari u) {
+    public void afegirUsuariANotificacio(ReservaAmbNotificacio r) {
         Session session = factory.openSession();
         session.beginTransaction();
-        List<ReservaAmbNotificacio> a = u.getNotificacions();
-        if(a != null){
-                a.add(r);
-        }
-        else {
-            a = new ArrayList<ReservaAmbNotificacio>();
-            a.add(r);
-        }
-        session.update(u);
+        System.out.println("SIZE N USUARIS A AF   " + r.getNotificacions().size());
+        session.update(r);
         session.getTransaction().commit();
         session.close();
     }

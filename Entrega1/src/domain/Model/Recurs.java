@@ -81,9 +81,8 @@ public class Recurs  implements java.io.Serializable{
     }
     
     public Info infoDisponible(Date d, int horai, int horaf){
-        Boolean b = true;
         int i = 0;
-        while ((i < this.reservasambnotificacio.size() || i < this.reservassensenotificacio.size()) && b){    
+        while (i < this.reservasambnotificacio.size() || i < this.reservassensenotificacio.size()){    
             if (i < this.reservasambnotificacio.size()){
                 if (!this.reservasambnotificacio.get(i).estaDisponible(d, horai, horaf)) {
                     return null;

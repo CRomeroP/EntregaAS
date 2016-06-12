@@ -27,6 +27,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.converter.LocalTimeStringConverter;
@@ -162,15 +163,18 @@ public class ReservaVistaController implements Initializable {
     @FXML
     private void handleOkAction(ActionEvent event) throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SeleccioRecursVista.fxml"));
-        SeleccioRecursVistaController  controller = fxmlLoader.<SeleccioRecursVistaController>getController();
-        controller.setData(calendario.getValue());
-        controller.setHfi(spinhini.getValue());
-        controller.setHini(spinhfi.getValue());
-        Parent root = (Parent)fxmlLoader.load();
-        Scene scene = new Scene(root);
+        
+        Scene scene = new Scene((Parent)fxmlLoader.load());
         Stage stage = (Stage) buttoncancel.getScene().getWindow();
         stage.close();
         stage.setScene(scene);
+        
+        //
+        SeleccioRecursVistaController  controller = fxmlLoader.<SeleccioRecursVistaController>getController();
+        
+        controller.setdatas(calendario.getValue(),spinhfi.getValue(),spinhini.getValue());
+        
+
         stage.show();
         
     }

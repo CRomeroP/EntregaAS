@@ -36,14 +36,14 @@ public class ControladorAssignarUsuaris {
             
     public ArrayList<Usuari> obteUsuarisAAssignar(Recurs nomR, Date d, int hi){
        CtrlDataFactoria factory = CtrlDataFactoria.getInstance();
-       CtrlUsuari cu = factory.getCtrlUsuari();
-       ArrayList<Usuari> u = cu.getAll();
        CtrlReservaAmbNotificacio cr = factory.getCtrlReservaAmbNotificacio();
        CtrlReservaSenseNotificacio cr2 = factory.getCtrlReservaSenseNotificacio();
        ReservaAmbNotificacio r = cr.get(nomR,d,hi);
        ReservaSenseNotificacio r2 = cr2.get(nomR,d,hi);
+       CtrlUsuari cu = factory.getCtrlUsuari();
+       ArrayList<Usuari> u = cu.getAll();
        if (r == null && r2 == null) throw new NoExisteixLaReserva();
-       else if (r == null && r != null) throw new NoReservaAmbNotificacio();
+       else if (r == null && r2 != null) throw new NoReservaAmbNotificacio();
        ArrayList<Usuari> result = r.getPossiblesUsuaris(u);
        if (result.isEmpty()) throw new NoHiHaProuUsuaris();
        this.nom = nomR.getNom();
@@ -63,7 +63,7 @@ public class ControladorAssignarUsuaris {
         CtrlUsuari cu = factory.getCtrlUsuari();
         ArrayList<Usuari> u = new ArrayList<>();
         for (int i = 0; i < usuaris.size(); i++) u.add(cu.get(usuaris.get(i)));
-        System.out.println(u.size());
+        System.out.println("U SIZE    " + u.size());
         rm.afegirUsuaris(u);
     }
 }

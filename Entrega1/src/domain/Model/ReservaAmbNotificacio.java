@@ -6,6 +6,7 @@
 package domain.Model;
 
 import Data.CtrlReservaAmbNotificacio;
+import Data.CtrlUsuari;
 import Data.ReservaPK;
 import Excepcions.ReservaATope;
 import Excepcions.ReservaCaducada;
@@ -71,9 +72,9 @@ public class ReservaAmbNotificacio implements Serializable{
     @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "esnotifica", joinColumns = {
-        @JoinColumn(name = "recurs", nullable = false),
+        @JoinColumn(name = "datar", nullable = false),
         @JoinColumn(name = "horaIni", nullable = false),
-        @JoinColumn(name = "datar", nullable = false)},
+        @JoinColumn(name = "recurs", nullable = false)},
         inverseJoinColumns = {@JoinColumn(name = "username", nullable = false)})
     private List<Usuari> notificacions = new ArrayList<Usuari>();
 
@@ -87,7 +88,6 @@ public class ReservaAmbNotificacio implements Serializable{
         this.comentaris = comentaris;
         this.usuari = usuari;
         this.recurs = recurs;
-        this.notificacions.add(usuari);
     }
 
     public ReservaAmbNotificacio(ArrayList<Usuari> notificacions) {
@@ -149,11 +149,7 @@ public class ReservaAmbNotificacio implements Serializable{
     }
 
     public void setNotificacions(List<Usuari> notificacions) {
-        CtrlDataFactoria factory = CtrlDataFactoria.getInstance();
-        CtrlReservaAmbNotificacio CtrlR = factory.getCtrlReservaAmbNotificacio();
-        for (int i = 0; i < notificacions.size(); ++i){
-            CtrlR.afegirUsuariANotificacio(this, notificacions.get(i));
-        }
+        this.notificacions.addAll(notificacions);
     }
     
     public boolean estaDisponible (Date d, int horai, int horaf){
@@ -182,8 +178,9 @@ public class ReservaAmbNotificacio implements Serializable{
     
     public ArrayList<Usuari> getPossiblesUsuaris(ArrayList<Usuari> u){
         Date fechaActual = new Date();
-        int error = data.compareTo(fechaActual);
-        if ((error == 1) || (error == 0 && horainici > fechaActual.getHours())) throw new ReservaCaducada();
+        //int error = data.compareTo(fechaActual);
+        if ((data.compareTo(fechaActual) < 0) || (data.compareTo(fechaActual) == 0 && horainici > fechaActual.getHours())) throw new ReservaCaducada();
+        //if ((error == 1) || (error == 0 && horainici > fechaActual.getHours())) throw new ReservaCaducada();
         return getUsuarisSenseNot(u);
     }
     
@@ -194,19 +191,31 @@ public class ReservaAmbNotificacio implements Serializable{
     
     public void afegirUsuaris(ArrayList<Usuari> u){
         if (notificacions.size() + u.size() > 10) throw new ReservaATope();
+        System.out.println("NOTIFICACIONS SIZE " + notificacions.size());
         ArrayList<String> emails = new ArrayList<>();
-
+        CtrlDataFactoria factory = CtrlDataFactoria.getInstance();
+        CtrlReservaAmbNotificacio CtrlR = factory.getCtrlReservaAmbNotificacio();
+        int j = notificacions.size();
         for (int i = 0; i < u.size(); i++){
-            if(u.get(i) == null) System.out.println("es null");
+            System.out.println("UserName             " + u.get(i).getUsername());
             emails.add(u.get(i).getEmail());
-            notificacions.add(u.get(i));
+            u.get(i).addNotificacio(this);
+        }
+        setNotificacions(u);
+        CtrlR.afegirUsuariANotificacio(this);
+        
+        while (j < notificacions.size()) {
+            System.out.println("A PARTIR DE AQUI: " + notificacions.get(j).getUsername());
+            ++j;
         }
         String username = usuari.getEmail();
-        CtrlDataFactoria factory = CtrlDataFactoria.getInstance();
         ServiceLocator sv = ServiceLocator.getInstance();
         IGestioMissatgeAdapter gm = sv.getIGestioMissatgeAdapter();
         gm.enviarDadesReserva(this.recurs.getNom(), this.data, this.horainici, this.horafi, username,this.comentaris, emails);
 
     }
     
+    public void addNotificacio(Usuari u){
+        this.notificacions.add(u);
+    } 
 }
