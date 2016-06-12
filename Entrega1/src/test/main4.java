@@ -63,7 +63,7 @@ public class main4 {
         CtrlSala cs = factory.getCtrlSala();
         CtrlUsuari cu = factory.getCtrlUsuari();
         Sala s1 =  cs.get("Sala d'actes Pompeu");
-        ArrayList<Usuari> usuaris = c1.obteUsuarisAAssignar(s1, d2, 19);
+        ArrayList<Usuari> usuaris = c1.obteUsuarisAAssignar("Sala d'actes Pompeu", d2, 19);
         System.out.println("size notificacions " + (cu.get("marc1161")).getNotificacions().size());
         ArrayList<String> noms = new ArrayList<String>();
         for (int i = 0; i < usuaris.size(); ++i) {
