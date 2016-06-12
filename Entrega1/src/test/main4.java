@@ -61,9 +61,10 @@ public class main4 {
         c1.crearReservaAmbNotificacio("Sala d'actes Pompeu", "marc1161", "fdkflfk");
         //CAS US 3.3 
         CtrlSala cs = factory.getCtrlSala();
+        CtrlUsuari cu = factory.getCtrlUsuari();
         Sala s1 =  cs.get("Sala d'actes Pompeu");
         ArrayList<Usuari> usuaris = c1.obteUsuarisAAssignar(s1, d2, 19);
-        System.out.println(usuaris.size());
+        System.out.println("size notificacions " + (cu.get("marc1161")).getNotificacions().size());
         ArrayList<String> noms = new ArrayList<String>();
         for (int i = 0; i < usuaris.size(); ++i) {
             noms.add(usuaris.get(i).getUsername());
