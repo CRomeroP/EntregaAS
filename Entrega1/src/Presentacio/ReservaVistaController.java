@@ -114,7 +114,7 @@ public class ReservaVistaController implements Initializable {
                 }
                 else {
                     LocalTime time = (LocalTime) getValue();
-                    setValue(time.minusMinutes(30));
+                    setValue(time.minusMinutes(60));
                     System.out.println("i");
                 }
             }
@@ -128,7 +128,7 @@ public class ReservaVistaController implements Initializable {
                 }
                 else {
                     LocalTime time = (LocalTime) getValue();
-                    setValue(time.plusMinutes(30));
+                    setValue(time.plusMinutes(60));
                     System.out.println("i");
                 }
             }

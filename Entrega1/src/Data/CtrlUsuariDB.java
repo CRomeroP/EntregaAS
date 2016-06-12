@@ -58,6 +58,11 @@ public class CtrlUsuariDB implements CtrlUsuari{
         return null;
     }
 
+    @Override
+    public Boolean isEmpty(){
+        Session session = factory.openSession();
+        return session.createCriteria(Usuari.class).list().isEmpty();
+    }
 
     @Override
     public ArrayList<Usuari> getAll() {
@@ -65,7 +70,7 @@ public class CtrlUsuariDB implements CtrlUsuari{
     	Session session = factory.openSession();
         try{session.getTransaction().begin();
             usuaris = (ArrayList) session.createCriteria(Usuari.class).list();
-            if (usuaris.isEmpty()) throw new NoHiHaUsuaris("No hi ha recursos");
+            if (usuaris.isEmpty()) throw new NoHiHaUsuaris("No hi ha usuaris");
         }catch (HibernateException e){
             if (session.getTransaction() != null) {
                 session.getTransaction().rollback();

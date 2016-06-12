@@ -19,6 +19,8 @@ public interface CtrlUsuari {
     public Usuari get(String username);
 
     public Boolean exists(String username) throws Exception;
+    
+    public Boolean isEmpty();
 
     public ArrayList<Usuari> getAll();
 

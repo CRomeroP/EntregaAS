@@ -40,13 +40,14 @@ public class CtrlInicialState {
     }
 
     public CtrlInicialState() {
-        this.factory = CtrlDataFactoria.getInstance();
-        inicialitzaRecursos();
-        inicialitzaUsuaris();
-        inicialitzaReservesAmbNotificacio();
-        inicialitzaReservesSenseNotificacio();
-        
-        
+        this.factory = CtrlDataFactoria.getInstance();   
+        CtrlUsuari u = factory.getCtrlUsuari();
+        if (u.isEmpty()){
+            inicialitzaRecursos();
+            inicialitzaUsuaris();
+            inicialitzaReservesAmbNotificacio();
+            inicialitzaReservesSenseNotificacio();
+        }     
     }
     
     public void inicialitzaUsuaris() {
