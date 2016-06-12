@@ -9,15 +9,22 @@ import domain.Controladors.ControladorCrearReservaAmbNotificacio;
 import domain.Model.Info;
 import domain.Model.Usuari;
 import java.net.URL;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -62,6 +69,32 @@ public class SeleccioUsuarisController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
+        listusers.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        
     }    
+    
+    
+    @FXML
+    private void ok(ActionEvent event)  throws Exception{
+        ArrayList<String> noms = new ArrayList<String>();
+        for (Object nom : listusers.getSelectionModel().getSelectedItems()) {
+            noms.add(nom.toString());
+            
+        }
+        ccran.assignarUsuarisAReserva(noms);
+        
+
+    }
+    
+    @FXML
+    private void exit(ActionEvent event) {
+        // get a handle to the stage
+        Stage stage = (Stage) buttoncancel.getScene().getWindow();
+        // do what you have to do
+        stage.close();
+        
+    }
+    
     
 }
