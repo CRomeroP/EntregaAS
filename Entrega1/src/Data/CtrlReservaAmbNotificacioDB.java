@@ -8,7 +8,7 @@ import domain.Model.Usuari;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import org.hibernate.HibernateException;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -26,35 +26,53 @@ public class CtrlReservaAmbNotificacioDB implements CtrlReservaAmbNotificacio{
     @Override
     public void insert(ReservaAmbNotificacio ran) {
         Session session = factory.openSession();
-        session.beginTransaction();
-        Usuari u = ran.getUsuari();
-        ran.getNotificacions().add(u);
-        session.save(ran);
-        System.out.println(ran.getNotificacions().size());
-        u.getNotificacions().add(ran);
-        session.update(u);
-        session.getTransaction().commit();
-        session.close();
+        try{session.beginTransaction();
+            Usuari u = ran.getUsuari();
+            ran.getNotificacions().add(u);
+            System.out.println(ran.getNotificacions().size());
+            u.getNotificacions().add(ran);
+            session.save(ran);
+            session.update(u);
+            session.getTransaction().commit();
+            session.close();
+        }catch(HibernateException e){
+           if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+                throw e;
+           }
+        }
     }
     
     @Override
     public void afegirUsuariANotificacio(ReservaAmbNotificacio r) {
         Session session = factory.openSession();
-        session.beginTransaction();
-        System.out.println("SIZE N USUARIS A AF   " + r.getNotificacions().size());
-        session.update(r);
-        session.getTransaction().commit();
-        session.close();
+        try{session.beginTransaction();
+            session.update(r);
+            session.getTransaction().commit();
+            session.close();
+        }catch(HibernateException e){
+           if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+                throw e;
+           }
+        }
     }
     
     @Override
     public ReservaAmbNotificacio get(Recurs nomRecurs, Date d, int hi) {
+        ReservaAmbNotificacio reserva = new ReservaAmbNotificacio();
         Session session = factory.openSession();
-        session.beginTransaction();
-        ReservaAmbNotificacio representacio = (ReservaAmbNotificacio) session.createCriteria(ReservaAmbNotificacio.class)
+        try{ session.beginTransaction();
+            reserva = (ReservaAmbNotificacio) session.createCriteria(ReservaAmbNotificacio.class)
                 .add(Restrictions.eq("recurs", nomRecurs)).add(Restrictions.eq("data", d)).add(Restrictions.eq("horainici", hi)).uniqueResult();
-        session.close();
-        return representacio;
+            session.close();
+        }catch(HibernateException e){
+           if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+                throw e;
+           }
+        }
+        return reserva;
     }
 
     @Override
@@ -64,10 +82,17 @@ public class CtrlReservaAmbNotificacioDB implements CtrlReservaAmbNotificacio{
 
     @Override
     public ArrayList<ReservaAmbNotificacio> getAll() {
+        ArrayList<ReservaAmbNotificacio> reservas = new ArrayList<ReservaAmbNotificacio>();
         Session session = factory.getCurrentSession();
-        session.beginTransaction();
-        ArrayList<ReservaAmbNotificacio> recursos = (ArrayList) session.createCriteria(ReservaAmbNotificacio.class).list();
-        if (recursos.isEmpty()) throw new NoHiHaRecursos();
-        return recursos;
+        try {session.beginTransaction();
+            reservas = (ArrayList) session.createCriteria(ReservaAmbNotificacio.class).list();
+            if (reservas.isEmpty()) throw new NoHiHaRecursos();
+        }catch(HibernateException | NoHiHaRecursos e){
+           if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+                throw e;
+           }
+        }
+        return reservas;
     }
 }
