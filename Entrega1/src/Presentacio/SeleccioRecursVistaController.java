@@ -69,6 +69,7 @@ public class SeleccioRecursVistaController implements Initializable {
     public void filldata() { 
     
         Date d = Date.from(data.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        System.out.println("LOCAL " + d);
         
         info = ccran.obteRecursosDisponibles(d, hini.getHour(), hfi.getHour());
         ArrayList<String> nom;
