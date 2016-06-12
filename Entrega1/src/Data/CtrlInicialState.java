@@ -166,6 +166,7 @@ public class CtrlInicialState {
         s1.setNom("Sala d'actes FIB");
         s1.setAforament(100);
         s1.setUbicacio("plaça fib");
+        s1.setNomordinador(o1);
         CtrlS.insert(s1);
         s2 = new Sala();
         s2.setNom("Sala d'actes Pompeu");

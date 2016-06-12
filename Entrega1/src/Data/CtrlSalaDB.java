@@ -3,7 +3,11 @@ package Data;
 
 import domain.Model.Recurs;
 import Excepcions.NoHiHaRecursos;
+import domain.Factories.CtrlDataFactoria;
+import domain.Model.Ordinador;
+import domain.Model.Projector;
 import domain.Model.Sala;
+import static domain.Model.Types.Ordinador;
 
 import java.util.ArrayList;
 import org.hibernate.HibernateException;
@@ -27,10 +31,21 @@ public class CtrlSalaDB implements CtrlSala{
     @Override
     public void insert(Sala sala) {
         Session session = factory.openSession();
+        CtrlDataFactoria fact = CtrlDataFactoria.getInstance();
         try{session.beginTransaction();
             Recurs r = (Recurs) sala;
             session.save(sala);
             session.save(r);
+            if(sala.getNomordinador() != null){
+                Ordinador o = sala.getNomordinador();
+                o.setSala(sala);
+                session.update(o);
+            }
+            if(sala.getNomprojector() != null){
+                Projector p = sala.getNomprojector();
+                p.setSala(sala);
+                session.update(p);
+            }
             session.getTransaction().commit();
             session.close();
         }catch (HibernateException e){
