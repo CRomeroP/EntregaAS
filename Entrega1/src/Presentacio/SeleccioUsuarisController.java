@@ -22,8 +22,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
@@ -35,6 +37,8 @@ public class SeleccioUsuarisController implements Initializable {
 
     
     
+    @FXML
+    private Label totalusers;
     @FXML
     private Button buttonok;
     @FXML
@@ -49,6 +53,8 @@ public class SeleccioUsuarisController implements Initializable {
     private Date data;
     
     private int horai;
+    
+    private int totaluserscount = 1;
             
     private ControladorCrearReservaAmbNotificacio ccran = new ControladorCrearReservaAmbNotificacio();
 
@@ -73,6 +79,19 @@ public class SeleccioUsuarisController implements Initializable {
         listusers.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         
     }    
+    
+    @FXML 
+    public void handleMouseClick(ActionEvent event) {
+        
+        totaluserscount = listusers.getSelectionModel().getSelectedIndices().size() + 1;
+        if(totaluserscount > 10) {
+            totalusers.setTextFill(Color.web("#ff0000"));
+        } else {
+            totalusers.setTextFill(Color.web("#00ff00"));
+        }
+        totalusers.setText("Usuaris seleccionats: " + totaluserscount + "/10");
+        
+    }
     
     
     @FXML
