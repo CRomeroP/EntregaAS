@@ -154,7 +154,7 @@ public class ReservaAmbNotificacio implements Serializable{
     
     public boolean estaDisponible (Date d, int horai, int horaf){
         System.out.println(d + " " + data + " " + horai + " " + horainici + " "+ horaf + " " + horafi);
-        return ((((d.compareTo(this.data))==0 && ((horaf <= this.horainici) || (horai >= this.horafi)))) ||  (d.compareTo(this.data) != 0));
+        return (((d.compareTo(this.data))==0 && ((horaf <= this.horainici) || (horai >= this.horafi))) ||  (d.compareTo(this.data) != 0));
     }
     
     /*public boolean estaDisponible (Date d, int horai, int horaf){
@@ -179,7 +179,7 @@ public class ReservaAmbNotificacio implements Serializable{
     public ArrayList<Usuari> getPossiblesUsuaris(ArrayList<Usuari> u){
         Date fechaActual = new Date();
         //int error = data.compareTo(fechaActual);
-        if (data.compareTo(fechaActual) == 0 && horainici < fechaActual.getHours()) throw new ReservaCaducada();
+        //if (data.compareTo(fechaActual) == 0 && horainici < fechaActual.getHours()) throw new ReservaCaducada();
         //if ((error == 1) || (error == 0 && horainici > fechaActual.getHours())) throw new ReservaCaducada();
         return getUsuarisSenseNot(u);
     }
@@ -190,7 +190,7 @@ public class ReservaAmbNotificacio implements Serializable{
     
     
     public void afegirUsuaris(ArrayList<Usuari> u){
-        if (notificacions.size() + u.size() > 10) throw new ReservaATope();
+        if (notificacions.size() + u.size() > 10) throw new ReservaATope("La reserva esta a tope");
         System.out.println("NOTIFICACIONS SIZE " + notificacions.size());
         ArrayList<String> emails = new ArrayList<>();
         CtrlDataFactoria factory = CtrlDataFactoria.getInstance();

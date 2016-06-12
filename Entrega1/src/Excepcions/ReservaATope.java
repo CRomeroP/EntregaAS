@@ -10,5 +10,9 @@ package Excepcions;
  * @author Víctor
  */
 public class ReservaATope extends RuntimeException{
+
+    public ReservaATope(String message) {
+        super(message);
+    }
     
 }

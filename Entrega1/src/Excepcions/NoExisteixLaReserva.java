@@ -10,5 +10,9 @@ package Excepcions;
  * @author Víctor
  */
 public class NoExisteixLaReserva extends RuntimeException{
+
+    public NoExisteixLaReserva(String message) {
+        super(message);
+    }
     
 }

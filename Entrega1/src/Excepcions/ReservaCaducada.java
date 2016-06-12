@@ -10,5 +10,9 @@ package Excepcions;
  * @author Víctor
  */
 public class ReservaCaducada extends RuntimeException{
+
+    public ReservaCaducada(String message) {
+        super(message);
+    }
     
 }

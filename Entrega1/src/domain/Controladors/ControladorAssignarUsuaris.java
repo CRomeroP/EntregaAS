@@ -42,10 +42,10 @@ public class ControladorAssignarUsuaris {
        ReservaSenseNotificacio r2 = cr2.get(nomR,d,hi);
        CtrlUsuari cu = factory.getCtrlUsuari();
        ArrayList<Usuari> u = cu.getAll();
-       if (r == null && r2 == null) throw new NoExisteixLaReserva();
-       else if (r == null && r2 != null) throw new NoReservaAmbNotificacio();
+       if (r == null && r2 == null) throw new NoExisteixLaReserva("La reserva no existeix");
+       else if (r == null && r2 != null) throw new NoReservaAmbNotificacio("La reserva no es amb notificacio");
        ArrayList<Usuari> result = r.getPossiblesUsuaris(u);
-       if (result.isEmpty()) throw new NoHiHaProuUsuaris();
+       if (result.isEmpty()) throw new NoHiHaProuUsuaris("No hi ha prou usuaris");
        this.nom = nomR.getNom();
        this.data = d;
        this.horai = hi;

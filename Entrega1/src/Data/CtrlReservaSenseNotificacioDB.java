@@ -65,7 +65,7 @@ public class CtrlReservaSenseNotificacioDB implements CtrlReservaSenseNotificaci
         Session session = factory.getCurrentSession();
         try{session.beginTransaction();
             ArrayList<ReservaSenseNotificacio> recursos = (ArrayList) session.createCriteria(ReservaSenseNotificacio.class).list();
-            if (recursos.isEmpty()) throw new NoHiHaRecursos();
+            if (recursos.isEmpty()) throw new NoHiHaRecursos("No hi ha recursos");
         }catch (HibernateException e){
             if (session.getTransaction() != null) {
                 session.getTransaction().rollback();

@@ -86,7 +86,7 @@ public class CtrlReservaAmbNotificacioDB implements CtrlReservaAmbNotificacio{
         Session session = factory.getCurrentSession();
         try {session.beginTransaction();
             reservas = (ArrayList) session.createCriteria(ReservaAmbNotificacio.class).list();
-            if (reservas.isEmpty()) throw new NoHiHaRecursos();
+            if (reservas.isEmpty()) throw new NoHiHaRecursos("No hi ha recursos");
         }catch(HibernateException | NoHiHaRecursos e){
            if (session.getTransaction() != null) {
                 session.getTransaction().rollback();
