@@ -110,7 +110,9 @@ public class Recurs  implements java.io.Serializable{
             ++i;
         }
         Info result = new Info();
+        System.out.println("llego");
         result.setNom(this.nom);
+        System.out.println("paso");
         result = getInfo(result);
         return result;
     }

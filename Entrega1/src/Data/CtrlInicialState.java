@@ -164,6 +164,7 @@ public class CtrlInicialState {
         CtrlSala CtrlS = factory.getCtrlSala();
         s1 = new Sala();
         s1.setNom("Sala d'actes FIB");
+        //s1.setNomordinador(o1);
         s1.setAforament(100);
         s1.setUbicacio("plaça fib");
         s1.setNomordinador(o1);

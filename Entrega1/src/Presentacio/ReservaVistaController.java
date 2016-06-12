@@ -5,6 +5,7 @@
  */
 package Presentacio;
 
+import Excepcions.DadesNoIntroduides;
 import Excepcions.PeriodeErroni;
 import domain.Controladors.ControladorCrearReservaAmbNotificacio;
 import domain.Model.Info;
@@ -73,6 +74,7 @@ public class ReservaVistaController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        calendario.setValue(LocalDate.now());
         final Callback<DatePicker, DateCell> dayCellFactory;
         dayCellFactory = new Callback<DatePicker, DateCell>() {
             @Override
@@ -178,7 +180,7 @@ public class ReservaVistaController implements Initializable {
     @FXML
     private void handleOkAction(ActionEvent event) throws Exception{
         try{
-            
+            if(calendario.getValue() == null || spinhini.getValue() == null || spinhfi.getValue() == null) throw new DadesNoIntroduides("Dades no introduides");
             if((calendario.getValue().compareTo(LocalDate.now()) == 0) && spinhini.getValue().getHour() <= LocalTime.now().getHour()) throw new PeriodeErroni("error en el periode");
             ArrayList<Info> info;
             info = ccran.obteRecursosDisponibles(Date.from(calendario.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),spinhini.getValue().getHour(),spinhfi.getValue().getHour());
@@ -207,7 +209,9 @@ public class ReservaVistaController implements Initializable {
             alert.setContentText(ex.getMessage());
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK){
-                s.show();
+                
+                
+                
             }
         }
     }
@@ -218,6 +222,7 @@ public class ReservaVistaController implements Initializable {
         Stage stage = (Stage) buttoncancel.getScene().getWindow();
         // do what you have to do
         stage.close();
+        System.exit(0);
         
     }
     

@@ -4,6 +4,8 @@ package Data;
 import domain.Model.Recurs;
 import domain.Model.Ordinador;
 import Excepcions.NoHiHaRecursos;
+import domain.Factories.CtrlDataFactoria;
+import domain.Model.Types;
 
 import java.util.ArrayList;
 import org.hibernate.HibernateException;
@@ -28,9 +30,8 @@ public class CtrlOrdinadorDB implements CtrlOrdinador{
     public void insert(Ordinador ord) {
         Session session = factory.openSession();
         try{session.beginTransaction();
-            Recurs r = (Recurs) ord;
+            ord.setType(Types.Ordinador);
             session.save(ord);
-            session.save(r);
             session.getTransaction().commit();
             session.close();
         }catch (HibernateException e){

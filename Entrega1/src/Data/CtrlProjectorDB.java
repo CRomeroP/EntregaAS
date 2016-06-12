@@ -8,6 +8,7 @@ package Data;
 import Excepcions.NoHiHaRecursos;
 import domain.Model.Projector;
 import domain.Model.Recurs;
+import domain.Model.Types;
 import java.util.ArrayList;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -31,9 +32,8 @@ public class CtrlProjectorDB implements CtrlProjector {
     public void insert(Projector proj) {
         Session session = factory.getCurrentSession();
         try {session.beginTransaction();
-            Recurs r = (Recurs) proj;
+            proj.setType(Types.Projector);
             session.save(proj);
-            session.save(r);
             session.getTransaction().commit();
         }catch (HibernateException e){
             if (session.getTransaction() != null) {

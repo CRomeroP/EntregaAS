@@ -168,6 +168,8 @@ public class SeleccioRecursVistaController implements Initializable {
         Stage stage = (Stage) buttoncancel.getScene().getWindow();
         // do what you have to do
         stage.close();
+        System.exit(0);
+
         
     }
     

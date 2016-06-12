@@ -7,6 +7,7 @@ import domain.Factories.CtrlDataFactoria;
 import domain.Model.Ordinador;
 import domain.Model.Projector;
 import domain.Model.Sala;
+import domain.Model.Types;
 import static domain.Model.Types.Ordinador;
 
 import java.util.ArrayList;
@@ -33,9 +34,8 @@ public class CtrlSalaDB implements CtrlSala{
         Session session = factory.openSession();
         CtrlDataFactoria fact = CtrlDataFactoria.getInstance();
         try{session.beginTransaction();
-            Recurs r = (Recurs) sala;
+            sala.setType(Types.Sala);
             session.save(sala);
-            session.save(r);
             if(sala.getNomordinador() != null){
                 Ordinador o = sala.getNomordinador();
                 o.setSala(sala);
