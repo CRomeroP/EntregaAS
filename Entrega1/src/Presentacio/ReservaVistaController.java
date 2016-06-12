@@ -162,7 +162,6 @@ public class ReservaVistaController implements Initializable {
     
     @FXML
     private void handleOkAction(ActionEvent event) throws Exception{
-        lael.setText("entramos en la funcion");  
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SeleccioRecursVista.fxml"));
         
         Scene scene = new Scene((Parent)fxmlLoader.load());
