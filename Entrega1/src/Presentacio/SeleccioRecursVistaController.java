@@ -25,9 +25,12 @@ import java.lang.String;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.util.Optional;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 
 
@@ -57,6 +60,9 @@ public class SeleccioRecursVistaController implements Initializable {
     private LocalTime hfi;
     private LocalDate data;
     private ArrayList<Info> info;
+    
+    private Stage s;
+    
 
     public void setdatas(LocalDate data, LocalTime hfi, LocalTime hini) {
         this.hini = hini;
@@ -68,18 +74,30 @@ public class SeleccioRecursVistaController implements Initializable {
     
     public void filldata() { 
     
-        Date d = Date.from(data.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        System.out.println("LOCAL " + d);
-        
-        info = ccran.obteRecursosDisponibles(d, hini.getHour(), hfi.getHour());
-        ArrayList<String> nom;
-        nom = new ArrayList<String>();
-        for (Info info1 : info) {
-            nom.add(info1.toString());
+        try{
+            Date d = Date.from(data.atStartOfDay(ZoneId.systemDefault()).toInstant());
+            System.out.println("LOCAL " + d);
+
+            info = ccran.obteRecursosDisponibles(d, hini.getHour(), hfi.getHour());
+            ArrayList<String> nom;
+            nom = new ArrayList<String>();
+            for (Info info1 : info) {
+                nom.add(info1.toString());
+            }
+            ObservableList<String> lnoms = FXCollections.observableList(nom);
+            listRecurs.setItems(lnoms);
         }
-        ObservableList<String> lnoms = FXCollections.observableList(nom);
-        listRecurs.setItems(lnoms);
-        
+        catch (Exception ex) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setHeaderText("Error");
+            alert.setContentText(ex.getMessage());
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                s.show();
+            }
+        }
+
     }
     
     

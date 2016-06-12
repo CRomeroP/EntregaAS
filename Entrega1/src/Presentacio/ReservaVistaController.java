@@ -5,6 +5,7 @@
  */
 package Presentacio;
 
+import Excepcions.PeriodeErroni;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -12,6 +13,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,16 +21,22 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import javafx.util.converter.LocalTimeStringConverter;
 
@@ -51,6 +59,8 @@ public class ReservaVistaController implements Initializable {
     private Button buttoncancel;
     @FXML
     private Label lael;
+    
+    private Stage s;
     
     
     /**
@@ -136,7 +146,7 @@ public class ReservaVistaController implements Initializable {
                 }
                 else {
                     LocalTime time = (LocalTime) getValue();
-                    setValue(time.minusMinutes(30));
+                    setValue(time.minusMinutes(60));
                     System.out.println("i");
                 }
             }
@@ -150,7 +160,7 @@ public class ReservaVistaController implements Initializable {
                 }
                 else {
                     LocalTime time = (LocalTime) getValue();
-                    setValue(time.plusMinutes(30));
+                    setValue(time.plusMinutes(60));
                     System.out.println("i");
                 }
             }
@@ -162,21 +172,35 @@ public class ReservaVistaController implements Initializable {
     
     @FXML
     private void handleOkAction(ActionEvent event) throws Exception{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SeleccioRecursVista.fxml"));
-        
-        Scene scene = new Scene((Parent)fxmlLoader.load());
-        Stage stage = (Stage) buttoncancel.getScene().getWindow();
-        stage.close();
-        stage.setScene(scene);
-        
-        //
-        SeleccioRecursVistaController  controller = fxmlLoader.<SeleccioRecursVistaController>getController();
-        
-        controller.setdatas(calendario.getValue(),spinhfi.getValue(),spinhini.getValue());
-        
+        try{
+            
+            if((calendario.getValue().compareTo(LocalDate.now()) == 0) && spinhini.getValue().getHour() <= LocalTime.now().getHour()) throw new PeriodeErroni("error en el periode");
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SeleccioRecursVista.fxml"));
 
-        stage.show();
-        
+            Scene scene = new Scene((Parent)fxmlLoader.load());
+            s = (Stage) buttoncancel.getScene().getWindow();
+            s.close();
+            s.setScene(scene);
+
+            //
+            SeleccioRecursVistaController  controller = fxmlLoader.<SeleccioRecursVistaController>getController();
+
+            
+            controller.setdatas(calendario.getValue(),spinhfi.getValue(),spinhini.getValue());
+
+
+            s.show();
+        }
+        catch(Exception ex){
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setHeaderText("Error");
+            alert.setContentText(ex.getMessage());
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                s.show();
+            }
+        }
     }
     
     @FXML
