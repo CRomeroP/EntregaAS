@@ -1,6 +1,9 @@
 package domain.Model;
 // Generated 14-abr-2016 8:24:58 by Hibernate Tools 4.3.1
 
+import Data.CtrlOrdinador;
+import Data.CtrlProjector;
+import domain.Factories.CtrlDataFactoria;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -82,6 +85,17 @@ public class Recurs  implements java.io.Serializable{
     
     public Info infoDisponible(Date d, int horai, int horaf){
         int i = 0;
+        CtrlDataFactoria factory = CtrlDataFactoria.getInstance();
+        if (this.type == Types.Ordinador) {
+            CtrlOrdinador co = factory.getCtrlOrdinador();
+            Ordinador o = co.get(this.nom);
+            if (o.getSala() != null) return null;
+        }
+        else if (this.type == Types.Projector) {
+            CtrlProjector cp = factory.getCtrlProjector();
+            Projector p = cp.get(this.nom);
+            if (p.getSala() != null) return null;
+        }
         while (i < this.reservasambnotificacio.size() || i < this.reservassensenotificacio.size()){    
             if (i < this.reservasambnotificacio.size()){
                 if (!this.reservasambnotificacio.get(i).estaDisponible(d, horai, horaf)) {
