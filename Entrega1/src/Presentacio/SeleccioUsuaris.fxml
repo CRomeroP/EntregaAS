@@ -7,17 +7,16 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="360.0" prefWidth="480.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60" fx:controller="Presentacio.SeleccioUsuarisController">
+<AnchorPane id="AnchorPane" prefHeight="360.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentacio.SeleccioUsuarisController">
    <children>
       <VBox prefHeight="360.0" prefWidth="480.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label text="Label" />
-            <ListView prefHeight="344.0" prefWidth="464.0" />
+            <ListView fx:id="listusers" prefHeight="344.0" prefWidth="464.0" />
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button mnemonicParsing="false" text="Button" />
-                  <Button mnemonicParsing="false" text="Button" />
+                  <Button fx:id="buttonok" mnemonicParsing="false" text="ok" />
+                  <Button fx:id="buttoncancel" mnemonicParsing="false" text="cancel" />
                </children>
             </HBox>
          </children>
