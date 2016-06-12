@@ -10,5 +10,9 @@ package Excepcions;
  * @author Víctor
  */
 public class PeriodeErroni extends RuntimeException{
+
+    public PeriodeErroni(String message) {
+        super(message);
+    }
     
 }

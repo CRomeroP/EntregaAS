@@ -25,7 +25,7 @@ public class ControladorConsultaRecursosDisponiblesPerData {
     
     public ArrayList<Info> obteRecursosDisponiblesPerData(Date d, int horain, int horafi){
         
-        if (horafi < horain) throw new  PeriodeErroni();
+        if (horafi < horain) throw new  PeriodeErroni("hora fi anterior a hora ini");
         CtrlDataFactoria factory = CtrlDataFactoria.getInstance();
         CtrlRecurs cr = factory.getCtrlRecurs();
         ArrayList<Recurs> r = cr.getAll();
