@@ -58,7 +58,7 @@ public class CtrlInicialState {
         u1.setUsername("marc1161");
         CtrlU.insert(u1);
         //usuari 2
-        /*u2 = new Usuari();
+        u2 = new Usuari();
         u2.setEmail("victorggep@hotmail.com");
         u2.setNom("victor");
         u2.setUsername("victorggep");
@@ -134,7 +134,7 @@ public class CtrlInicialState {
         u14.setEmail("chrisbrown@hotmail.com");
         u14.setNom("chris");
         u14.setUsername("chrisbrown");
-        CtrlU.insert(u14);    */
+        CtrlU.insert(u14);    
     }
     
     public void inicialitzaRecursos() {
