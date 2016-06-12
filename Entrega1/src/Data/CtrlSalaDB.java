@@ -69,7 +69,7 @@ public class CtrlSalaDB implements CtrlSala{
         Session session = factory.getCurrentSession();
         try{session.beginTransaction();
             salas = (ArrayList) session.createCriteria(Recurs.class).list();
-            if (salas.isEmpty()) throw new NoHiHaRecursos();
+            if (salas.isEmpty()) throw new NoHiHaRecursos("No hi ha recursos");
         }catch (HibernateException e){
             if (session.getTransaction() != null) {
                 session.getTransaction().rollback();

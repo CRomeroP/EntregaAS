@@ -10,5 +10,9 @@ package Excepcions;
  * @author Víctor
  */
 public class NoHiHaProuUsuaris extends RuntimeException{
+
+    public NoHiHaProuUsuaris(String message) {
+        super(message);
+    }
     
 }

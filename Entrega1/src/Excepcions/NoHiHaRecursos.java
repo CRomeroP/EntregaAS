@@ -10,5 +10,10 @@ package Excepcions;
  * @author carlos
  */
 public class NoHiHaRecursos extends RuntimeException{
-    
+
+    public NoHiHaRecursos(String message) {
+        super(message);
+    }
+
+
 }
