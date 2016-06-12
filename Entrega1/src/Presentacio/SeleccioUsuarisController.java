@@ -5,7 +5,10 @@
  */
 package Presentacio;
 
+import domain.Controladors.ControladorCrearReservaAmbNotificacio;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,6 +28,30 @@ public class SeleccioUsuarisController implements Initializable {
     private Button buttonok;
     @FXML
     private ListView  listRecurs;
+    
+    private String nomrecurs;
+    
+    private String nom;
+    
+    private Date data;
+    
+    private int horai;
+            
+    private ControladorCrearReservaAmbNotificacio ccran = new ControladorCrearReservaAmbNotificacio();
+
+    public void inicial(String nomrecurs, int horai, Date d) {
+        this.nomrecurs = nomrecurs;
+        this.horai = horai;
+        this.data = d;
+        ccran.obteUsuarisAAssignar(nomrecurs, data, horai);
+        
+        
+        
+        
+    }
+    
+    
+    
     /**
      * Initializes the controller class.
      */

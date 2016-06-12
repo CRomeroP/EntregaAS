@@ -25,6 +25,9 @@ import java.lang.String;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 
 
 
@@ -53,7 +56,10 @@ public class SeleccioRecursVistaController implements Initializable {
     private LocalTime hini;
     private LocalTime hfi;
     private LocalDate data;
+    private ArrayList<Info> info;
 
+    private ControladorCrearReservaAmbNotificacio ccran = new ControladorCrearReservaAmbNotificacio();
+    
     public void setHini(LocalTime hini) {
         this.hini = hini;
     }
@@ -69,18 +75,18 @@ public class SeleccioRecursVistaController implements Initializable {
     
         Date d = Date.from(data.atStartOfDay(ZoneId.systemDefault()).toInstant());
         
-        ArrayList<Info> info = ccran.obteRecursosDisponibles(d, hini.getHour(), hfi.getHour());
+        info = ccran.obteRecursosDisponibles(d, hini.getHour(), hfi.getHour());
         ArrayList<String> nom;
         nom = new ArrayList<String>();
         for (Info info1 : info) {
-            nom.add(info1.getNom());
+            nom.add(info1.toString());
         }
         ObservableList<String> lnoms = FXCollections.observableList(nom);
         listRecurs.setItems(lnoms);
         
     }
     
-    private ControladorCrearReservaAmbNotificacio ccran = new ControladorCrearReservaAmbNotificacio();
+    
     
     
     
@@ -94,7 +100,18 @@ public class SeleccioRecursVistaController implements Initializable {
     }    
     
     @FXML
-    private void ok(ActionEvent event) {
+    private void ok(ActionEvent event)  throws Exception{
+        
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SeleccioUsuaris.fxml"));
+        SeleccioUsuarisController  controller = fxmlLoader.<SeleccioUsuarisController>getController();
+
+        controller.inicial(info.get(listRecurs.getSelectionModel().getSelectedIndex()).getNom(), hini.getHour(), Date.from(data.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        Parent root = (Parent)fxmlLoader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) buttoncancel.getScene().getWindow();
+        stage.close();
+        stage.setScene(scene);
+        stage.show();
         
     }
     
