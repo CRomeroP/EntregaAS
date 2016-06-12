@@ -19,7 +19,7 @@ public interface CtrlReservaAmbNotificacio {
 
     public void insert(ReservaAmbNotificacio reserva);
     
-    public void afegirUsuariANotificacio(ReservaAmbNotificacio reserva, Usuari u);
+    public void afegirUsuariANotificacio(ReservaAmbNotificacio reserva);
 
     public ReservaAmbNotificacio get(Recurs nomRecurs, Date d, int hi);
 
