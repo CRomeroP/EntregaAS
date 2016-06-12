@@ -6,12 +6,16 @@
 package Presentacio;
 
 import Excepcions.PeriodeErroni;
+import domain.Controladors.ControladorCrearReservaAmbNotificacio;
+import domain.Model.Info;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -61,6 +65,7 @@ public class ReservaVistaController implements Initializable {
     private Label lael;
     
     private Stage s;
+    private ControladorCrearReservaAmbNotificacio ccran = new ControladorCrearReservaAmbNotificacio();
     
     
     /**
@@ -175,6 +180,8 @@ public class ReservaVistaController implements Initializable {
         try{
             
             if((calendario.getValue().compareTo(LocalDate.now()) == 0) && spinhini.getValue().getHour() <= LocalTime.now().getHour()) throw new PeriodeErroni("error en el periode");
+            ArrayList<Info> info;
+            info = ccran.obteRecursosDisponibles(Date.from(calendario.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),spinhini.getValue().getHour(),spinhfi.getValue().getHour());
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SeleccioRecursVista.fxml"));
 
             Scene scene = new Scene((Parent)fxmlLoader.load());
@@ -182,11 +189,13 @@ public class ReservaVistaController implements Initializable {
             s.close();
             s.setScene(scene);
 
-            //
             SeleccioRecursVistaController  controller = fxmlLoader.<SeleccioRecursVistaController>getController();
 
             
-            controller.setdatas(calendario.getValue(),spinhfi.getValue(),spinhini.getValue());
+            
+                    
+
+            controller.setdatas(calendario.getValue(),spinhfi.getValue(),spinhini.getValue(),info);
 
 
             s.show();

@@ -12,6 +12,7 @@ import java.net.URL;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,7 +22,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
@@ -57,6 +60,10 @@ public class SeleccioUsuarisController implements Initializable {
     
     private int totaluserscount = 1;
             
+    
+    private Stage s;
+    
+
     private ControladorCrearReservaAmbNotificacio ccran = new ControladorCrearReservaAmbNotificacio();
 
     public void inicial(String nomrecurs, int horai, Date d) {
@@ -78,6 +85,7 @@ public class SeleccioUsuarisController implements Initializable {
         // TODO
         
         listusers.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        totalusers.setText("Usuaris seleccionats: " + totaluserscount + "/10");
         
     }    
     
@@ -97,12 +105,29 @@ public class SeleccioUsuarisController implements Initializable {
     
     @FXML
     private void ok(ActionEvent event)  throws Exception{
-        ArrayList<String> noms = new ArrayList<String>();
-        for (Object nom : listusers.getSelectionModel().getSelectedItems()) {
-            noms.add(nom.toString());
+        try {
+            
+            ArrayList<String> noms = new ArrayList<String>();
+            for (Object nom : listusers.getSelectionModel().getSelectedItems()) {
+                noms.add(nom.toString());
+            }
+            ccran.assignarUsuarisAReserva(noms);
+            
+            
+            
+        }catch(Exception ex){
+                        
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setHeaderText("Error");
+            alert.setContentText(ex.getMessage());
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                s.show();
+            }
             
         }
-        ccran.assignarUsuarisAReserva(noms);
+
         
 
     }
