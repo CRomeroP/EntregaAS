@@ -98,14 +98,16 @@ public class SeleccioRecursVistaController implements Initializable {
     private void ok(ActionEvent event)  throws Exception{
         
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SeleccioUsuaris.fxml"));
-        SeleccioUsuarisController  controller = fxmlLoader.<SeleccioUsuarisController>getController();
+        
 
-        controller.inicial(info.get(listRecurs.getSelectionModel().getSelectedIndex()).getNom(), hini.getHour(), Date.from(data.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        
         Parent root = (Parent)fxmlLoader.load();
         Scene scene = new Scene(root);
         Stage stage = (Stage) buttoncancel.getScene().getWindow();
         stage.close();
         stage.setScene(scene);
+        SeleccioUsuarisController  controller = fxmlLoader.<SeleccioUsuarisController>getController();
+        controller.inicial(info.get(listRecurs.getSelectionModel().getSelectedIndex()).getNom(), hini.getHour(), Date.from(data.atStartOfDay(ZoneId.systemDefault()).toInstant()));
         stage.show();
         
     }
