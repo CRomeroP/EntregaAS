@@ -9,11 +9,12 @@
 
 <AnchorPane id="AnchorPane" prefHeight="360.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentacio.SeleccioUsuarisController">
    <children>
-      <VBox prefHeight="360.0" prefWidth="480.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER" prefHeight="360.0" prefWidth="480.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label text="Label" />
-            <ListView fx:id="listusers" prefHeight="344.0" prefWidth="464.0" />
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <Label text="Usuarios" />
+            <ListView fx:id="listusers" onMouseClicked="#handleMouseClick" prefHeight="344.0"  prefWidth="464.0" />
+            <Label fx:id="totalusers" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="511.0" text="Label" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Button fx:id="buttonok" mnemonicParsing="false" onAction="#ok" text="ok" />
                   <Button fx:id="buttoncancel" mnemonicParsing="false" onAction="#exit" text="cancel" />

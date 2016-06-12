@@ -79,7 +79,61 @@ public class CtrlInicialState {
         u5.setEmail("lidiafib@hotmail.com");
         u5.setNom("lidia");
         u5.setUsername("lidiafib");
-        CtrlU.insert(u5);        
+        CtrlU.insert(u5);
+        //usuari 6
+        Usuari u6 = new Usuari();
+        u6.setEmail("pautena@hotmail.com");
+        u6.setNom("pau");
+        u6.setUsername("pautena");
+        CtrlU.insert(u6);    
+        //usuari 7
+        Usuari u7 = new Usuari();
+        u7.setEmail("jesush@hotmail.com");
+        u7.setNom("jesus");
+        u7.setUsername("jesush");
+        CtrlU.insert(u7);    
+        //usuari 8
+        Usuari u8 = new Usuari();
+        u8.setEmail("geebeat@hotmail.com");
+        u8.setNom("oscar");
+        u8.setUsername("geebeat");
+        CtrlU.insert(u8);
+        //usuari 9
+        Usuari u9 = new Usuari();
+        u9.setEmail("rafamora@hotmail.com");
+        u9.setNom("rafa");
+        u9.setUsername("rafamora");
+        CtrlU.insert(u9);    
+        //usuari 10
+        Usuari u10 = new Usuari();
+        u10.setEmail("leomessi@hotmail.com");
+        u10.setNom("leo");
+        u10.setUsername("leomessi");
+        CtrlU.insert(u10);  
+        //usuari 11
+        Usuari u11 = new Usuari();
+        u11.setEmail("cr7@hotmail.com");
+        u11.setNom("cristiano");
+        u11.setUsername("cr7");
+        CtrlU.insert(u11);    
+        //usuari 12
+        Usuari u12 = new Usuari();
+        u12.setEmail("belenesteban@hotmail.com");
+        u12.setNom("belen");
+        u12.setUsername("belenesteban");
+        CtrlU.insert(u12);    
+        //usuari 13
+        Usuari u13 = new Usuari();
+        u13.setEmail("fiber@hotmail.com");
+        u13.setNom("fib");
+        u13.setUsername("fiber");
+        CtrlU.insert(u13);    
+        //usuari 14
+        Usuari u14 = new Usuari();
+        u14.setEmail("chrisbrown@hotmail.com");
+        u14.setNom("chris");
+        u14.setUsername("chrisbrown");
+        CtrlU.insert(u14);    
     }
     
     public void inicialitzaRecursos() {
