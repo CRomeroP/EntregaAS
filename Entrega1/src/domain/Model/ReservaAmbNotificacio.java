@@ -194,9 +194,7 @@ public class ReservaAmbNotificacio implements Serializable{
     
     public ArrayList<Usuari> getPossiblesUsuaris(ArrayList<Usuari> u){
         Date fechaActual = new Date();
-        //int error = data.compareTo(fechaActual);
-        //if (data.compareTo(fechaActual) == 0 && horainici < fechaActual.getHours()) throw new ReservaCaducada();
-        //if ((error == 1) || (error == 0 && horainici > fechaActual.getHours())) throw new ReservaCaducada();
+        if (fechaActual.after(data)) throw new ReservaCaducada("La reserva ha caducat");
         return getUsuarisSenseNot(u);
     }
     

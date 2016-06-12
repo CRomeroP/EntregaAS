@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import java.io.Serializable;
+import java.util.Calendar;
 import javax.persistence.IdClass;
 import javax.persistence.PrimaryKeyJoinColumn;
 import static javax.persistence.TemporalType.DATE;
@@ -90,10 +91,23 @@ public class ReservaSenseNotificacio implements Serializable{
     }*/
     
     public boolean estaDisponible (Date d, int horai, int horaf){
-        System.out.println(d + " " + data + " " + horai + " " + horainici + " "+ horaf + " " + horafi);
-        return ((((d.compareTo(this.data))==0 && ((horaf <= this.horainici) || (horai >= this.horafi)))) ||  (d.compareTo(this.data) != 0));
+        int year = data.getYear();
+        int month = data.getMonth();
+        int year2 = d.getYear() + 1900;
+        int month2 = d.getMonth()+ 1;
+        Calendar c = Calendar.getInstance();
+        c.setTime(d);
+        int day2 = c.get(Calendar.DAY_OF_MONTH);
+        c.setTime(data);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+        System.out.println("PROBA MARC ----------------------------------");
+        System.out.println("Reserva Presentacio " + year2 + " " + month2 + " " + day2);
+        System.out.println("Reserva Real " + year + " " + month + " " + day);
+        //System.out.println("VICTOR FEO----------------" + d + " " + year + " " + month + " " + day + " " + day2 + " " + horai + " " + horainici + " "+ horaf + " " + horafi);
+        boolean b = (year == year2 && month == month2 && day == day2);
+        System.out.println("BOOLEAN B" + b);
+        return (((b && ((horaf <= this.horainici) || (horai >= this.horafi)))) ||  (!b));
     }
-
     public void setHorafi(Integer horafi) {
         this.horafi = horafi;
     }

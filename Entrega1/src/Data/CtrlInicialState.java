@@ -14,6 +14,7 @@ import domain.Model.ReservaSenseNotificacio;
 import domain.Model.Sala;
 import domain.Model.Usuari;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -144,7 +145,7 @@ public class CtrlInicialState {
         o1.setModel("222");
         o1.setNom("HP222");
         CtrlO.insert(o1);
-        /*o2 = new Ordinador();
+        o2 = new Ordinador();
         o2.setMarca("ACER");
         o2.setModel("222");
         o2.setNom("ACER222");  
@@ -170,7 +171,7 @@ public class CtrlInicialState {
         s2.setNom("Sala d'actes Pompeu");
         s2.setAforament(300);
         s2.setUbicacio("Marina");
-        CtrlS.insert(s2); */
+        CtrlS.insert(s2); 
     }
     
     public void inicialitzaReservesAmbNotificacio() {
@@ -185,11 +186,13 @@ public class CtrlInicialState {
         res1.setRecurs(o1);
         res1.setUsuari(u1);
         CtrlAmb.insert(res1);
-        /*//Reserva 2
+        //Reserva 2
         ReservaAmbNotificacio res2 = new ReservaAmbNotificacio();
         res2.setComentaris("Vull reservar la Sala d'actes FIB i notificant");
         Date d2 = new Date(2016,8,10);
-        res2.setData(d2);
+        Calendar c = Calendar.getInstance();
+        c.setTime(d2);
+        res2.setData(c.getTime());
         res2.setHorainici(7);
         res2.setHorafi(15);
         res2.setRecurs(s1);
@@ -197,10 +200,10 @@ public class CtrlInicialState {
         ArrayList<Usuari> notificacions = new ArrayList<Usuari>();
         notificacions.add(u3);
         res2.setNotificacions((List)notificacions);
-        CtrlAmb.insert(res2);*/
+        CtrlAmb.insert(res2);
     }
     public void inicialitzaReservesSenseNotificacio() {
-       /* CtrlReservaSenseNotificacio CtrlSense = factory.getCtrlReservaSenseNotificacio();
+        CtrlReservaSenseNotificacio CtrlSense = factory.getCtrlReservaSenseNotificacio();
         //Reserva 1
         ReservaSenseNotificacio res3 = new ReservaSenseNotificacio();
         res3.setComentaris("Vull reservar l'ordinador HP222 sense notificar");
@@ -220,6 +223,6 @@ public class CtrlInicialState {
         res4.setHorafi(15);
         res4.setRecurs(s1);
         res4.setUsuari(u2);
-        CtrlSense.insert(res4);*/
+        CtrlSense.insert(res4);
     }
 }
