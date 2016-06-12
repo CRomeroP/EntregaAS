@@ -8,6 +8,7 @@ package domain.Controladors;
 import Data.CtrlRecurs;
 import Data.CtrlReservaAmbNotificacio;
 import Data.CtrlUsuari;
+import Excepcions.SalaSolapada;
 import domain.Adapters.IGestioMissatgeAdapter;
 import domain.Factories.CtrlAdaptersFactoria;
 import domain.Factories.CtrlDataFactoria;
@@ -70,21 +71,19 @@ public class ControladorCrearReservaAmbNotificacio {
         CtrlRecurs CtrlR = cf.getCtrlRecurs();
         Recurs s = CtrlR.get(nomR);
         boolean b = usu.tensSalaReservada(data, hi, hf);
-        if (b) System.out.println("SalaSolapada");
-        else {
-            ReservaAmbNotificacio resamb = new ReservaAmbNotificacio(data, hi, hf, comentari, usu, s);
-            CtrlReservaAmbNotificacio CtrlA = cf.getCtrlReservaAmbNotificacio();
-            CtrlA.insert(resamb);
-            String mail = usu.getEmail();
-            ArrayList<String> emails = new ArrayList<>();
-            emails.add(mail);
-            CtrlAdaptersFactoria ca = CtrlAdaptersFactoria.getInstance();
-            IGestioMissatgeAdapter gm = ca.getIGestioMissatgeAdapter();
-            gm.enviarDadesReserva(nomR, this.data, this.hi, this.hf, username, this.comentari, emails);
-            this.nomR = nomR;
-            if (comentari != null) this.comentari = comentari;
-            this.username = username;
-        }
+        if (b) throw new SalaSolapada();
+        ReservaAmbNotificacio resamb = new ReservaAmbNotificacio(data, hi, hf, comentari, usu, s);
+        CtrlReservaAmbNotificacio CtrlA = cf.getCtrlReservaAmbNotificacio();
+        CtrlA.insert(resamb);
+        String mail = usu.getEmail();
+        ArrayList<String> emails = new ArrayList<>();
+        emails.add(mail);
+        CtrlAdaptersFactoria ca = CtrlAdaptersFactoria.getInstance();
+        IGestioMissatgeAdapter gm = ca.getIGestioMissatgeAdapter();
+        gm.enviarDadesReserva(nomR, this.data, this.hi, this.hf, username, this.comentari, emails);
+        this.nomR = nomR;
+        if (comentari != null) this.comentari = comentari;
+        this.username = username;
     }
     
 }
