@@ -41,6 +41,7 @@ public class CtrlUsuariDB implements CtrlUsuari{
         try{session.getTransaction().begin();
             usuari = (Usuari) session.createCriteria(Usuari.class)
                     .add(Restrictions.eq("username", username)).uniqueResult();
+            if (usuari == null) throw new UsuariNoExisteix("L'usuari no existeix.");
             session.close();
         }catch (HibernateException e){
             if (session.getTransaction() != null) {
@@ -48,7 +49,6 @@ public class CtrlUsuariDB implements CtrlUsuari{
                 throw e;
             }
         }
-        if (usuari == null) throw new UsuariNoExisteix("L'usuari no existeix.");
         return usuari;
     }
 
